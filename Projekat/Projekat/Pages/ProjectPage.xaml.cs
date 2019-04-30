@@ -30,11 +30,36 @@ namespace Projekat.Pages
             TimelineElements = TimelineElement.GetTimelineElements();
             InitializeComponent();
             DataContext = this;
+            Frame.Content = new DokumentaPage();
         }
 
         private void Nazad_Click(object sender, RoutedEventArgs e)
         {
             (Parent as Window).Content = new StartPage();
+        }
+
+        private void PrikaziDokumenta_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Content = new DokumentaPage();
+        }
+
+        private void PrikaziTroskove_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Content = new TroskoviPage();
+        }
+
+        private void PrikazuTabelu_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Content = new TabelaPage();
+        }
+
+        private void BackToStartPage_Click(object sender, RoutedEventArgs e)
+        {
+            string poruka = "Nisam ovo jos uradio kako treba, za sad kad se klikne ovde moze samo da se ide nazad na pocetnu stranu. Da li to hocete?";
+            var result = MessageBox.Show(poruka, "Pitanje", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
+                (Parent as Window).Content = new StartPage();
         }
     }
 }

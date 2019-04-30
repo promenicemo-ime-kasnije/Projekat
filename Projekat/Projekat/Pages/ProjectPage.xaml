@@ -20,63 +20,149 @@
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="150"/>  <!--Command bar-->
+            <RowDefinition Height="75"/>  <!--Command bar-->
             <RowDefinition Height="*"/>     <!--Ostatak stranice-->
         </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"/>  <!--Projekat-->
-            <ColumnDefinition Width="Auto"/> <!--Refresh-->
-            <ColumnDefinition Width="*"/>    <!--Prazno-->
-            <ColumnDefinition Width="Auto"/> <!--Podesavanja-->
-        </Grid.ColumnDefinitions>
-        
+        <Grid Background="{DynamicResource PrimaryHueMidBrush}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>  <!--Projekat-->
+                <ColumnDefinition Width="Auto"/>  <!--Refresh-->
+                <ColumnDefinition Width="*"/>     <!--Prazno-->
+                <ColumnDefinition Width="Auto"/>  <!--Podesavanja-->
+            </Grid.ColumnDefinitions>
+
+            <!--Ovde treba da dodje odabir projekta preko expandera i da se prikazuje naziv trenutnog projekta-->
+            <Button Content="Trenutni projekat"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                    Height="75"
+                    Padding="50, 20"
+                    BorderBrush="Black"
+                    BorderThickness="1"/>
+
+            <!--Button za refreshovanje sadrzaja stranice-->
+            <Button Grid.Column="1"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                    Height="75"
+                    Padding="50, 20"
+                    BorderBrush="Black"
+                    BorderThickness="1">
+                <!--Custom button-->
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center">
+                        <materialDesign:PackIcon Kind="Refresh"
+                                                 Margin="0, 0, 20, 0"
+                                                 Height="30"
+                                                 Width="30"/>
+                        <TextBlock Text="Refresh"
+                                       VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+
+            <!--Podesavanja (treba da bude expander) - profil, podesavanja aplikacije, back to start page, logout...-->
+            <Button Grid.Column="3"
+                    materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                    Height="75"
+                    Padding="50, 20"
+                    BorderBrush="Black"
+                    BorderThickness="1"
+                    Click="BackToStartPage_Click">
+                <!--Custom button-->
+                <Button.Content>
+                    <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center">
+                        <materialDesign:PackIcon Kind="Settings"
+                                                 Margin="0, 0, 20, 0"
+                                                 Height="30"
+                                                 Width="30"/>
+                        <TextBlock Text="Podesavanja"
+                                       VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>    <!--Istorija-->
+                <ColumnDefinition Width="*"/>   <!--Frame-->
+                <ColumnDefinition Width="Auto"/> <!--Side menu-->
+            </Grid.ColumnDefinitions>
 
 
-        <Expander Header="Trenutni projekat"
-                  Panel.ZIndex="3"
-                  Grid.Column="0"
-                  Foreground="White"
-                  Background="{DynamicResource PrimaryHueMidBrush}">
-            <!--Lista projekata-->
-            <ListView ItemsSource="{Binding ListaProjekata}"
-                        Margin="10"
-                        Grid.Row="1">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
+            <!--Prva kolona - Istorija/timeline-->
+            <Grid Grid.Column="0"
+                      Width="460">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-                            <!--Ikonica-->
-                            <materialDesign:PackIcon Kind="House" 
-                                                Margin="10"/>
-                            <!--Tip projekta-->
-                            <TextBlock Text="{Binding}" 
-                                Margin="5" 
-                                VerticalAlignment="Center" 
-                                FontSize="15"/>
+                <!--Podnaslov-->
+                <TextBlock Text="Istorija promena"
+                               HorizontalAlignment="Left"
+                               Margin="30, 10"
+                               FontSize="18"/>
 
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Expander>
+                <!--Lista promena-->
+                <ListView ItemsSource="{Binding TimelineElements}"
+                              Margin="10"
+                              Grid.Row="1">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal"
+                                            Width="400">
 
-        <Button Content="Refresh"
-                materialDesign:ShadowAssist.Darken="False"
-                Grid.Column="1"/>
+                                <!--Ikonica-->
+                                <materialDesign:PackIcon Kind="FileDocumentOutline" 
+                                                             Margin="10"/>
 
-        <Button Content="Podesavanja"
-                    Grid.Column="3"/>
+                                <StackPanel>
 
-        <!--TextBlock Text="Project Page"
-                   FontSize="30"
-                   HorizontalAlignment="Center"
-                   Margin="20"/>
-            <Button Content="Meni"
-                Click="PrikaziMeni_Click"
-                Margin="100, 20, 100, 200"/>
-            <Button Content="Nazad"
-                Click="Nazad_Click"/>-->
+                                    <!--Tekst promene-->
+                                    <TextBlock Text="{Binding Text}" 
+                                                   Width="350"
+                                                   TextWrapping="Wrap"
+                                                   Margin="5" 
+                                                   VerticalAlignment="Center" 
+                                                   FontSize="15"/>
+
+                                    <!--Datum promene-->
+                                    <TextBlock Text="{Binding DateTime, StringFormat='{}{0:dd/MM/yyyy}'}"
+                                                   Foreground="Blue"
+                                                   Margin="5"/>
+
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+            
+            <!--Druga kolona - Frame-->
+            <Frame Name="Frame" 
+                   NavigationUIVisibility="Hidden"
+                   Grid.Column="1"/>
+
+
+            <!--Treca kolona - side menu-->
+            <Menu Grid.Column="2" 
+                  BorderBrush="Black"
+                  BorderThickness="1">
+                <Menu.LayoutTransform>
+                    <RotateTransform Angle="90"/>
+                </Menu.LayoutTransform>
+
+                <MenuItem Header="Dokumenta" Click="PrikaziDokumenta_Click"/>
+                <MenuItem Header="Troskovi" Click="PrikaziTroskove_Click"/>
+                <MenuItem Header="Tabela" Click="PrikazuTabelu_Click"/>
+            </Menu>
+                  
+        </Grid>
 
     </Grid>
 </Page>

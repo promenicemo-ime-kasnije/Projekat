@@ -67,6 +67,9 @@
     <Compile Include="Pages\DetaljiZaKreiranjeProjektaPage.xaml.cs">
       <DependentUpon>DetaljiZaKreiranjeProjektaPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\DokumentaPage.xaml.cs">
+      <DependentUpon>DokumentaPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\NoviProjekatPage.xaml.cs">
       <DependentUpon>NoviProjekatPage.xaml</DependentUpon>
     </Compile>
@@ -81,6 +84,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\DetaljiZaKreiranjeProjektaPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\DokumentaPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -115,8 +122,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\TabelaPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TroskoviPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\TabelaPage.xaml.cs">
+      <DependentUpon>TabelaPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TroskoviPage.xaml.cs">
+      <DependentUpon>TroskoviPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pomocne klase\TimelineElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
