@@ -1,0 +1,193 @@
+﻿<Page x:Class="Projekat.StartPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Projekat"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="1000"
+      Title="StartPage"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal" 
+      TextOptions.TextRenderingMode="Auto"        
+      Background="{DynamicResource MaterialDesignPaper}"
+      FontFamily="{DynamicResource MaterialDesignFont}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--Naslov-->
+        <TextBlock Text="Pocetna stranica" 
+                   Grid.Row="0"
+                   FontSize="30" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Center"
+                   Margin="10, 30, 10, 50"/>
+        
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" MinWidth="460"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <!--Prva kolona - Timeline-->
+            <Grid Grid.Column="0"
+                  Width="460">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!--Podnaslov-->
+                <TextBlock Text="Timeline"
+                           HorizontalAlignment="Left"
+                           Margin="30, 10"
+                           FontSize="18"/>
+
+                <!--Lista promena-->
+                <ListView ItemsSource="{Binding TimelineElements}"
+                          Margin="10"
+                          Grid.Row="1"
+                          PreviewMouseLeftButtonUp="OtvoriProjekat_Click">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal"
+                                        Width="400">
+
+                                <!--Ikonica-->
+                                <materialDesign:PackIcon Kind="FileDocumentOutline" 
+                                                         Margin="10"/>
+
+                                <StackPanel>
+                                    
+                                    <!--Tekst promene-->
+                                    <TextBlock Text="{Binding Text}" 
+                                               Width="350"
+                                               TextWrapping="Wrap"
+                                               Margin="5" 
+                                               VerticalAlignment="Center" 
+                                               FontSize="15"/>
+
+                                    <!--Datum promene-->
+                                    <TextBlock Text="{Binding DateTime, StringFormat='{}{0:dd/MM/yyyy}'}"
+                                               Foreground="Blue"
+                                               Margin="5"/>
+                                    
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+            
+            <!--Druga kolona - Lista projekata-->
+            <Grid Grid.Column="1"
+                  HorizontalAlignment="Center"
+                  PreviewMouseLeftButtonUp="OtvoriProjekat_Click">
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!--Podnaslov-->
+                <TextBlock Text="Vasi projekti"
+                           HorizontalAlignment="Left"
+                           Margin="30, 10"
+                           FontSize="18"/>
+                
+                <!--Lista projekata-->
+                <ListView ItemsSource="{Binding ListaProjekata}"
+                          Margin="10"
+                          Grid.Row="1">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                
+                                <!--Ikonica-->
+                                <materialDesign:PackIcon Kind="House" 
+                                                 Margin="10"/>
+                                <!--Tip projekta-->
+                                <TextBlock Text="{Binding}" 
+                                   Margin="5" 
+                                   VerticalAlignment="Center" 
+                                   FontSize="15"/>
+                                
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+
+            <!--Treca kolona-->
+            <StackPanel Orientation="Vertical"
+                        MaxWidth="300"
+                        VerticalAlignment="Top"
+                        Grid.Column="2">
+
+                <!--Novi projekat-->
+                <Button Click="NoviProjekat_Click"
+                        Margin="20"
+                        Height="50">
+                    <!--Custom izgleda buttona-->
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center">
+                            <materialDesign:PackIcon Kind="Add"
+                                                     Margin="0, 0, 20, 0" 
+                                                     Width="40" 
+                                                     Height="40"/>
+                            <TextBlock Text="Novi projekat"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+
+                <!--Otvori arhivu-->
+                <Button Click="Arhiva_Click"
+                        Height="50"
+                        Margin="20">
+                    <!--Custom izgleda buttona-->
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center">
+                            <materialDesign:PackIcon Kind="Archive"
+                                                     Margin="0, 0, 20, 0" 
+                                                     Width="40" 
+                                                     Height="40"/>
+                            <TextBlock Text="      Arhiva      "
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+
+                <!--Odjavi se sa sistema-->
+                <Button Click="OdjaviSe_Click"
+                        Margin="20"
+                        Height="50">
+                    <!--Custom izgleda buttona-->
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal"
+                                    HorizontalAlignment="Center">
+                            <materialDesign:PackIcon Kind="Logout"
+                                                     Margin="0, 0, 20, 0" 
+                                                     Width="40" 
+                                                     Height="40"/>
+                            <TextBlock Text="   Odjavi se    "
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</Page>
