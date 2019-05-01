@@ -16,54 +16,184 @@
       Background="{DynamicResource MaterialDesignPaper}"
       FontFamily="{DynamicResource MaterialDesignFont}">
 
+    
+    <!--Priznajem da je ovo dosta lose uradjeno, najgori copy paste
+        Pokusavao sam da ovo malo poboljsam, da napravim userControlu koja predstavlja jednu listu dokumenata pa da to posle 
+        nekako iskombinujem ali mi to nije uspelo, ako ovo neko cita neka to ispravi ako zna-->
 
-    <Grid HorizontalAlignment="Center" Margin="20">
+    <StackPanel HorizontalAlignment="Center" Margin="20">
 
-        <ListView ItemsSource="{Binding List}"
-                  ScrollViewer.VerticalScrollBarVisibility="Auto"
-                  ScrollViewer.CanContentScroll="False">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Expander HorizontalAlignment="Stretch"
-                              Width="700"
-                              BorderThickness="1"
-                              BorderBrush="Black"
-                              Padding="10"
-                              Header="{Binding}">
-                        <Expander.HeaderTemplate>
+        <!--Priprema za izgradju-->
+        <Expander Header="Priprema za izgradnju"
+                  BorderThickness="1"
+                  BorderBrush="Black"
+                  Margin="5"
+                  Padding="10">
+            
+            <StackPanel>
+                
+                <!--Lokacijski uslovi-->
+                <Expander Header="Lokacijski uslovi"
+                          BorderThickness="1"
+                          BorderBrush="Black"
+                          Margin="5"
+                          Padding="10">
+                    <ListView ItemsSource="{Binding List}"
+                              ScrollViewer.VerticalScrollBarVisibility="Auto"
+                              ScrollViewer.CanContentScroll="False">
+                        <ListView.ItemTemplate>
                             <DataTemplate>
+                                <Expander HorizontalAlignment="Stretch"
+                                          Width="700"
+                                          BorderThickness="1"
+                                          BorderBrush="Black"
+                                          Padding="10"
+                                          Header="{Binding}">
+                                    <Expander.HeaderTemplate>
+                                        <DataTemplate>
 
-                                <Grid Margin="10">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="20"/>
-                                    </Grid.ColumnDefinitions>
+                                            <Grid Margin="10">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="20"/>
+                                                </Grid.ColumnDefinitions>
 
-                                    <TextBlock Text="{Binding}"/>
+                                                <TextBlock Text="{Binding}"/>
 
-                                    <CheckBox Grid.Column="1" RenderTransformOrigin="0.5,0.5">
-                                        <CheckBox.RenderTransform>
-                                            <TransformGroup>
-                                                <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
-                                                <SkewTransform/>
-                                                <RotateTransform/>
-                                                <TranslateTransform/>
-                                            </TransformGroup>
-                                        </CheckBox.RenderTransform>
-                                    </CheckBox>
+                                                <CheckBox Grid.Column="1" RenderTransformOrigin="0.5,0.5">
+                                                    <CheckBox.RenderTransform>
+                                                        <TransformGroup>
+                                                            <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
+                                                            <SkewTransform/>
+                                                            <RotateTransform/>
+                                                            <TranslateTransform/>
+                                                        </TransformGroup>
+                                                    </CheckBox.RenderTransform>
+                                                </CheckBox>
 
-                                </Grid>
+                                            </Grid>
 
-                            </DataTemplate>
-                        </Expander.HeaderTemplate>
-                        <StackPanel Margin="10">
-                            <TextBlock TextWrapping="Wrap"
+                                        </DataTemplate>
+                                    </Expander.HeaderTemplate>
+                                    <StackPanel Margin="10">
+                                        <TextBlock TextWrapping="Wrap"
                                        Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."/>
-                        </StackPanel>
-                    </Expander>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                                    </StackPanel>
+                                </Expander>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Expander>
 
-    </Grid>
+                <!--Gradjevinska dozvola-->
+                <Expander Header="Gradjevinska dozvola"
+                          BorderThickness="1"
+                          BorderBrush="Black"
+                          Margin="5"
+                          Padding="10">
+                    <ListView ItemsSource="{Binding List}"
+                              ScrollViewer.VerticalScrollBarVisibility="Auto"
+                              ScrollViewer.CanContentScroll="False">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Expander HorizontalAlignment="Stretch"
+                                          Width="700"
+                                          BorderThickness="1"
+                                          BorderBrush="Black"
+                                          Padding="10"
+                                          Header="{Binding}">
+                                    <Expander.HeaderTemplate>
+                                        <DataTemplate>
+
+                                            <Grid Margin="10">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="20"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <TextBlock Text="{Binding}"/>
+
+                                                <CheckBox Grid.Column="1" RenderTransformOrigin="0.5,0.5">
+                                                    <CheckBox.RenderTransform>
+                                                        <TransformGroup>
+                                                            <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
+                                                            <SkewTransform/>
+                                                            <RotateTransform/>
+                                                            <TranslateTransform/>
+                                                        </TransformGroup>
+                                                    </CheckBox.RenderTransform>
+                                                </CheckBox>
+
+                                            </Grid>
+
+                                        </DataTemplate>
+                                    </Expander.HeaderTemplate>
+                                    <StackPanel Margin="10">
+                                        <TextBlock TextWrapping="Wrap"
+                                       Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."/>
+                                    </StackPanel>
+                                </Expander>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Expander>
+                
+            </StackPanel>
+            
+        </Expander>
+
+        <!--Izgradnja-->
+        <Expander Header="Izgradnja"
+                  BorderThickness="1"
+                  BorderBrush="Black"
+                  Margin="5"
+                  Padding="10">
+            <ListView ItemsSource="{Binding List}"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
+                      ScrollViewer.CanContentScroll="False">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Expander HorizontalAlignment="Stretch"
+                                  Width="700"
+                                  BorderThickness="1"
+                                  BorderBrush="Black"
+                                  Padding="10"
+                                  Header="{Binding}">
+                            <Expander.HeaderTemplate>
+                                <DataTemplate>
+
+                                    <Grid Margin="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="20"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Text="{Binding}"/>
+
+                                        <CheckBox Grid.Column="1" RenderTransformOrigin="0.5,0.5">
+                                            <CheckBox.RenderTransform>
+                                                <TransformGroup>
+                                                    <ScaleTransform ScaleX="1.5" ScaleY="1.5"/>
+                                                    <SkewTransform/>
+                                                    <RotateTransform/>
+                                                    <TranslateTransform/>
+                                                </TransformGroup>
+                                            </CheckBox.RenderTransform>
+                                        </CheckBox>
+
+                                    </Grid>
+
+                                </DataTemplate>
+                            </Expander.HeaderTemplate>
+                            <StackPanel Margin="10">
+                                <TextBlock TextWrapping="Wrap"
+                                       Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."/>
+                            </StackPanel>
+                        </Expander>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Expander>
+
+    </StackPanel>
 </Page>
