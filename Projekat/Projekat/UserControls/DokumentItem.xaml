@@ -15,6 +15,7 @@
              FontFamily="{DynamicResource MaterialDesignFont}"
              Name="this"
              MouseLeftButtonUp="OtvoriDetalje_Click">
+    
     <Grid Width="650"
           HorizontalAlignment="Center"
           Margin="10">
@@ -23,10 +24,13 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
+        <!--Naziv dokumenta-->
         <TextBlock Text="{Binding Dokument.Naziv, ElementName=this}"
                    FontSize="15"/>
         
+        <!--CheckBox koji prikazuje da li je dokument zavrsen-->
         <CheckBox IsChecked="{Binding Dokument.Zavrsen, ElementName=this}"
                   Grid.Column="1"/>
+        
     </Grid>
 </UserControl>

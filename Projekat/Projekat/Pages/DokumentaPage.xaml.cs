@@ -45,23 +45,10 @@ namespace Projekat.Pages
             List.Add("Izvod i katastra vodova");
             List.Add("Podatak o povrsini parcele");
 
-            foreach (var item in List)
-                Dokumenta.Add(new FakeDokument(item, true, typeof(DetaljiNekogRandomDokumenta)));
+            for (int i = 0; i < List.Count; i++)
+                Dokumenta.Add(new FakeDokument(List[i], i < 3, typeof(DetaljiNekogRandomDokumenta), i));
 
             DataContext = this;
-        }
-
-        private void ScrollViewer_MouseWheel(object sender, MouseWheelEventArgs e)
-        {
-            var scrollviewer = sender as ScrollViewer;
-            if (e.Delta > 0)
-            {
-                scrollviewer.ScrollToVerticalOffset(scrollviewer.VerticalOffset - 50);
-            }
-            else
-            {
-                scrollviewer.ScrollToVerticalOffset(scrollviewer.VerticalOffset + 50);
-            }
         }
     }
 }

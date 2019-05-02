@@ -11,12 +11,14 @@ namespace Projekat.Pomocne_klase
         public string Naziv { get; set; }
         public bool Zavrsen { get; set; }
         public Type DetailsPage { get; set; }
+        public int Redosled { get; set; }
 
-        public FakeDokument(string naziv, bool zavrsen, Type detailsPage)
+        public FakeDokument(string naziv, bool zavrsen, Type detailsPage, int redosled = 0)
         {
             Naziv = naziv;
             Zavrsen = zavrsen;
             DetailsPage = detailsPage;
+            Redosled = redosled;
         }
     }
 }

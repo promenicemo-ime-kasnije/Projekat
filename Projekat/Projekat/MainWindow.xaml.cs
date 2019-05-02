@@ -11,7 +11,7 @@ namespace Projekat
         public MainWindow()
         {
             InitializeComponent();
-            Content = new DokumentaPage();
+            Content = new LoginPage();
         }
     }
 }
