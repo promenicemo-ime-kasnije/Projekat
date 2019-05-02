@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Projekat.Pages;
+using System.Windows;
 
 namespace Projekat
 {
@@ -10,7 +11,7 @@ namespace Projekat
         public MainWindow()
         {
             InitializeComponent();
-            Content = new LoginPage();
+            Content = new DokumentaPage();
         }
     }
 }

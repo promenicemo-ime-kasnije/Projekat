@@ -22,12 +22,11 @@ namespace Projekat.Pages
     public partial class ProjectPage : Page
     {
         public List<string> ListaProjekata { get; set; }
-        public List<TimelineElement> TimelineElements { get; set; }
+        
 
         public ProjectPage()
         {
             ListaProjekata = new List<string>() { "Fabrika Cigla", "Supermarket Migros", "Ferizova prodavnica", "Hotel Hibis" };
-            TimelineElements = TimelineElement.GetTimelineElements();
             InitializeComponent();
             DataContext = this;
             Frame.Content = new DokumentaPage();
@@ -51,6 +50,11 @@ namespace Projekat.Pages
         private void PrikazuTabelu_Click(object sender, RoutedEventArgs e)
         {
             Frame.Content = new TabelaPage();
+        }
+
+        private void PrikaziTimeline_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Content = new TimelinePage();
         }
 
         private void BackToStartPage_Click(object sender, RoutedEventArgs e)

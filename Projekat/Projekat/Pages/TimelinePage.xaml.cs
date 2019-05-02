@@ -17,12 +17,15 @@ using System.Windows.Shapes;
 namespace Projekat.Pages
 {
     /// <summary>
-    /// Interaction logic for TroskoviPage.xaml
+    /// Interaction logic for TimelinePage.xaml
     /// </summary>
-    public partial class TroskoviPage : Page
+    public partial class TimelinePage : Page
     {
-        public TroskoviPage()
+        public List<TimelineElement> TimelineElements { get; set; }
+
+        public TimelinePage()
         {
+            TimelineElements = TimelineElement.GetTimelineElements();
             InitializeComponent();
             DataContext = this;
         }

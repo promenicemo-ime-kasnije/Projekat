@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Projekat.Pages.DokumentDetails;
+using Projekat.Pomocne_klase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,10 +23,12 @@ namespace Projekat.Pages
     public partial class DokumentaPage : Page
     {
         public List<string> List { get; set; }
+        public List<FakeDokument> Dokumenta { get; set; }
         public DokumentaPage()
         {
             InitializeComponent();
             List = new List<string>();
+            Dokumenta = new List<FakeDokument>();
             List.Add("Dokaz o uplati administrativne takse");
             List.Add("Idejno resenje");
             List.Add("Kopija plana za kat. parcelu");
@@ -40,6 +44,10 @@ namespace Projekat.Pages
             List.Add("Kopija plana za kat. parcelu");
             List.Add("Izvod i katastra vodova");
             List.Add("Podatak o povrsini parcele");
+
+            foreach (var item in List)
+                Dokumenta.Add(new FakeDokument(item, true, typeof(DetaljiNekogRandomDokumenta)));
+
             DataContext = this;
         }
     }

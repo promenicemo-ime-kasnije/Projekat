@@ -94,54 +94,7 @@
             </Grid.ColumnDefinitions>
 
 
-            <!--Prva kolona - Istorija/timeline-->
-            <Grid Grid.Column="0"
-                      Width="460">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-
-                <!--Podnaslov-->
-                <TextBlock Text="Istorija promena"
-                               HorizontalAlignment="Left"
-                               Margin="30, 10"
-                               FontSize="18"/>
-
-                <!--Lista promena-->
-                <ListView ItemsSource="{Binding TimelineElements}"
-                              Margin="10"
-                              Grid.Row="1">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal"
-                                            Width="400">
-
-                                <!--Ikonica-->
-                                <materialDesign:PackIcon Kind="FileDocumentOutline" 
-                                                             Margin="10"/>
-
-                                <StackPanel>
-
-                                    <!--Tekst promene-->
-                                    <TextBlock Text="{Binding Text}" 
-                                                   Width="350"
-                                                   TextWrapping="Wrap"
-                                                   Margin="5" 
-                                                   VerticalAlignment="Center" 
-                                                   FontSize="15"/>
-
-                                    <!--Datum promene-->
-                                    <TextBlock Text="{Binding DateTime, StringFormat='{}{0:dd/MM/yyyy}'}"
-                                                   Foreground="Blue"
-                                                   Margin="5"/>
-
-                                </StackPanel>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Grid>
+            
             
             <!--Druga kolona - Frame-->
             <Frame Name="Frame" 
@@ -152,7 +105,9 @@
             <!--Treca kolona - side menu-->
             <Menu Grid.Column="2" 
                   BorderBrush="Black"
-                  BorderThickness="1">
+                  BorderThickness="1"
+                  
+                  >
                 <Menu.LayoutTransform>
                     <RotateTransform Angle="90"/>
                 </Menu.LayoutTransform>
@@ -160,6 +115,7 @@
                 <MenuItem Header="Dokumenta" Click="PrikaziDokumenta_Click"/>
                 <MenuItem Header="Troskovi" Click="PrikaziTroskove_Click"/>
                 <MenuItem Header="Tabela" Click="PrikazuTabelu_Click"/>
+                <MenuItem Header="Timeline" Click="PrikaziTimeline_Click"/>
             </Menu>
                   
         </Grid>

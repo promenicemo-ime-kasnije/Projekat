@@ -1,5 +1,4 @@
-﻿using Projekat.Pomocne_klase;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Projekat.Pages
+namespace Projekat.Pages.DokumentDetails
 {
     /// <summary>
-    /// Interaction logic for TroskoviPage.xaml
+    /// Interaction logic for DetaljiNekogRandomDokumenta.xaml
     /// </summary>
-    public partial class TroskoviPage : Page
+    public partial class DetaljiNekogRandomDokumenta : Page
     {
-        public TroskoviPage()
+        public DetaljiNekogRandomDokumenta()
         {
             InitializeComponent();
-            DataContext = this;
         }
     }
 }
