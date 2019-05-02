@@ -50,5 +50,18 @@ namespace Projekat.Pages
 
             DataContext = this;
         }
+
+        private void ScrollViewer_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            var scrollviewer = sender as ScrollViewer;
+            if (e.Delta > 0)
+            {
+                scrollviewer.ScrollToVerticalOffset(scrollviewer.VerticalOffset - 50);
+            }
+            else
+            {
+                scrollviewer.ScrollToVerticalOffset(scrollviewer.VerticalOffset + 50);
+            }
+        }
     }
 }

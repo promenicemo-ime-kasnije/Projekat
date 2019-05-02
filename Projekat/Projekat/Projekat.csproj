@@ -104,8 +104,8 @@
     <Compile Include="UserControls\DokumentItem.xaml.cs">
       <DependentUpon>DokumentItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\DokumentListTemplate.xaml.cs">
-      <DependentUpon>DokumentListTemplate.xaml</DependentUpon>
+    <Compile Include="UserControls\ListaDokumenata.xaml.cs">
+      <DependentUpon>ListaDokumenata.xaml</DependentUpon>
     </Compile>
     <Page Include="Pages\ArhivaPage.xaml">
       <SubType>Designer</SubType>
@@ -170,7 +170,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\DokumentListTemplate.xaml">
+    <Page Include="UserControls\ListaDokumenata.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
