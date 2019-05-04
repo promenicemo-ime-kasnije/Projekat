@@ -61,6 +61,7 @@
                     Margin="30 50 30 0" 
                     Height="50" 
                     FontSize="22"
+                    IsDefault="True"
                     Style="{StaticResource MaterialDesignRaisedButton}"
                     ToolTip="Resource name: MaterialDesignRaisedButton"
                     Content="Prijavi se" 

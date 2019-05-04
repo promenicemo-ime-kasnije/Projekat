@@ -24,67 +24,88 @@
         </Grid.ColumnDefinitions>
         <!-- Leva strana glavnog grida. Ovde se nalazi kao neki pomocni tekst i aktivni projekti koje moze odmah da pokrene.
         Arhivirani projekti su takodje tu.-->
-        <StackPanel Grid.Column="0">
-            <TextBlock
+        <Grid Grid.Column="0"
+              VerticalAlignment="Stretch"
+              HorizontalAlignment="Stretch">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel>
+                <TextBlock
                    Text="Početna strana"
                    FontSize="36"
                    FontFamily="NewsGoth Cn BT Regular"
                    Margin="30 30 0 0"
                    />
-            <TextBlock
+                <TextBlock
                    Text="Pristupite brzo i upravljajte svojim projektima"
                    FontSize="15"
                    FontFamily="NewsGoth Cn BT Regular"
                    Margin="30 0 0 0"/>
-            <TextBox
+                <TextBox
                     FontSize="15"
                     Margin="30 30 110 0"
                     materialDesign:HintAssist.Hint="Pretraga"/>
-            <TextBlock
+                <TextBlock
                     Margin="40 25 0 0"
                     FontSize="13"
                     FontWeight="Bold"
                     Text="Aktivni projekti"/>
-            <ListBox 
+            </StackPanel>
+
+            <!--Lista aktivnih projekta-->
+            <ListView 
+                Grid.Row="1"
                     FontSize="14"
-                    IsEnabled="{Binding IsChecked, ElementName=EnableListBox}"
+                    ItemsSource="{Binding ListaProjekata}"
+                    MouseLeftButtonUp="OtvoriProjekat_Click"
                     Margin="38 5 110 0">
-                <TextBlock><InlineUIContainer>
-                        <materialDesign:PackIcon Kind="House" />
-                    </InlineUIContainer><Run Text=" Hotkovo"/></TextBlock>
-                <TextBlock><InlineUIContainer>
-                        <materialDesign:PackIcon Kind="HospitalBuilding" />
-                    </InlineUIContainer><Run Text=" Pazar"/></TextBlock>
-                <TextBlock><InlineUIContainer>
-                        <materialDesign:PackIcon Kind="House" />
-                    </InlineUIContainer><Run Text=" Tutin"/></TextBlock>
-                <TextBlock><InlineUIContainer>
-                        <materialDesign:PackIcon Kind="HospitalBuilding" />
-                    </InlineUIContainer><Run Text=" Jezero"/></TextBlock>
-            </ListBox>
-            <Expander
-                    Margin="12 20 110 10"
-                    FontSize="13"
-                    FontWeight="Bold"
-                    Header="Arhivirani projekti">
-                <ListBox 
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+
+                            <!--Ikonica-->
+                            <materialDesign:PackIcon Kind="Folder"
+                                                 Margin="10"/>
+                            <!--Tip projekta-->
+                            <TextBlock Text="{Binding}" 
+                                   Margin="5" 
+                                   VerticalAlignment="Center" 
+                                   FontSize="15"/>
+
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <!--Arhivirani projekti-->
+            <Expander Grid.Row="2"
+                      Margin="12 20 110 10"
+                      FontSize="13"
+                      FontWeight="Bold"
+                      Header="Arhivirani projekti">
+                <ListView
                     FontSize="14"
-                    IsEnabled="{Binding IsChecked, ElementName=EnableListBox}"
+                    ItemsSource="{Binding ListaProjekata}"
                     Margin="28 5 0 0"
                     FontWeight="Regular">
-                    <TextBlock><Run Text="Ovo mora"/></TextBlock>
-                    <TextBlock><Run Text="da bude"/></TextBlock>
-                    <TextBlock><Run Text="scrollable"/></TextBlock>
-                </ListBox>
+                </ListView>
             </Expander>
-        </StackPanel>
-        <!-- Desna strana glavnog grida-->
+
+        </Grid>
+
+
+        <!--Desna strana glavnog grida-->
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="145"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <!-- Dropdown ulogovanog naloga. Tu se nalaze opcije za log out i za uredjivanje naloga. Ovo se nalazi u gornjem row-u grida-->
+            <!--Dropdown ulogovanog naloga. Tu se nalaze opcije za log out i za uredjivanje naloga. Ovo se nalazi u gornjem row-u grida-->
             <materialDesign:Card Margin="200 0 10 0" Grid.Row="0">
                 <Expander
                       Header="Goran Marković"

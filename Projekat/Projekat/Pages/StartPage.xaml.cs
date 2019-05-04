@@ -19,16 +19,17 @@ namespace Projekat
 {
     /// <summary>
     /// Interaction logic for StartPage.xaml
+    /// TODO: arhirivani projekti da mogu da se scroluju
     /// </summary>
     public partial class StartPage : Page
     {
         public List<string> ListaProjekata { get; set; }
-        public List<TimelineElement> TimelineElements { get; set; }
+        //public List<TimelineElement> TimelineElements { get; set; }
 
         public StartPage()
         {
             ListaProjekata = new List<string>() { "Fabrika Cigla", "Supermarket Migros", "Ferizova prodavnica", "Hotel Hibis" };
-            TimelineElements = TimelineElement.GetTimelineElements();
+            //TimelineElements = TimelineElement.GetTimelineElements();
 
             InitializeComponent();
             DataContext = this;

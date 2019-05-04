@@ -32,20 +32,38 @@
             </StackPanel>
             <StackPanel Grid.Row="1">
                 <TextBox
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="Stretch"
                     FontSize="15"
-                    Margin="30 25 10 0"
-                    Width="400"
+                    Margin="30 10 "
                     materialDesign:HintAssist.Hint="Ime projekta"/>
                 <TextBox
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="Stretch"
                     FontSize="15"
-                    Margin="30 15 10 0"
-                    Width="400"
+                    Margin="30 10 "
                     materialDesign:HintAssist.Hint="Investitor"/>
-                <Border Height="220" Width="480" Margin="0 20 0 0" BorderThickness="1" BorderBrush="Black">
-                    <TextBlock>Ovde da budu vrste projekata od kojih moze da bira</TextBlock>
+                <Border BorderBrush="Black"
+                        BorderThickness="1"
+                        Margin="30, 10">
+                    <ListView ItemsSource="{Binding TipoviProjekta}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+
+                                <!--Ikonica-->
+                                <materialDesign:PackIcon Kind="{Binding Ikonica}" 
+                                                 Margin="10"/>
+                                <!--Tip projekta-->
+                                <TextBlock Text="{Binding Naziv}" 
+                                   Margin="5" 
+                                   VerticalAlignment="Center" 
+                                   FontSize="15"/>
+
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
                 </Border>
+                
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button x:Name="odustani" 
                     HorizontalAlignment="Right"
