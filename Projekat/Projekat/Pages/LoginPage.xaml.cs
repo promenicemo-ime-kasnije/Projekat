@@ -25,24 +25,6 @@ namespace Projekat
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (ImaPraznihPolja())
-            {
-                tbGreska.Text = "Niste popunili sva polja!";
-            }
-            else if (IspravanLogin(tbKorisnickoIme.Text, tbLozinka.Password))
-            {
-                // Otvori StartPage
-                (Parent as Window).Content = new StartPage();
-            }
-            else
-            {
-                tbGreska.Text = "Neispravno korisnicko ime ili lozinka!";
-                OcistiPolja();
-            }
-        }
-
         private bool IspravanLogin(string korisnickoIme, string lozinka)
         {
             return korisnickoIme == "admin" && lozinka == "admin";
@@ -61,6 +43,24 @@ namespace Projekat
         private void TextBlock_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             MessageBox.Show("Meni za obnovu lozinke!");
+        }
+
+        private void BtnPrijaviSe_Click(object sender, RoutedEventArgs e)
+        {
+            if (ImaPraznihPolja())
+            {
+                tbGreska.Text = "Niste popunili sva polja!";
+            }
+            else if (IspravanLogin(tbKorisnickoIme.Text, tbLozinka.Password))
+            {
+                // Otvori StartPage
+                (Parent as Window).Content = new StartPage();
+            }
+            else
+            {
+                tbGreska.Text = "Neispravno korisnicko ime ili lozinka!";
+                OcistiPolja();
+            }
         }
     }
 }

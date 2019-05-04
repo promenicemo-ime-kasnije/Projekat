@@ -17,65 +17,57 @@
       FontFamily="{DynamicResource MaterialDesignFont}">
 
     <Grid>
-        <!-- Pozadina se deli na dva jednaka dela -->
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
 
-         <!-- Za gornji deo se postavlja neka boja(trenutno je to primarna boja material design teme), moze tu da bude i logo aplikacije/firme -->
-        <Rectangle Fill="{DynamicResource PrimaryHueMidBrush}"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="4*"/>
+        </Grid.ColumnDefinitions>
 
-        <!-- Okvir u kome se nalaze polja i button -->
-        <Border Grid.RowSpan="2" 
-                BorderBrush="Black" 
-                BorderThickness="1" 
-                CornerRadius="20"
-                Background="White" 
-                HorizontalAlignment="Center" 
-                VerticalAlignment="Center" 
-                Padding="20">
-            
+        <!-- leva strana login screena. Ovde bi trebao da dodje logo, neki slogan i mozda jos po nesto.-->
+        <StackPanel Grid.Column="0">
+            <TextBlock Grid.Column="0" FontSize="48" HorizontalAlignment="Center" Margin="0 50 0 0">ExTent</TextBlock>
+            <TextBlock FontSize="28" HorizontalAlignment="Center">Project Manager</TextBlock>
+            <TextBlock FontSize="13" HorizontalAlignment="Center" Margin="10 30 10 0 " TextWrapping="Wrap">Ovde bi sad mogao da dodje neki kratak slogan aplikacije i umesto ovog teksta neki nas logo</TextBlock>
+            <TextBlock FontSize="13" HorizontalAlignment="Center" Margin="0,190,0,0"><Run Text="Ovde ono *nas tim* all rights reserved"/></TextBlock>
+        </StackPanel>
+        <!-- desna strana. Ove se nalazi login forma.-->
+        <materialDesign:Card Grid.Column="1"
+                Margin="10,15,15,0" 
+                Height="405">
             <StackPanel>
-                
-                <!--TextBox za korisnicko ime-->
-                <TextBox Name="tbKorisnickoIme" 
-                         Width="300" 
-                         Margin="20" 
-                         materialDesign:HintAssist.Hint="Korisnicko ime" 
-                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-
-                <!--PasswordBox za lozinku-->
-                <PasswordBox Name="tbLozinka" 
-                             Width="300" 
-                             Margin="20" 
-                             materialDesign:HintAssist.Hint="Lozinka"
-                             Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
-                
-                <!--TextBlock koji ispisuje gresku koja se javlja pri prijavljivanju-->
-                <TextBlock Name="tbGreska"
-                           Text=""
-                           FontSize="13"
-                           Foreground="Red"
-                           Margin="20, 10"/>
-
-                <!--Button za prijavljivanje na sistem-->
-                <Button Content="Login" 
-                        Click="Button_Click"  
-                        Margin="20" 
-                        Height="50" 
-                        FontSize="20" 
-                        IsDefault="True"/>
-
-                <!--Otvara meni za povratak lozinke-->
-                <TextBlock Text="Zaboravili ste lozinku?"
-                           HorizontalAlignment="Center"
-                           FontSize="13"
-                           Foreground="Blue"
-                           PreviewMouseDown="TextBlock_PreviewMouseDown"/>
-
+                <TextBox x:Name="tbKorisnickoIme" 
+                    FontSize="22" 
+                    Margin="30 100 30 0" 
+                    materialDesign:HintAssist.Hint="Korisničko ime" 
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <PasswordBox 
+                    FontSize="22"
+                    Margin="30 30 30 0"
+                    x:Name="tbLozinka"
+                    materialDesign:HintAssist.Hint="Šifra"
+                    Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
+                <TextBlock 
+                    TextAlignment="Right" 
+                    Margin="30 20 30 10" 
+                    FontSize="15"
+                    FontWeight="Bold" 
+                    Foreground="DarkBlue"
+                    Text="Zaboravili ste lozinku?"/>
+                <TextBlock x:Name="tbGreska"
+                    TextAlignment="Center"
+                    Foreground="Red"/>
+                <Button 
+                    x:Name="btnPrijaviSe"
+                    Margin="30 50 30 0" 
+                    Height="50" 
+                    FontSize="22"
+                    Style="{StaticResource MaterialDesignRaisedButton}"
+                    ToolTip="Resource name: MaterialDesignRaisedButton"
+                    Content="Prijavi se" 
+                    RenderTransformOrigin="0.503,0.541" Click="BtnPrijaviSe_Click"/>
             </StackPanel>
-            
-        </Border>
+
+        </materialDesign:Card>
+
     </Grid>
 </Page>

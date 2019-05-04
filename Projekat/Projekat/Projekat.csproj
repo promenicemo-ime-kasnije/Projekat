@@ -101,11 +101,17 @@
       <DependentUpon>TimelinePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pomocne klase\FakeDokument.cs" />
+    <Compile Include="UserControls\dodajNoviProjekat.xaml.cs">
+      <DependentUpon>dodajNoviProjekat.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\DokumentItem.xaml.cs">
       <DependentUpon>DokumentItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ListaDokumenata.xaml.cs">
       <DependentUpon>ListaDokumenata.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\pocetnaStranaUC.xaml.cs">
+      <DependentUpon>pocetnaStranaUC.xaml</DependentUpon>
     </Compile>
     <Page Include="Pages\ArhivaPage.xaml">
       <SubType>Designer</SubType>
@@ -166,11 +172,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\dodajNoviProjekat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\DokumentItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\ListaDokumenata.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\pocetnaStranaUC.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
