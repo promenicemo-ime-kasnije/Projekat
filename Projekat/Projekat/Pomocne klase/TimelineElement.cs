@@ -18,7 +18,7 @@ namespace Projekat.Pomocne_klase
         public static List<TimelineElement> GetTimelineElements()
         {
             var lista = new List<TimelineElement>();
-            string[] korisnici = { "Samed", "Ahmet", "Armin", "Milan" };
+            string[] korisnici = { "Samed", "Ahmet", "Armin", "Milan" ,"MELIDA", "dZEMIL"};
             string[] projekti = { "Fabrika Cigla", "Supermarket Migros", "Ferizova prodavnica", "Hotel Hibis" };
 
             Random rng = new Random();
