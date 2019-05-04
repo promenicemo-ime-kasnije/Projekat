@@ -114,7 +114,7 @@
                         <Separator Height="2" Width="300" Background="LightGray"/>
                         <StackPanel Orientation="Horizontal" Margin="10">
                             <Button Margin="10 0 0 0" Content="Uredi nalog"/>
-                            <Button Margin="90 0 0 0" Content="Odjavi se"/>
+                            <Button Margin="90 0 0 0" Content="Odjavi se" Click="OdjaviSe_Click"/>
                         </StackPanel>
                     </StackPanel>
                 </Expander>
