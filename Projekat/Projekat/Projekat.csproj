@@ -88,6 +88,9 @@
     <Compile Include="Pages\DokumentDetails\DetaljiNekogRandomDokumenta.xaml.cs">
       <DependentUpon>DetaljiNekogRandomDokumenta.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\menuPage.xaml.cs">
+      <DependentUpon>menuPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\NoviProjekatPage.xaml.cs">
       <DependentUpon>NoviProjekatPage.xaml</DependentUpon>
     </Compile>
@@ -148,6 +151,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\menuPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\NoviProjekatPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

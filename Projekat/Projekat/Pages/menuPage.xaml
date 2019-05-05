@@ -1,0 +1,121 @@
+﻿<Page x:Class="Projekat.Pages.menuPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Projekat.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="860" d:DesignWidth="1300"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+      TextElement.FontWeight="Regular"
+      TextElement.FontSize="13"
+      TextOptions.TextFormattingMode="Ideal" 
+      TextOptions.TextRenderingMode="Auto"        
+      Background="{DynamicResource MaterialDesignPaper}"
+      FontFamily="{DynamicResource MaterialDesignFont}"
+      Title="menuPage">
+
+    <StackPanel Grid.Column="1">
+        <TextBlock Margin="50 15 50 0"
+                           Text="Dokumentacija | *ime projekta*"
+                           FontSize="25"/>
+        <Separator Grid.Column="1" Margin="15 5 15 0"/>
+        <StackPanel Orientation="Horizontal"
+                            Margin="15 0 15 0">
+            <ListBox>
+                <TextBlock
+                            Text="Gradjevinska dozvola"
+                            FontSize="18"/>
+            </ListBox>
+            <ListBox>
+                <TextBlock
+                            Text="Idejno resenje"
+                            FontSize="18"/>
+            </ListBox>
+            <ListBox>
+                <TextBlock
+                            Text="Kopija plana za kat. parcelu"
+                            FontSize="18"/>
+            </ListBox>
+        </StackPanel>
+        <DataGrid
+                        Margin="15 20 15 0"
+                        ItemsSource="{Binding Items3}"
+                        CanUserSortColumns="True"
+                        CanUserAddRows="False"
+                        AutoGenerateColumns="False"
+                        materialDesign:DataGridAssist.CellPadding="13 8 8 8"
+                        materialDesign:DataGridAssist.ColumnHeaderPadding="8">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn
+                                Binding="{Binding IsSelected}"
+                                ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
+                                EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}">
+                    <DataGridCheckBoxColumn.Header>
+                        <!--padding to allow hit test to pass thru for sorting -->
+                        <Border
+                                        Background="Transparent"
+                                        Padding="6 0 6 0"
+                                        HorizontalAlignment="Center">
+                            <CheckBox
+                                            HorizontalAlignment="Center"
+                                            DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext}"
+                                            IsChecked="{Binding IsAllItems3Selected}" />
+                        </Border>
+                    </DataGridCheckBoxColumn.Header>
+                </DataGridCheckBoxColumn>
+                <DataGridTextColumn
+                                     Binding="{Binding Code}"
+                                     Header="Ime dokumenta"
+                                     EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                <!-- if you want to use the pop up style (MaterialDesignDataGridTextColumnPopupEditingStyle), you must use MaterialDataGridTextColumn -->
+                <!-- set a max length to get an indicator in the editor -->
+                <materialDesign:MaterialDataGridTextColumn
+                                        Binding="{Binding Description}"
+                                        Header="Description"
+                                        MaxLength="255"
+                                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                <materialDesign:MaterialDataGridTextColumn
+                                        Binding="{Binding Numeric}"
+                                        Header="Datum pocetka/kraja"
+                                        Width="150"
+                                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style
+                                        TargetType="{x:Type DataGridColumnHeader}"
+                                        BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
+                            <Setter
+                                            Property="HorizontalAlignment"
+                                            Value="Right" />
+                            <Setter
+                                            Property="ContentTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <TextBlock
+                                                            TextWrapping="Wrap"
+                                                            Text="{Binding}"
+                                                            TextAlignment="Right" />
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style
+                                        TargetType="{x:Type TextBlock}">
+                            <Setter
+                                            Property="HorizontalAlignment"
+                                            Value="Right" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </materialDesign:MaterialDataGridTextColumn>
+                <!-- use custom combo box column to get better combos. Use ItemsSourceBinding as your binding template to be applied to each combo -->
+                <materialDesign:MaterialDataGridComboBoxColumn
+                                    Header="Dokument"
+                                    SelectedValueBinding="{Binding Food}"
+                                    ItemsSourceBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.Foods}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+</Page>
