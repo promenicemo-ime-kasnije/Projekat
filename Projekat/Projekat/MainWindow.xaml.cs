@@ -1,4 +1,9 @@
-﻿using Projekat.Pages;
+﻿using ClassLibrary;
+using ClassLibrary.DataProvider;
+using Projekat.Pages;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Windows;
 
 namespace Projekat
@@ -12,6 +17,16 @@ namespace Projekat
         {
             InitializeComponent();
             Content = new LoginPage();
+            TestBaze();
+        }
+
+        private async void TestBaze()
+        {
+            IList<Korisnik> korisnici = await new EFCoreDataProvider().GetKorisniciAsync();
+            foreach (Korisnik k in korisnici)
+            {
+                Console.WriteLine($"{k.Ime} {k.Prezime}");
+            }
         }
 
         protected override void OnContentChanged(object oldContent, object newContent)
