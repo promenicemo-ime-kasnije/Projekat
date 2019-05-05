@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ClassLibrary;
+using ClassLibrary.DataProvider;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,9 +27,10 @@ namespace Projekat
             InitializeComponent();
         }
 
-        private bool IspravanLogin(string korisnickoIme, string lozinka)
+        private async Task<bool> IspravanLogin(string korisnickoIme, string lozinka)
         {
-            return korisnickoIme == "admin" && lozinka == "admin";
+            Korisnik korisnik = await new EFCoreDataProvider().LoginApp(korisnickoIme, lozinka);
+            return korisnik != null;
         }
 
         private bool ImaPraznihPolja()
@@ -45,13 +48,13 @@ namespace Projekat
             MessageBox.Show("Meni za obnovu lozinke!");
         }
 
-        private void BtnPrijaviSe_Click(object sender, RoutedEventArgs e)
+        private async void BtnPrijaviSe_Click(object sender, RoutedEventArgs e)
         {
             if (ImaPraznihPolja())
             {
                 tbGreska.Text = "Niste popunili sva polja!";
             }
-            else if (IspravanLogin(tbKorisnickoIme.Text, tbLozinka.Password))
+            else if (await IspravanLogin(tbKorisnickoIme.Text, tbLozinka.Password))
             {
                 // Otvori StartPage
                 (Parent as Window).Content = new StartPage();

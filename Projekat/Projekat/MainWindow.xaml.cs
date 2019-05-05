@@ -17,9 +17,9 @@ namespace Projekat
         {
             InitializeComponent();
             Content = new LoginPage();
-            TestBaze();
         }
 
+        // Da probam da li baza radi
         private async void TestBaze()
         {
             IList<Korisnik> korisnici = await new EFCoreDataProvider().GetKorisniciAsync();
