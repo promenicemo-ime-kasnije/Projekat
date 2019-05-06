@@ -1,6 +1,8 @@
-﻿using Projekat.Pomocne_klase;
+﻿using ClassLibrary;
+using Projekat.Pomocne_klase;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,15 +33,15 @@ namespace Projekat.UserControls
             DependencyProperty.Register("Naslov", typeof(string), typeof(ListaDokumenata), new PropertyMetadata(string.Empty));
 
 
-        public List<FakeDokument> Dokumenta
+        public ObservableCollection<Dokumentacija> Dokumenta
         {
-            get { return (List<FakeDokument>)GetValue(DokumentaProperty); }
+            get { return (ObservableCollection<Dokumentacija>)GetValue(DokumentaProperty); }
             set { SetValue(DokumentaProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for Dokumenta.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DokumentaProperty =
-            DependencyProperty.Register("Dokumenta", typeof(List<FakeDokument>), typeof(ListaDokumenata), new PropertyMetadata(null));
+            DependencyProperty.Register("Dokumenta", typeof(ObservableCollection<Dokumentacija>), typeof(ListaDokumenata), new PropertyMetadata(null));
 
 
         public ListaDokumenata()

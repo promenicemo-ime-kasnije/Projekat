@@ -13,7 +13,7 @@ namespace Projekat.Pages
         {
             InitializeComponent();
             DataContext = this;
-            PrikaziDokumenta_Click(this, new RoutedEventArgs());
+            //PrikaziDokumenta_Click(this, new RoutedEventArgs());
         }
 
         private void Nazad_Click(object sender, RoutedEventArgs e)

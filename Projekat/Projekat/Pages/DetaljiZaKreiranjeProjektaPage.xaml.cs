@@ -63,6 +63,7 @@ namespace Projekat.Pages
                 new Dokumentacija{ Naziv = "Obavestenje o visini stvarnih troskova"                      , Redosled = 3, StatusDokumenta = "Na cekanju" },
                 new Dokumentacija{ Naziv = "Dokaz o uplati troskova"                                     , Redosled = 4, StatusDokumenta = "Na cekanju" },
                 new Dokumentacija{ Naziv = "Lokacijski uslovi"                                           , Redosled = 5, StatusDokumenta = "Na cekanju" },
+                // GRADJEVINSKA DOZVOLA
                 new Dokumentacija{ Naziv = "Izvod iz projekta za gradjevinsku dozvolu"                   , Redosled = 6, StatusDokumenta = "Na cekanju" },
                 new Dokumentacija{ Naziv = "Projekat za gradjevinsku dozvolu"                            , Redosled = 6, StatusDokumenta = "Na cekanju" },
                 new Dokumentacija{ Naziv = "Dokaz o uplati administrativne takse 2"                      , Redosled = 6, StatusDokumenta = "Na cekanju" },
@@ -80,6 +81,7 @@ namespace Projekat.Pages
                 new Dokumentacija{ Naziv = "Dokaz o uredjenju medusobnih odnosa sa vlasnikom"            , Redosled = 6, StatusDokumenta = "Na cekanju" },
                 new Dokumentacija{ Naziv = "Izvoda iz lista nepokretnosti"                               , Redosled = 7, StatusDokumenta = "Na cekanju" },
                 new Dokumentacija{ Naziv = "Gradjevinska dozvola"                                        , Redosled = 8, StatusDokumenta = "Na cekanju" },
+                // IZGRADNJA
                 new Dokumentacija{ Naziv = "Dokaz o uplati administrativne takse 3"                      , Redosled = 9, StatusDokumenta = "Na cekanju" },
                 new Dokumentacija{ Naziv = "Projekat za izvodenje"                                       , Redosled = 9, StatusDokumenta = "Na cekanju" },
                 new Dokumentacija{ Naziv = "Ugovor o pravu sluzbenosti"                                  , Redosled = 9, StatusDokumenta = "Na cekanju" },

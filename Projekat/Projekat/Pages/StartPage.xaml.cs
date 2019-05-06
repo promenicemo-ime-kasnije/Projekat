@@ -69,6 +69,8 @@ namespace Projekat
 
         private void OtvoriProjekat_Click(object sender, MouseButtonEventArgs e)
         {
+            var p = (sender as ListView).SelectedItem as ClassLibrary.Projekat;
+            (Parent as MainWindow).TrenutniProjekat = p;
             (Parent as Window).Content = new ProjectPage();
         }
     }
