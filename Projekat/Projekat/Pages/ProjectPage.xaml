@@ -4,7 +4,6 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Projekat.Pages"
-      d:DesignHeight="900" d:DesignWidth="1600"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
       TextElement.FontWeight="Regular"
@@ -42,38 +41,43 @@
                     <MenuItem Header="Projekat">
                         <MenuItem Header="Uredi postavke projekta"
                                   FontWeight="Regular"
-                                  Background="White"/>
+                                  Background="White"
+                                  Click="ComingSoon_Click"/>
                         <MenuItem Header="Zatvori projekat"
                                   FontWeight="Regular"
-                                  Background="White"/>
+                                  Background="White"
+                                  Click="Nazad_Click"/>
                     </MenuItem>
-                    <MenuItem Header="Uredi"/>
+                    <MenuItem Header="Uredi"
+                              Click="ComingSoon_Click"/>
                 </Menu>
                 <ListBox HorizontalContentAlignment="Stretch" 
                      Background="#ededed" Grid.Row="1"
                      Padding="10">
-                    <TextBlock
-                    Text="Dokumenta"
-                    FontSize="20"/>
-                    <TextBlock
-                    Text="Troskovi"
-                    FontSize="20"/>
-                    <TextBlock
-                    Text="Tabela"
-                    FontSize="20"/>
-                    <TextBlock
-                    Text="Timeline"
-                    FontSize="20"/>
-                    <Separator></Separator>
-                    <TextBlock
-                    Text="Clanovi projekta"
-                    FontSize="20"/>
-                    <TextBlock
-                    Text="Settings"
-                    FontSize="20"/>
+                    <TextBlock Text="Dokumenta"
+                               FontSize="20"
+                               MouseLeftButtonUp="PrikaziDokumenta_Click"/>
+                    <TextBlock Text="Troskovi"
+                               FontSize="20"
+                               MouseLeftButtonUp="PrikaziTroskove_Click"/>
+                    <TextBlock Text="Tabela"
+                               FontSize="20"
+                               MouseLeftButtonUp="PrikaziTabelu_Click"/>
+                    <TextBlock Text="Timeline"
+                               FontSize="20"
+                               MouseLeftButtonUp="PrikaziTimeline_Click"/>
+                    <Separator/>
+                    <TextBlock Text="Clanovi projekta"
+                               FontSize="20"
+                               MouseLeftButtonUp="ComingSoon_Click"/>
+                    <TextBlock Text="Settings"
+                               FontSize="20"
+                               MouseLeftButtonUp="ComingSoon_Click"/>
                 </ListBox>
             </Grid>
-            <Frame Grid.Column="1">
+            <Frame Grid.Column="1" 
+                   Name="Frame"
+                   NavigationUIVisibility="Hidden">
 
             </Frame>
         </Grid>
