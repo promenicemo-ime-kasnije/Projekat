@@ -27,12 +27,6 @@ namespace Projekat
             InitializeComponent();
         }
 
-        private async Task<bool> IspravanLogin(string korisnickoIme, string lozinka)
-        {
-            Korisnik korisnik = await new EFCoreDataProvider().LoginApp(korisnickoIme, lozinka);
-            return korisnik != null;
-        }
-
         private bool ImaPraznihPolja()
         {
             return string.IsNullOrEmpty(tbKorisnickoIme.Text) || string.IsNullOrEmpty(tbLozinka.Password);
@@ -54,15 +48,20 @@ namespace Projekat
             {
                 tbGreska.Text = "Niste popunili sva polja!";
             }
-            else if (await IspravanLogin(tbKorisnickoIme.Text, tbLozinka.Password))
-            {
-                // Otvori StartPage
-                (Parent as Window).Content = new StartPage();
-            }
             else
             {
-                tbGreska.Text = "Neispravno korisnicko ime ili lozinka!";
-                OcistiPolja();
+                var korisnik = await new EFCoreDataProvider().LoginApp(tbKorisnickoIme.Text, tbLozinka.Password);
+                if (korisnik != null)
+                {
+                    var parent = Parent as MainWindow;
+                    parent.TrenutniKorisnik = korisnik;
+                    parent.Content = new StartPage();
+                }
+                else
+                {
+                    tbGreska.Text = "Neispravno korisnicko ime ili lozinka!";
+                    OcistiPolja();
+                }
             }
         }
     }

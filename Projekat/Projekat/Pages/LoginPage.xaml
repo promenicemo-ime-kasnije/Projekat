@@ -52,7 +52,8 @@
                     FontSize="15"
                     FontWeight="Bold" 
                     Foreground="DarkBlue"
-                    Text="Zaboravili ste lozinku?"/>
+                    Text="Zaboravili ste lozinku?"
+                    MouseDown="TextBlock_PreviewMouseDown"/>
                 <TextBlock x:Name="tbGreska"
                     TextAlignment="Center"
                     Foreground="Red"/>

@@ -13,20 +13,13 @@ namespace Projekat
     /// </summary>
     public partial class MainWindow : Window
     {
+        public ClassLibrary.Korisnik TrenutniKorisnik { get; set; }
+        public ClassLibrary.Projekat TrenutniProjekat { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
             Content = new LoginPage();
-        }
-
-        // Da probam da li baza radi
-        private async void TestBaze()
-        {
-            IList<Korisnik> korisnici = await new EFCoreDataProvider().GetKorisniciAsync();
-            foreach (Korisnik k in korisnici)
-            {
-                Console.WriteLine($"{k.Ime} {k.Prezime}");
-            }
         }
 
         protected override void OnContentChanged(object oldContent, object newContent)
