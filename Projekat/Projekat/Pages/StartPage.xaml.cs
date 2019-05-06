@@ -1,7 +1,9 @@
-﻿using Projekat.Pages;
+﻿using ClassLibrary.DataProvider;
+using Projekat.Pages;
 using Projekat.Pomocne_klase;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,18 +25,33 @@ namespace Projekat
     /// </summary>
     public partial class StartPage : Page
     {
-        public List<string> ListaProjekata { get; set; }
-        //public List<TimelineElement> TimelineElements { get; set; }
+        public ObservableCollection<ClassLibrary.Projekat> ListaAktivnihProjekata { get; set; }
+        public ObservableCollection<ClassLibrary.Projekat> ListaArhiviranihProjekata { get; set; }
 
         public StartPage()
         {
-            ListaProjekata = new List<string>() { "Fabrika Cigla", "Supermarket Migros", "Ferizova prodavnica", "Hotel Hibis" };
-            //TimelineElements = TimelineElement.GetTimelineElements();
+            ListaAktivnihProjekata = new ObservableCollection<ClassLibrary.Projekat>();
+            ListaArhiviranihProjekata = new ObservableCollection<ClassLibrary.Projekat>();
+            UcitajProjekte();
 
             InitializeComponent();
             DataContext = this;
         }
-        
+
+        private async Task UcitajProjekte()
+        {
+            var projekti = await new EFCoreDataProvider().GetProjekteAsync() as List<ClassLibrary.Projekat>;
+
+            ListaAktivnihProjekata.Clear();
+            ListaArhiviranihProjekata.Clear();
+
+            foreach (ClassLibrary.Projekat p in projekti)
+                if (p.StanjeProjekta.Contains("Aktivan"))
+                    ListaAktivnihProjekata.Add(p);
+                else if (p.StanjeProjekta.Contains("Arhiviran"))
+                    ListaArhiviranihProjekata.Add(p);
+        }
+
         private void OdjaviSe_Click(object sender, RoutedEventArgs e)
         {
             (Parent as Window).Content = new LoginPage();

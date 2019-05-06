@@ -98,12 +98,14 @@ namespace ClassLibrary.DataProvider
 
         #region Projekat
 
-        public async Task AddProjekatAsync(Projekat projekat)
+        public async Task<int> AddProjekatAsync(Projekat projekat)
         {
             using (ExtentBazaEntities _context = new ExtentBazaEntities())
             {
                 _context.Projekat.Add(projekat);
                 await _context.SaveChangesAsync();
+
+                return projekat.IDProjekta;
             }
         }
 
@@ -202,6 +204,24 @@ namespace ClassLibrary.DataProvider
             using (ExtentBazaEntities _context = new ExtentBazaEntities())
             {
                 _context.Dokumentacija.Add(dokument);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task KreirajProjekatIDodajDokumenta(Projekat projekat, params Dokumentacija[] dokumenti)
+        {
+            int idProjekta = await AddProjekatAsync(projekat);
+            foreach (Dokumentacija d in dokumenti)
+                d.IDProjekta = idProjekta;
+            await AddDokumentaAsync(dokumenti);
+        }
+
+        public async Task AddDokumentaAsync(params Dokumentacija[] dokumenti)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                foreach (var d in dokumenti)
+                    _context.Dokumentacija.Add(d);
                 await _context.SaveChangesAsync();
             }
         }

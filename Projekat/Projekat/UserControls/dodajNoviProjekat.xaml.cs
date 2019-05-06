@@ -1,4 +1,6 @@
-﻿using MaterialDesignThemes.Wpf;
+﻿using ClassLibrary.DataProvider;
+using ClassLibrary;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Projekat.Pages;
 
 namespace Projekat.UserControls
 {
@@ -35,14 +38,6 @@ namespace Projekat.UserControls
             DataContext = this;
         }
 
-        private void Xdodajnoviprojekat_Click(object sender, RoutedEventArgs e)
-        {
-            pocetnaStranaUC psuc = new pocetnaStranaUC();
-            Grid parentform = (this.Parent as Grid);
-            parentform.Children.Remove(this);
-            parentform.Children.Add(psuc);
-        }
-
         private void Odustani_Click(object sender, RoutedEventArgs e)
         {
             pocetnaStranaUC psuc = new pocetnaStranaUC();
@@ -50,6 +45,45 @@ namespace Projekat.UserControls
             parentform.Children.Remove(this);
             parentform.Children.Add(psuc);
         }
+
+        private void DodajNoviProjekat_Click(object sender, RoutedEventArgs e)
+        {
+            if (SvaPoljaPopunjena())
+            {
+                OtvoriDetaljeZaKreiranjeProjekta();
+            }
+            else
+                txtGreska.Text = "Niste popunili sva polja!";
+        }
+
+        private void OtvoriDetaljeZaKreiranjeProjekta()
+        {
+            ClassLibrary.Projekat zapocetiProjekat = new ClassLibrary.Projekat
+            {
+                NazivProjekta = tbImeProjekta.Text,
+                VrstaProjekta = (lvTipoviProjekta.SelectedItem as TipProjekta).Naziv
+            };
+
+            Window mainWindow = ((((Parent as Grid).Parent as Grid).Parent as Grid).Parent as Page).Parent as Window; //wtf
+            mainWindow.Content = new DetaljiZaKreiranjeProjektaPage(zapocetiProjekat);
+        }
+
+        private bool SvaPoljaPopunjena()
+        {
+            return  !string.IsNullOrEmpty(tbImeProjekta.Text) &&
+                    !string.IsNullOrEmpty(tbInvestitor.Text) &&
+                    lvTipoviProjekta.SelectedItem != null;
+        }
+
+        //private async void KreirajNoviProjekat()
+        //{
+        //    var dataProvider = new EFCoreDataProvider();
+        //    await dataProvider.AddProjekatAsync(new ClassLibrary.Projekat
+        //    {
+        //        NazivProjekta = tbImeProjekta.Text,
+        //        VrstaProjekta = (lvTipoviProjekta.SelectedItem as TipProjekta).Naziv
+        //    });
+        //}
     }
 
     // Mala pomocna klasa 

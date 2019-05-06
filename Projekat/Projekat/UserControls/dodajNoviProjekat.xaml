@@ -27,16 +27,18 @@
                 <Button x:Name="xdodajnoviprojekat" Content="X" Height="30" Background="Gray"
                     materialDesign:RippleAssist.Feedback="#DD000000"
                     materialDesign:ShadowAssist.ShadowDepth="Depth0"
-                    BorderThickness="0" Click="Xdodajnoviprojekat_Click"/>
+                    BorderThickness="0" Click="Odustani_Click"/>
                 <TextBlock Foreground="White" FontSize="15" VerticalAlignment="Center" Margin="10 0 0 0">Dodaj novi projekat</TextBlock>
             </StackPanel>
             <StackPanel Grid.Row="1">
                 <TextBox
+                    Name="tbImeProjekta"
                     HorizontalAlignment="Stretch"
                     FontSize="15"
                     Margin="30 10 "
                     materialDesign:HintAssist.Hint="Ime projekta"/>
                 <TextBox
+                    Name="tbInvestitor"
                     HorizontalAlignment="Stretch"
                     FontSize="15"
                     Margin="30 10 "
@@ -44,7 +46,8 @@
                 <Border BorderBrush="Black"
                         BorderThickness="1"
                         Margin="30, 10">
-                    <ListView ItemsSource="{Binding TipoviProjekta}">
+                    <ListView ItemsSource="{Binding TipoviProjekta}"
+                              Name="lvTipoviProjekta">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
@@ -63,18 +66,23 @@
                     </ListView.ItemTemplate>
                 </ListView>
                 </Border>
-                
+
+                <TextBlock Name="txtGreska" 
+                           HorizontalAlignment="Center"
+                           Foreground="Red"/>
+
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button x:Name="odustani" 
                     HorizontalAlignment="Right"
                     Content="Odustani"
                     Width="100"
                     Margin="0 15 20 0" Click="Odustani_Click"/>
-                    <Button 
-                    HorizontalAlignment="Right"
-                    Content="Dodaj"
-                    Width="100"
-                    Margin="0 15 15 0"/>
+                    <Button HorizontalAlignment="Right"
+                            Content="Dodaj"
+                            Width="100"
+                            Margin="0 15 15 0"
+                            IsDefault="True"
+                            Click="DodajNoviProjekat_Click"/>
                 </StackPanel>
             </StackPanel>
         </Grid>

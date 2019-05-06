@@ -36,7 +36,7 @@ namespace Projekat.Pages
 
         private void KreirajProjekat_Click(object sender, RoutedEventArgs e)
         {
-            (Parent as Window).Content = new DetaljiZaKreiranjeProjektaPage();
+            //(Parent as Window).Content = new DetaljiZaKreiranjeProjektaPage();
         }
     }
 }

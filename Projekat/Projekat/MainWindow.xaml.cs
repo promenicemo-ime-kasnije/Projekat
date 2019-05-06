@@ -38,7 +38,7 @@ namespace Projekat
                 this.Width = 810;
                 this.ResizeMode = ResizeMode.NoResize;
             }
-            else
+            else if (oldContent?.GetType() == typeof(LoginPage))
             {
                 this.Height = 720;
                 this.Width = 1280;

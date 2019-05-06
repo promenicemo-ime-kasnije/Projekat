@@ -7,7 +7,6 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:UserControls="clr-namespace:Projekat.UserControls" x:Class="Projekat.StartPage"
       mc:Ignorable="d" 
-      Height="635" Width="1075"
       Title="StartPage"
       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
       TextElement.FontWeight="Regular"
@@ -30,7 +29,7 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
@@ -58,12 +57,12 @@
             </StackPanel>
 
             <!--Lista aktivnih projekta-->
-            <ListView 
-                Grid.Row="1"
-                    FontSize="14"
-                    ItemsSource="{Binding ListaProjekata}"
-                    MouseLeftButtonUp="OtvoriProjekat_Click"
-                    Margin="38 5 110 0">
+            <ListView Name="lvAktivniProjekti"
+                      Grid.Row="1"
+                      FontSize="14"
+                      ItemsSource="{Binding ListaAktivnihProjekata}"
+                      MouseLeftButtonUp="OtvoriProjekat_Click"
+                      Margin="38 5 110 0">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -72,7 +71,7 @@
                             <materialDesign:PackIcon Kind="Folder"
                                                  Margin="10"/>
                             <!--Tip projekta-->
-                            <TextBlock Text="{Binding}" 
+                            <TextBlock Text="{Binding NazivProjekta}" 
                                    Margin="5" 
                                    VerticalAlignment="Center" 
                                    FontSize="15"/>
@@ -90,9 +89,25 @@
                       Header="Arhivirani projekti">
                 <ListView
                     FontSize="14"
-                    ItemsSource="{Binding ListaProjekata}"
+                    ItemsSource="{Binding ListaArhiviranihProjekata}"
                     Margin="28 5 0 0"
                     FontWeight="Regular">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+
+                                <!--Ikonica-->
+                                <materialDesign:PackIcon Kind="Archive"
+                                                 Margin="10"/>
+                                <!--Tip projekta-->
+                                <TextBlock Text="{Binding NazivProjekta}" 
+                                   Margin="5" 
+                                   VerticalAlignment="Center" 
+                                   FontSize="15"/>
+
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
                 </ListView>
             </Expander>
 
@@ -120,7 +135,10 @@
                 </Expander>
             </materialDesign:Card>
             <Grid Grid.Row="1">
-                <UserControls:pocetnaStranaUC HorizontalAlignment="Left" Height="490" VerticalAlignment="Top" Width="537"/>
+                <UserControls:pocetnaStranaUC HorizontalAlignment="Left" 
+                                              Height="490" 
+                                              VerticalAlignment="Top" 
+                                              Width="537"/>
             </Grid>
 
         </Grid>

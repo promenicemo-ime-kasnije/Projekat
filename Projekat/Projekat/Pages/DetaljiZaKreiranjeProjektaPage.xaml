@@ -16,15 +16,41 @@
       Background="{DynamicResource MaterialDesignPaper}"
       FontFamily="{DynamicResource MaterialDesignFont}">
 
-    <StackPanel VerticalAlignment="Center">
+    <StackPanel VerticalAlignment="Center"
+                HorizontalAlignment="Center">
+        <!--Naslov-->
         <TextBlock Text="Detalji za kreiranje projekta"
                    FontSize="30"
                    HorizontalAlignment="Center"
                    Margin="20"/>
+        
+        <!--Naziv projekta-->
+        <StackPanel Orientation="Horizontal"
+                    Margin="10">
+            <TextBlock Text="Naziv projekta: "/>
+            <TextBlock Text="{Binding ZapocetiProjekat.NazivProjekta}"/>
+        </StackPanel>
+        
+        <!--Tip projekta-->
+        <StackPanel Orientation="Horizontal"
+                    Margin="10">
+            <TextBlock Text="Tip projekta: "/>
+            <TextBlock Text="{Binding ZapocetiProjekat.VrstaProjekta}"/>
+        </StackPanel>
+        
+        <!--Datum pocetka projekta-->
+        <DatePicker Name="dpDatumPocetkaProjekta"
+                    HorizontalAlignment="Left"  
+                    Width="100"
+                    Margin="20"
+                    materialDesign:HintAssist.Hint="Datum pocetka projekta"
+                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+        
+        
 
         <TextBlock Text="Ovde se nalaze polja gde se unose podaci za kreiranje novog projekta i checkboxovi/comboboxovi za podesavanja..."
                    HorizontalAlignment="Center"
-                   Margin="10, 100"/>
+                   Margin="10, 80"/>
         
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Center">

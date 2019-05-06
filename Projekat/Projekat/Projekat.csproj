@@ -90,6 +90,9 @@
     <Compile Include="Pages\ArhivaPage.xaml.cs">
       <DependentUpon>ArhivaPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ClanoviProjektaPage.xaml.cs">
+      <DependentUpon>ClanoviProjektaPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\DetaljiZaKreiranjeProjektaPage.xaml.cs">
       <DependentUpon>DetaljiZaKreiranjeProjektaPage.xaml</DependentUpon>
     </Compile>
@@ -104,6 +107,9 @@
     </Compile>
     <Compile Include="Pages\NoviProjekatPage.xaml.cs">
       <DependentUpon>NoviProjekatPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ProgressPage.xaml.cs">
+      <DependentUpon>ProgressPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ProjectPage.xaml.cs">
       <DependentUpon>ProjectPage.xaml</DependentUpon>
@@ -128,6 +134,10 @@
       <DependentUpon>pocetnaStranaUC.xaml</DependentUpon>
     </Compile>
     <Page Include="Pages\ArhivaPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ClanoviProjektaPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -167,6 +177,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\NoviProjekatPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ProgressPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
