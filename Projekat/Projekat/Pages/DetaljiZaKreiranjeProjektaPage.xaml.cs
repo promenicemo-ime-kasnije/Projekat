@@ -1,19 +1,7 @@
 ﻿using ClassLibrary;
 using ClassLibrary.DataProvider;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Projekat.Pages
 {
@@ -63,21 +51,45 @@ namespace Projekat.Pages
 
             return new Dokumentacija[]
             {
-                new Dokumentacija{ Naziv = "Dokaz o uplati administrativne takse", Redosled = 1 },
-                new Dokumentacija{ Naziv = "Idejno resenje"                      , Redosled = 2 },
-                new Dokumentacija{ Naziv = "Kopija plana za kat. parcelu"        , Redosled = 2 },
-                new Dokumentacija{ Naziv = "Izvod i katastra vodova"             , Redosled = 2 },
-                new Dokumentacija{ Naziv = "Podatak o povrsini parcele"          , Redosled = 3 },
-                new Dokumentacija{ Naziv = "Dokaz o uplati administrativne takse", Redosled = 3 },
-                new Dokumentacija{ Naziv = "Idejno resenje"                      , Redosled = 3 },
-                new Dokumentacija{ Naziv = "Kopija plana za kat. parcelu"        , Redosled = 3 },
-                new Dokumentacija{ Naziv = "Izvod i katastra vodova"             , Redosled = 3 },
-                new Dokumentacija{ Naziv = "Podatak o povrsini parcele"          , Redosled = 4 },
-                new Dokumentacija{ Naziv = "Dokaz o uplati administrativne takse", Redosled = 5 },
-                new Dokumentacija{ Naziv = "Idejno resenje"                      , Redosled = 6 },
-                new Dokumentacija{ Naziv = "Kopija plana za kat. parcelu"        , Redosled = 6 },
-                new Dokumentacija{ Naziv = "Izvod i katastra vodova"             , Redosled = 6 },
-                new Dokumentacija{ Naziv = "Podatak o povrsini parcele"          , Redosled = 7 }
+                new Dokumentacija{ Naziv = "Informacija o lokaciji"                                      , Redosled = 0, StatusDokumenta = "Ispunjeni uslovi" },
+                // LOKACIJSKI USLOVI                                                                     
+                new Dokumentacija{ Naziv = "Dokaz o uplati administrativne takse 1"                      , Redosled = 1, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Idejno resenje"                                              , Redosled = 1, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Kopija plana za katastarsku parcelu"                         , Redosled = 2, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Izvod i katastra vodova"                                     , Redosled = 2, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Podatak o povrsini parcele"                                  , Redosled = 2, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Uslovi za projektovanje i prikljucivanje"                    , Redosled = 3, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Obavestenje da ne mogu da se izdaju uslovi"                  , Redosled = 3, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Obavestenje o visini stvarnih troskova"                      , Redosled = 3, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Dokaz o uplati troskova"                                     , Redosled = 4, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Lokacijski uslovi"                                           , Redosled = 5, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Izvod iz projekta za gradjevinsku dozvolu"                   , Redosled = 6, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Projekat za gradjevinsku dozvolu"                            , Redosled = 6, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Dokaz o uplati administrativne takse 2"                      , Redosled = 6, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Dokaz o pravu na zeljistu ili objektu"                       , Redosled = 6, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Dokaz o pravu na zemljistu ili objektu 2"                    , Redosled = 6, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Ugovor izmedju investitora i finansijera"                    , Redosled = 6, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Uslovi za prikljucenje"                                      , Redosled = 6, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Energetska dozvola"                                          , Redosled = 6, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Sredstva obezbedjenja"                                       , Redosled = 6, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Saglasnost preostalih suvlasnika"                            , Redosled = 6, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Geodetski snimak postojeceg stanja"                          , Redosled = 6, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Izjasnjenje o nacinu placanja doprinosa"                     , Redosled = 6, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Ugovor izmedju investitora i imaoca javnih ovlascenja"       , Redosled = 6, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Dokaz o placenoj naknadi za promene namene zemljista"        , Redosled = 6, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Dokaz o uredjenju medusobnih odnosa sa vlasnikom"            , Redosled = 6, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Izvoda iz lista nepokretnosti"                               , Redosled = 7, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Gradjevinska dozvola"                                        , Redosled = 8, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Dokaz o uplati administrativne takse 3"                      , Redosled = 9, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Projekat za izvodenje"                                       , Redosled = 9, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Ugovor o pravu sluzbenosti"                                  , Redosled = 9, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Dokaz o izmirenju doprinosa za uredenje gradj. zemljista"    , Redosled = 9, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Saglasnost na studiju o proceni uticaja na zivostnu sredinu" , Redosled = 9, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Izjava o datumu pocetka izvodjenja radova"                   , Redosled = 9, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Izjava o roku zavrsetka izvodjenja radova"                   , Redosled = 9, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Dokaz o uplati administrativne takse 4"                      , Redosled = 10, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Geodetski snimak izgradjenih temelja"                        , Redosled = 10, StatusDokumenta = "Na cekanju" },
+                new Dokumentacija{ Naziv = "Dokaz o uplati administrativne takse 5"                      , Redosled = 11, StatusDokumenta = "Na cekanju" }
             };
         }
     }

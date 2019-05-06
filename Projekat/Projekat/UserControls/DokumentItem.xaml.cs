@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using ClassLibrary;
 using Projekat.Pomocne_klase;
 
 namespace Projekat.UserControls
@@ -11,15 +12,16 @@ namespace Projekat.UserControls
     /// </summary>
     public partial class DokumentItem : UserControl
     {
-        public FakeDokument Dokument
+
+        public Dokumentacija Dokument
         {
-            get { return (FakeDokument)GetValue(DokumentProperty); }
+            get { return (Dokumentacija)GetValue(DokumentProperty); }
             set { SetValue(DokumentProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for Dokument.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty DokumentProperty =
-            DependencyProperty.Register("Dokument", typeof(FakeDokument), typeof(DokumentItem), new PropertyMetadata(null));
+            DependencyProperty.Register("Dokument", typeof(Dokumentacija), typeof(DokumentItem), new PropertyMetadata(null));
 
         public DokumentItem()
         {
@@ -29,11 +31,11 @@ namespace Projekat.UserControls
         // Klikom na ovu kontrolu otvara se novi prozor sa detaljima Dokumenta
         private void OtvoriDetalje_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            var obj = (Page)Activator.CreateInstance(Dokument.DetailsPage);
-            var window = new Window();
-            window.Height = window.Width = 500;
-            window.Content = obj;
-            window.Show();
+            //var obj = (Page)Activator.CreateInstance(Dokument.DetailsPage);
+            //var window = new Window();
+            //window.Height = window.Width = 500;
+            //window.Content = obj;
+            //window.Show();
         }
     }
 }

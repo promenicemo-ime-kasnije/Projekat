@@ -29,7 +29,7 @@
                    FontSize="15"/>
         
         <!--CheckBox koji prikazuje da li je dokument zavrsen-->
-        <CheckBox IsChecked="{Binding Dokument.Zavrsen, ElementName=this}"
+        <CheckBox IsChecked="{Binding Dokument.StatusDokumenta, ElementName=this}"
                   Grid.Column="1"/>
         
     </Grid>

@@ -1,7 +1,10 @@
-﻿using Projekat.Pages.DokumentDetails;
+﻿using ClassLibrary;
+using ClassLibrary.DataProvider;
+using Projekat.Pages.DokumentDetails;
 using Projekat.Pomocne_klase;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,33 +25,29 @@ namespace Projekat.Pages
     /// </summary>
     public partial class DokumentaPage : Page
     {
-        public List<string> List { get; set; }
-        public List<FakeDokument> Dokumenta { get; set; }
-        public DokumentaPage()
+        public ObservableCollection<Dokumentacija> OblastLokacijskiUslovi { get; set; }
+        public ObservableCollection<Dokumentacija> OblastGradjevinskaDozvola { get; set; }
+        public ObservableCollection<Dokumentacija> OblastIzgradnja { get; set; }
+        public DokumentaPage(int projectID)
         {
             InitializeComponent();
-            List = new List<string>();
-            Dokumenta = new List<FakeDokument>();
-            List.Add("Dokaz o uplati administrativne takse");
-            List.Add("Idejno resenje");
-            List.Add("Kopija plana za kat. parcelu");
-            List.Add("Izvod i katastra vodova");
-            List.Add("Podatak o povrsini parcele");
-            List.Add("Dokaz o uplati administrativne takse");
-            List.Add("Idejno resenje");
-            List.Add("Kopija plana za kat. parcelu");
-            List.Add("Izvod i katastra vodova");
-            List.Add("Podatak o povrsini parcele");
-            List.Add("Dokaz o uplati administrativne takse");
-            List.Add("Idejno resenje");
-            List.Add("Kopija plana za kat. parcelu");
-            List.Add("Izvod i katastra vodova");
-            List.Add("Podatak o povrsini parcele");
-
-            for (int i = 0; i < List.Count; i++)
-                Dokumenta.Add(new FakeDokument(List[i], i < 3, typeof(DetaljiNekogRandomDokumenta), i));
-
             DataContext = this;
+            UcitajListe(projectID);
         }
+
+        private async void UcitajListe(int projectID)
+        {
+            IList<Dokumentacija> svaDokumenta = await new EFCoreDataProvider().GetDokumentaProjekta(projectID);
+            for (int i = 0; i < svaDokumenta.Count; i++)
+            {
+                if (i >= 1 && i <= 10)
+                    OblastLokacijskiUslovi.Add(svaDokumenta[i]);
+                else if (i > 10 && i <= 27)
+                    OblastGradjevinskaDozvola.Add(svaDokumenta[i]);
+                else if (i > 27 && i <= 37)
+                    OblastIzgradnja.Add(svaDokumenta[i]);
+            }
+        }
+             
     }
 }

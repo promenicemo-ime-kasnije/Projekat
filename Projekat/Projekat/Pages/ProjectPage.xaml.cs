@@ -9,15 +9,11 @@ namespace Projekat.Pages
     /// </summary>
     public partial class ProjectPage : Page
     {
-        public List<string> ListaProjekata { get; set; }
-        
-
         public ProjectPage()
         {
-            ListaProjekata = new List<string>() { "Fabrika Cigla", "Supermarket Migros", "Ferizova prodavnica", "Hotel Hibis" };
             InitializeComponent();
             DataContext = this;
-            Frame.Content = new DokumentaPage();
+            PrikaziDokumenta_Click(this, new RoutedEventArgs());
         }
 
         private void Nazad_Click(object sender, RoutedEventArgs e)
@@ -27,7 +23,8 @@ namespace Projekat.Pages
 
         private void PrikaziDokumenta_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Content = new DokumentaPage();
+            int projectID = (this.Parent as MainWindow).TrenutniProjekat.IDProjekta;
+            Frame.Content = new DokumentaPage(projectID);
         }
 
         private void PrikaziTroskove_Click(object sender, RoutedEventArgs e)

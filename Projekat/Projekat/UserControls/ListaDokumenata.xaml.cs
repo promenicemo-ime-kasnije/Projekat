@@ -45,8 +45,6 @@ namespace Projekat.UserControls
         public ListaDokumenata()
         {
             InitializeComponent();
-
-
         }
     }
 }

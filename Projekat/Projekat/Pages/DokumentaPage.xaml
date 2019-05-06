@@ -36,11 +36,11 @@
                 
                     <!--Lokacijski uslovi-->
                     <usercontrols:ListaDokumenata Naslov="Lokacijski uslovi"
-                                                  Dokumenta="{Binding Dokumenta}"/>
+                                                  Dokumenta="{Binding OblastLokacijskiUslovi}"/>
 
                     <!--Gradjevinska dozvola-->
                     <usercontrols:ListaDokumenata Naslov="Gradjevinska dozvola"
-                                                  Dokumenta="{Binding Dokumenta}"/>
+                                                  Dokumenta="{Binding OblastGradjevinskaDozvola}"/>
 
                 </StackPanel>
             
@@ -48,7 +48,7 @@
 
             <!--Izgradnja-->
             <usercontrols:ListaDokumenata Naslov="Izgradnja"
-                                          Dokumenta="{Binding Dokumenta}"/>
+                                          Dokumenta="{Binding OblastIzgradnja}"/>
 
         </StackPanel>
     </ScrollViewer>
