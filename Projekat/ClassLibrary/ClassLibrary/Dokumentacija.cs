@@ -18,7 +18,7 @@ namespace ClassLibrary
         public string Naziv { get; set; }
         public byte[] PDFFajl { get; set; }
         public string Datum { get; set; }
-        public string StatusDokumenta { get; set; }
+        public Nullable<bool> StatusDokumenta { get; set; }
         public Nullable<int> Redosled { get; set; }
         public Nullable<int> IDProjekta { get; set; }
     

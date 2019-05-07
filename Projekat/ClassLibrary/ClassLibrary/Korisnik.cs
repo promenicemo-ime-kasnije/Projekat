@@ -11,8 +11,7 @@ namespace ClassLibrary
 {
     using System;
     using System.Collections.Generic;
-    using System.Text.RegularExpressions;
-
+    
     public partial class Korisnik
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -34,6 +33,7 @@ namespace ClassLibrary
             return KorisnickoIme == (obj as Korisnik).KorisnickoIme;
         }
 
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Projekat> Projekat { get; set; }
     }
