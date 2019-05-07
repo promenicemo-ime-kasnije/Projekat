@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Dokumenti\Faks\Extent\ClassLibrary\ClassLibrary\EFCoreModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Ahmet Halilović\Desktop\Projekat\Projekat\ClassLibrary\ClassLibrary\EFCoreModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
