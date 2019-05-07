@@ -11,7 +11,8 @@ namespace ClassLibrary
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Text.RegularExpressions;
+
     public partial class Korisnik
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -30,7 +31,7 @@ namespace ClassLibrary
 
         public override bool Equals(object obj)
         {
-            return KorisnickoIme == (obj as Korisnik).KorisnickoIme;
+            return KorisnickoIme == (obj as Korisnik)?.KorisnickoIme;
         }
 
     
