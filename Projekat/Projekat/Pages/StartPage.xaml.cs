@@ -1,22 +1,11 @@
 ﻿using ClassLibrary.DataProvider;
 using Projekat.Pages;
-using Projekat.Pomocne_klase;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Projekat
 {
@@ -33,10 +22,16 @@ namespace Projekat
         {
             ListaAktivnihProjekata = new ObservableCollection<ClassLibrary.Projekat>();
             ListaArhiviranihProjekata = new ObservableCollection<ClassLibrary.Projekat>();
-            UcitajProjekte();
 
             InitializeComponent();
+            Loaded += StartPage_Loaded;
             DataContext = this;
+        }
+
+        private async void StartPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            await UcitajProjekte();
+            expanderKorisnik.Header = (Parent as MainWindow).TrenutniKorisnik.PunoIme;
         }
 
         private async Task UcitajProjekte()

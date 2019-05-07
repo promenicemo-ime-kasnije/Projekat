@@ -67,6 +67,7 @@
                   ItemsSource="{Binding OblastLokacijskiUslovi}"
                   CanUserSortColumns="False"
                   CanUserAddRows="False"
+                  IsReadOnly="True"
                   AutoGenerateColumns="False"
                   materialDesign:DataGridAssist.CellPadding="13 8 8 8"
                   materialDesign:DataGridAssist.ColumnHeaderPadding="8">

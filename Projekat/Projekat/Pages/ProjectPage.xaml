@@ -70,7 +70,7 @@
                     <Separator/>
                     <TextBlock Text="Clanovi projekta"
                                FontSize="20"
-                               MouseLeftButtonUp="ComingSoon_Click"/>
+                               MouseLeftButtonUp="ClanoviProjekta_Click"/>
                     <TextBlock Text="Settings"
                                FontSize="20"
                                MouseLeftButtonUp="ComingSoon_Click"/>

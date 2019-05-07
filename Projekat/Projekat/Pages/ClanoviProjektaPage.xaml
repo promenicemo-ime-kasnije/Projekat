@@ -16,15 +16,117 @@
       Background="{DynamicResource MaterialDesignPaper}"
       FontFamily="{DynamicResource MaterialDesignFont}">
 
-    <StackPanel>
-        <TextBlock Text="Clanovi Projekta Page" 
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>  <!--Naslov-->
+            <RowDefinition Height="*"/>     <!--Liste-->
+            <RowDefinition Height="Auto"/>  <!--Buttoni-->
+        </Grid.RowDefinitions>
+
+        <!--Naslov - mozda ovo moze i da se izbaci-->
+        <TextBlock Text="Clanovi projekta" 
                    FontSize="40"
-                   HorizontalAlignment="Center"/>
-        <TextBlock Text="Ovde se dodaju i uklanjaju clanovi koji imaju pristup nekom projektu"
                    HorizontalAlignment="Center"
-                   Margin="100"/>
-        <Button Content="Idi na projekat"
-                Margin="100"
-                Click="OtvoriProjectPage_Click"/>
-    </StackPanel>
+                   Margin="0, 0, 0, 20"/>
+        
+        <!--Liste-->
+        <Grid Grid.Row="1"
+              HorizontalAlignment="Center">
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" MinWidth="320"/>
+                <ColumnDefinition Width="Auto" MinWidth="320"/>
+            </Grid.ColumnDefinitions>
+
+            
+            <!--Lista svih korisnika koji nisu aktivni na projektu-->
+            <TextBlock Text="Svi korisnici"/>
+
+            <Border BorderBrush="Black" 
+                    BorderThickness="1"
+                    Grid.Row="1"
+                    Margin="1, 20">
+                <ListView ItemsSource="{Binding SviKorisnici}" 
+                          MouseLeftButtonUp="PrebaciUDruguListu_Click"
+                          Tag="1">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <!--Ikonica-->
+                                <materialDesign:PackIcon Kind="Person"
+                                                         Margin="10"
+                                                         VerticalAlignment="Center"/>
+                                <StackPanel>
+                                    <!--Puno ime korisnika-->
+                                    <TextBlock Text="{Binding PunoIme}" 
+                                               Margin="10"
+                                               FontSize="15"/>
+                                    <!--Vrsta korisnika-->
+                                    <TextBlock Text="{Binding VrstaKorisnika}" 
+                                               Margin="10, 0" 
+                                               HorizontalAlignment="Center" 
+                                               Foreground="Blue"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Border>
+            
+            
+            <!--Lista korisnika koji su aktivni na projektu-->
+            <TextBlock Text="Korisnici koji rade na ovom projektu" 
+                       Grid.Column="1"/>
+
+            <Border BorderBrush="Black"
+                    BorderThickness="1"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="1, 20">
+                <ListView ItemsSource="{Binding KorisniciKojiRadeNaProjektu}" 
+                          MouseLeftButtonUp="PrebaciUDruguListu_Click"
+                          Tag="2">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <!--Ikonica-->
+                                <materialDesign:PackIcon Kind="Person"
+                                                         Margin="10"
+                                                         VerticalAlignment="Center"/>
+                                <StackPanel>
+                                    <!--Puno ime korisnika-->
+                                    <TextBlock Text="{Binding PunoIme}" 
+                                               Margin="10"
+                                               FontSize="15"/>
+                                    <!--Vrsta korisnika-->
+                                    <TextBlock Text="{Binding VrstaKorisnika}" 
+                                               Margin="10, 0" 
+                                               HorizontalAlignment="Center" 
+                                               Foreground="Blue"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Border>
+            
+        </Grid>
+        
+        <!--Buttoni-->
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    Grid.Row="2">
+            <Button Content="Zapamti izmene"
+                    Margin="20"
+                    Click="ZapamtiIzmene_Click"/>
+            <Button Content="Idi na projekat"
+                    Margin="20"
+                    Click="OtvoriProjectPage_Click"/>
+        </StackPanel>
+    </Grid>
 </Page>

@@ -123,6 +123,7 @@
             <!--Dropdown ulogovanog naloga. Tu se nalaze opcije za log out i za uredjivanje naloga. Ovo se nalazi u gornjem row-u grida-->
             <materialDesign:Card Margin="200 0 10 0" Grid.Row="0">
                 <Expander
+                      Name="expanderKorisnik"
                       Header="Goran Marković"
                       FontWeight="Bold">
                     <StackPanel>

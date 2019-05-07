@@ -53,5 +53,10 @@ namespace Projekat.Pages
         {
             MessageBox.Show("Coming soon!");
         }
+
+        private void ClanoviProjekta_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Frame.Content = new ClanoviProjektaPage();
+        }
     }
 }
