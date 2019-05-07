@@ -13,7 +13,7 @@
           <Property Name="Naziv" Type="nchar" MaxLength="100" />
           <Property Name="PDFFajl" Type="varbinary(max)" />
           <Property Name="Datum" Type="nchar" MaxLength="20" />
-          <Property Name="StatusDokumenta" Type="nchar" MaxLength="20" />
+          <Property Name="StatusDokumenta" Type="bit" />
           <Property Name="Redosled" Type="int" />
           <Property Name="IDProjekta" Type="int" />
         </EntityType>
@@ -155,7 +155,7 @@
           <Property Name="Naziv" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
           <Property Name="PDFFajl" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Datum" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="StatusDokumenta" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="StatusDokumenta" Type="Boolean" />
           <Property Name="Redosled" Type="Int32" />
           <Property Name="IDProjekta" Type="Int32" />
           <NavigationProperty Name="Projekat" Relationship="DataContext.FK_Dokumentacija_Projekat" FromRole="Dokumentacija" ToRole="Projekat" />
