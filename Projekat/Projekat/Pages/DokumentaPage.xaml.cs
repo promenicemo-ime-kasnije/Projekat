@@ -98,9 +98,18 @@ namespace Projekat.Pages
                     a = File.ReadAllBytes(path); //ovo pretvara izabrani fajl u bajtove 
                     doc.PDFFajl = a;
                     await dataProvider.UpdateDokumentAsync(doc); // pamti fajl u bazi
-                    InvalidateVisual();
+
+                    UpdateDataGrid();
                 }
             }
+        }
+
+        // Nece da prikaze da je doslo do promene, pa cu da mu promenim itemsource
+        private void UpdateDataGrid()
+        {
+            var temp = DataGrid.ItemsSource;
+            DataGrid.ItemsSource = null;
+            DataGrid.ItemsSource = temp;
         }
     }
 }

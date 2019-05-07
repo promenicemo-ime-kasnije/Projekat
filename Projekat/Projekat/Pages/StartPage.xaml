@@ -87,28 +87,37 @@
                       FontSize="13"
                       FontWeight="Bold"
                       Header="Arhivirani projekti">
-                <ListView
-                    FontSize="14"
-                    ItemsSource="{Binding ListaArhiviranihProjekata}"
-                    Margin="28 5 0 0"
-                    FontWeight="Regular">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
+                <ScrollViewer Height="200">
+                    <ListView
+                        FontSize="14"
+                        ItemsSource="{Binding ListaArhiviranihProjekata}"
+                        Margin="28 5 0 0"
+                        FontWeight="Regular">
+                        <!--Imao sam neke probleme sa scrolovanjem, to sam resio ovako, ovo ispod izgleda iskljucuje scrollviewer koji se nalazi untuar listView-a, valjda je tako nesto, vazno je da radi sad-->
+                        <ListView.Template>
+                            <ControlTemplate>
+                                <ItemsPresenter/>
+                            </ControlTemplate>
+                        </ListView.Template>
 
-                                <!--Ikonica-->
-                                <materialDesign:PackIcon Kind="Archive"
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+
+                                    <!--Ikonica-->
+                                    <materialDesign:PackIcon Kind="Archive"
                                                  Margin="10"/>
-                                <!--Tip projekta-->
-                                <TextBlock Text="{Binding NazivProjekta}" 
+                                    <!--Tip projekta-->
+                                    <TextBlock Text="{Binding NazivProjekta}" 
                                    Margin="5" 
                                    VerticalAlignment="Center" 
                                    FontSize="15"/>
 
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollViewer>
             </Expander>
 
         </Grid>
