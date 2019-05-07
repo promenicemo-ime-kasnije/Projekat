@@ -3,7 +3,21 @@ using ClassLibrary.DataProvider;
 using Projekat.UserControls;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
+using System.Windows;
 using System.Windows.Controls;
+using System;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace Projekat.Pages
 {
@@ -59,6 +73,33 @@ namespace Projekat.Pages
                 case "Izgradnja":
                     DataGrid.ItemsSource = OblastIzgradnja;
                     break;
+            }
+        }
+
+        private async void ShowHideDetails(object sender, System.Windows.RoutedEventArgs e)
+        {
+            Dokumentacija doc = DataGrid.SelectedItem as Dokumentacija;
+            var dataProvider = new EFCoreDataProvider();
+
+            if ((DataGrid.SelectedItem as Dokumentacija).PDFFajl != null)
+            {
+                string filename = "temp.pdf";
+                File.WriteAllBytes(filename, doc.PDFFajl); //ovo kreira lokalni pdf fajl od bajtova 
+                System.Diagnostics.Process.Start(filename); // Otvara ga u default pdf vieweru
+            }
+            else
+            {
+                byte[] a;
+                OpenFileDialog dlg = new OpenFileDialog();
+                dlg.Filter = "PDF dokument | *.pdf";
+                if (dlg.ShowDialog() == true)
+                {
+                    string path = dlg.FileName.ToString();
+                    a = File.ReadAllBytes(path); //ovo pretvara izabrani fajl u bajtove 
+                    doc.PDFFajl = a;
+                    await dataProvider.UpdateDokumentAsync(doc); // pamti fajl u bazi
+                    InvalidateVisual();
+                }
             }
         }
     }

@@ -133,6 +133,8 @@
     <Compile Include="UserControls\pocetnaStranaUC.xaml.cs">
       <DependentUpon>pocetnaStranaUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ValueConverters\ObjectToColor.cs" />
+    <Compile Include="ValueConverters\ObjectToPackIconKind.cs" />
     <Page Include="Tehnoloski visak\ArhivaPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

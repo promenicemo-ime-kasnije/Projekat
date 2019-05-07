@@ -9,6 +9,7 @@
       Title="DokumentaPage"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:usercontrols="clr-namespace:Projekat.UserControls"
+      xmlns:valueconverters="clr-namespace:Projekat.ValueConverters"
       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
       TextElement.FontWeight="Regular"
       TextElement.FontSize="13"
@@ -16,6 +17,10 @@
       TextOptions.TextRenderingMode="Auto"        
       Background="{DynamicResource MaterialDesignPaper}"
       FontFamily="{DynamicResource MaterialDesignFont}">
+    <Page.Resources>
+        <valueconverters:ObjectToColor x:Key="ObjectToColorConverter"/>
+        <valueconverters:ObjectToPackIconKind x:Key="ObjectToPackIconKindConverter"/>
+    </Page.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -83,17 +88,22 @@
                                                            Header="Naziv dokumenta"
                                                            MaxLength="255"
                                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
-            
+
                 <materialDesign:MaterialDataGridTextColumn Binding="{Binding Datum}"
                                                            Header="Datum pocetka/kraja"
                                                            MaxLength="150"
                                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                
-                <materialDesign:MaterialDataGridTextColumn Binding="{Binding PDFFajl}"
-                                                           Header="Pdf fajl"
-                                                           MaxLength="150"
-                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
-                    
+
+                <DataGridTemplateColumn Header="Pdf fajl">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="ShowHideDetails">
+                                <materialDesign:PackIcon Kind="{Binding PDFFajl, Converter={StaticResource ObjectToPackIconKindConverter}}" Foreground="White"/>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
             </DataGrid.Columns>
         </DataGrid>
 
