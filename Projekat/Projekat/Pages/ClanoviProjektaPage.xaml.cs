@@ -48,6 +48,15 @@ namespace Projekat.Pages
             var sviKorisnici = await new EFCoreDataProvider().GetKorisniciAsync();
             var korisniciProjekta = await new EFCoreDataProvider().GetKorisnikeProjektaAsync(projectID);
 
+            if(korisniciProjekta.Count > 0)
+            {
+                for (int i = 0; i < korisniciProjekta.Count; i++)
+                {
+                    Console.WriteLine(korisniciProjekta[i].KorisnickoIme);
+                }
+            }
+            
+
             foreach (Korisnik k in sviKorisnici)
                 if (korisniciProjekta.Contains(k))
                     KorisniciKojiRadeNaProjektu.Add(k);
@@ -89,12 +98,12 @@ namespace Projekat.Pages
             // Izbaci iz baze one koji vise nisu tu
             foreach (Korisnik k in korisniciUBazi)
                 if (!KorisniciKojiRadeNaProjektu.Contains(k))
-                    await dataProvider.DeleteInterakcijaAsync(k, trenutniProjekat);
+                    await dataProvider.DeleteInterakcijaAsync(k.KorisnickoIme, trenutniProjekat.IDProjekta);
 
             // Dodaj one koji vec nisu bili u bazi
             foreach (Korisnik k in KorisniciKojiRadeNaProjektu)
                 if (!korisniciUBazi.Contains(k))
-                    await dataProvider.AddInterakcijaAsync(k, trenutniProjekat);
+                    await dataProvider.AddInterakcijaAsync(k.KorisnickoIme, trenutniProjekat.IDProjekta);
 
         }
     }

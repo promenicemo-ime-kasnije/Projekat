@@ -161,20 +161,22 @@ namespace ClassLibrary.DataProvider
 
         #region Interakcija
 
-        public async Task AddInterakcijaAsync(Korisnik korisnik, Projekat projekat)
+        public async Task AddInterakcijaAsync(String korisnickoIme, long IDprojekta)
         {
             using (ExtentBazaEntities _context = new ExtentBazaEntities())
             {
-                _context.Korisnik.FirstOrDefault(a => a.KorisnickoIme == korisnik.KorisnickoIme).Projekat.Add(projekat);
+                //_context.Korisnik.AsNoTracking().FirstOrDefault(a => a.KorisnickoIme == korisnik.KorisnickoIme).Projekat.Add(projekat);
+                await _context.Database.ExecuteSqlCommandAsync("Insert into Interakcija Values({0},{1})", IDprojekta, korisnickoIme);
                 await _context.SaveChangesAsync();
             }
         }
 
-        public async Task<int> DeleteInterakcijaAsync(Korisnik korisnik, Projekat projekat)
+        public async Task<int> DeleteInterakcijaAsync(String korisnickoIme, long IDprojekta)
         {
             using (ExtentBazaEntities _context = new ExtentBazaEntities())
             {
-                _context.Korisnik.FirstOrDefault(a => a.KorisnickoIme == korisnik.KorisnickoIme).Projekat.Remove(projekat);
+                //_context.Korisnik.FirstOrDefault(a => a.KorisnickoIme == korisnik.KorisnickoIme).Projekat.Remove(projekat);
+                await _context.Database.ExecuteSqlCommandAsync("Delete from Interakcija where IDProjekta = {0} and KorisnickoIme = {1}", IDprojekta, korisnickoIme);
                 return await _context.SaveChangesAsync();
             }
         }
