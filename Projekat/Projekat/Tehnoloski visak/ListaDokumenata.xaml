@@ -15,22 +15,17 @@
              FontFamily="{DynamicResource MaterialDesignFont}"
              Name="this">
     <Grid>
-        <Expander Header="{Binding Naslov, ElementName=this}"
-                              BorderThickness="1"
-                              BorderBrush="Black"
-                              Margin="5"
-                              Padding="10">
-            <ListView ItemsSource="{Binding Dokumenta, ElementName=this}"
+        <ListView ItemsSource="{Binding Dokumenta, ElementName=this}"
                       HorizontalContentAlignment="Stretch">
-                
+
                 <!--Imao sam neke probleme sa scrolovanjem, to sam resio ovako, ovo ispod izgleda iskljucuje scrollviewer koji se nalazi untuar listView-a, valjda je tako nesto, vazno je da radi sad-->
-                <ListView.Template>
+                <!--<ListView.Template>
                     <ControlTemplate>
                         <ItemsPresenter/>
                     </ControlTemplate>
-                </ListView.Template>
-                
-                
+                </ListView.Template>-->
+
+
                 <ListView.ItemTemplate>
                     <!--DataTemplate je DokumentItem koji predstavlja jedan dokument u listi-->
                     <DataTemplate>
@@ -39,6 +34,5 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </Expander>
     </Grid>
 </UserControl>

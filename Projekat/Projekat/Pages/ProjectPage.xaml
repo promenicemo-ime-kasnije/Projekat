@@ -20,7 +20,8 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0"
-                   Text="Ovde ce da dodje ime projekta"
+                   Name="txtImeProjekta"
+                   Text=""
                    FontSize="22"
                    VerticalAlignment="Center"
                    Margin="20 0 0 0"/>

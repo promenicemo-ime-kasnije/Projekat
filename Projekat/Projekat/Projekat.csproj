@@ -87,7 +87,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Pages\ArhivaPage.xaml.cs">
+    <Compile Include="Tehnoloski visak\ArhivaPage.xaml.cs">
       <DependentUpon>ArhivaPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ClanoviProjektaPage.xaml.cs">
@@ -102,7 +102,7 @@
     <Compile Include="Pages\DokumentDetails\DetaljiNekogRandomDokumenta.xaml.cs">
       <DependentUpon>DetaljiNekogRandomDokumenta.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\menuPage.xaml.cs">
+    <Compile Include="Tehnoloski visak\menuPage.xaml.cs">
       <DependentUpon>menuPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\NoviProjekatPage.xaml.cs">
@@ -120,20 +120,20 @@
     <Compile Include="Pages\TimelinePage.xaml.cs">
       <DependentUpon>TimelinePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pomocne klase\FakeDokument.cs" />
+    <Compile Include="Tehnoloski visak\FakeDokument.cs" />
     <Compile Include="UserControls\dodajNoviProjekat.xaml.cs">
       <DependentUpon>dodajNoviProjekat.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\DokumentItem.xaml.cs">
+    <Compile Include="Tehnoloski visak\DokumentItem.xaml.cs">
       <DependentUpon>DokumentItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ListaDokumenata.xaml.cs">
+    <Compile Include="Tehnoloski visak\ListaDokumenata.xaml.cs">
       <DependentUpon>ListaDokumenata.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\pocetnaStranaUC.xaml.cs">
       <DependentUpon>pocetnaStranaUC.xaml</DependentUpon>
     </Compile>
-    <Page Include="Pages\ArhivaPage.xaml">
+    <Page Include="Tehnoloski visak\ArhivaPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -172,7 +172,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Pages\menuPage.xaml">
+    <Page Include="Tehnoloski visak\menuPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -208,11 +208,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\DokumentItem.xaml">
+    <Page Include="Tehnoloski visak\DokumentItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\ListaDokumenata.xaml">
+    <Page Include="Tehnoloski visak\ListaDokumenata.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

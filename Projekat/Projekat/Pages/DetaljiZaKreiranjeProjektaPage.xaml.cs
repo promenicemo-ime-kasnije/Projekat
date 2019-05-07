@@ -41,7 +41,9 @@ namespace Projekat.Pages
             progressWindow.Close();
 
             // Prelazak na ClanoviProjektaPage
-            (Parent as Window).Content = new ClanoviProjektaPage();
+            var parent = (Parent as MainWindow);
+            parent.TrenutniProjekat = ZapocetiProjekat;
+            parent.Content = new ClanoviProjektaPage();
         }
 
         private Dokumentacija[] GetListuDokumenata(string vrstaProjekta)

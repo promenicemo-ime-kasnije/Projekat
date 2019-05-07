@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -14,6 +15,12 @@ namespace Projekat.Pages
             InitializeComponent();
             DataContext = this;
             //PrikaziDokumenta_Click(this, new RoutedEventArgs());
+            this.Loaded += ProjectPage_Loaded;
+        }
+
+        private void ProjectPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            txtImeProjekta.Text = "Projekat: " + (Parent as MainWindow).TrenutniProjekat.NazivProjekta;
         }
 
         private void Nazad_Click(object sender, RoutedEventArgs e)

@@ -17,40 +17,85 @@
       Background="{DynamicResource MaterialDesignPaper}"
       FontFamily="{DynamicResource MaterialDesignFont}">
 
-    
-    <!--Priznajem da je ovo dosta lose uradjeno, najgori copy paste
-        Pokusavao sam da ovo malo poboljsam, da napravim userControlu koja predstavlja jednu listu dokumenata pa da to posle 
-        nekako iskombinujem ali mi to nije uspelo, ako ovo neko cita neka to ispravi ako zna-->
-
-    <ScrollViewer>
-        <StackPanel HorizontalAlignment="Center" Margin="20">
-
-            <!--Priprema za izgradju-->
-            <Expander Header="Priprema za izgradnju"
-                      BorderThickness="1"
-                      BorderBrush="Black"
-                      Margin="5"
-                      Padding="10">
-            
-                <StackPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!--Meni za odabir kategorije-->
+        <materialDesign:ColorZone Mode="PrimaryMid">
+            <Grid Margin="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
                 
-                    <!--Lokacijski uslovi-->
-                    <usercontrols:ListaDokumenata Naslov="Lokacijski uslovi"
-                                                  Dokumenta="{Binding OblastLokacijskiUslovi}"/>
+                <RadioButton Grid.Column="0"
+                             Style="{StaticResource MaterialDesignTabRadioButton}"
+                             Margin="4"
+                             IsChecked="True"
+                             Content="Informacija o lokaciji" 
+                             Click="OdaberiKategoriju_Click"/>
+                <RadioButton Grid.Column="1"
+                             Style="{StaticResource MaterialDesignTabRadioButton}"
+                             Margin="4"
+                             IsChecked="False"
+                             Content="Lokacijski uslovi" 
+                             Click="OdaberiKategoriju_Click"/>
+                <RadioButton Grid.Column="2"
+                             Style="{StaticResource MaterialDesignTabRadioButton}"
+                             Margin="4"
+                             IsChecked="False"
+                             Content="Gradjevinska dozvola" 
+                             Click="OdaberiKategoriju_Click"/>
+                <RadioButton Grid.Column="3"
+                             Style="{StaticResource MaterialDesignTabRadioButton}"
+                             Margin="4"
+                             IsChecked="False"
+                             Content="Izgradnja" 
+                             Click="OdaberiKategoriju_Click"/>
+                
+            </Grid>
+        </materialDesign:ColorZone>
 
-                    <!--Gradjevinska dozvola-->
-                    <usercontrols:ListaDokumenata Naslov="Gradjevinska dozvola"
-                                                  Dokumenta="{Binding OblastGradjevinskaDozvola}"/>
-
-                </StackPanel>
+        <DataGrid Name="DataGrid"
+                  Grid.Row="1"
+                  Margin="15 20 15 0"
+                  ItemsSource="{Binding OblastLokacijskiUslovi}"
+                  CanUserSortColumns="False"
+                  CanUserAddRows="False"
+                  AutoGenerateColumns="False"
+                  materialDesign:DataGridAssist.CellPadding="13 8 8 8"
+                  materialDesign:DataGridAssist.ColumnHeaderPadding="8">
             
-            </Expander>
+            <DataGrid.Columns>
+                
+                <DataGridCheckBoxColumn Binding="{Binding IsSelected}"
+                                        ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
+                                        EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}"
+                                        Header="Status"/>
+                
+                <materialDesign:MaterialDataGridTextColumn Binding="{Binding Naziv}"
+                                                           Header="Naziv dokumenta"
+                                                           MaxLength="255"
+                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+            
+                <materialDesign:MaterialDataGridTextColumn Binding="{Binding Datum}"
+                                                           Header="Datum pocetka/kraja"
+                                                           MaxLength="150"
+                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                
+                <materialDesign:MaterialDataGridTextColumn Binding="{Binding PDFFajl}"
+                                                           Header="Pdf fajl"
+                                                           MaxLength="150"
+                                                           EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"/>
+                    
+            </DataGrid.Columns>
+        </DataGrid>
 
-            <!--Izgradnja-->
-            <usercontrols:ListaDokumenata Naslov="Izgradnja"
-                                          Dokumenta="{Binding OblastIzgradnja}"/>
-
-        </StackPanel>
-    </ScrollViewer>
+    </Grid>
 
 </Page>

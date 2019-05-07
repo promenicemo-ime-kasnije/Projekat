@@ -23,15 +23,6 @@ namespace Projekat.UserControls
     /// </summary>
     public partial class ListaDokumenata : UserControl
     {
-        public string Naslov
-        {
-            get { return (string)GetValue(NaslovProperty); }
-            set { SetValue(NaslovProperty, value); }
-        }
-
-        public static readonly DependencyProperty NaslovProperty =
-            DependencyProperty.Register("Naslov", typeof(string), typeof(ListaDokumenata), new PropertyMetadata(string.Empty));
-
 
         public ObservableCollection<Dokumentacija> Dokumenta
         {

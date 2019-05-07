@@ -1,5 +1,6 @@
 ﻿using ClassLibrary;
 using ClassLibrary.DataProvider;
+using Projekat.UserControls;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
@@ -14,6 +15,7 @@ namespace Projekat.Pages
         public ObservableCollection<Dokumentacija> OblastLokacijskiUslovi { get; set; }
         public ObservableCollection<Dokumentacija> OblastGradjevinskaDozvola { get; set; }
         public ObservableCollection<Dokumentacija> OblastIzgradnja { get; set; }
+
         public DokumentaPage(int projectID)
         {
             InitializeComponent();
@@ -38,6 +40,26 @@ namespace Projekat.Pages
                     OblastIzgradnja.Add(svaDokumenta[i]);
             }
         }
-             
+
+        private void OdaberiKategoriju_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            var rb = sender as RadioButton;
+
+            switch (rb.Content)
+            {
+                case "Informacija o lokaciji":
+                    DataGrid.ItemsSource = OblastLokacijskiUslovi;
+                    break;
+                case "Lokacijski uslovi":
+                    DataGrid.ItemsSource = OblastLokacijskiUslovi;
+                    break;
+                case "Gradjevinska dozvola":
+                    DataGrid.ItemsSource = OblastGradjevinskaDozvola;
+                    break;
+                case "Izgradnja":
+                    DataGrid.ItemsSource = OblastIzgradnja;
+                    break;
+            }
+        }
     }
 }
