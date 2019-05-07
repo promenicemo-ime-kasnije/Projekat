@@ -25,8 +25,8 @@ namespace ClassLibrary
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Dokumentacija> Dokumentacija { get; set; }
         public virtual DbSet<Korisnik> Korisnik { get; set; }
         public virtual DbSet<Projekat> Projekat { get; set; }
+        public virtual DbSet<Dokumentacija> Dokumentacija { get; set; }
     }
 }

@@ -4,14 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DataContext.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DataContext.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Dokumentacija">
           <Key>
             <PropertyRef Name="IDDokumenta" />
           </Key>
           <Property Name="IDDokumenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Naziv" Type="nchar" MaxLength="100" />
-          <Property Name="PDFFajl" Type="nchar" MaxLength="255" />
+          <Property Name="PDFFajl" Type="varbinary(max)" />
           <Property Name="Datum" Type="nchar" MaxLength="20" />
           <Property Name="StatusDokumenta" Type="nchar" MaxLength="20" />
           <Property Name="Redosled" Type="int" />
@@ -101,24 +101,10 @@
             <End Role="Interakcija" EntitySet="Interakcija" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DataContext" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Dokumentacija">
-          <Key>
-            <PropertyRef Name="IDDokumenta" />
-          </Key>
-          <Property Name="IDDokumenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Naziv" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-          <Property Name="PDFFajl" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
-          <Property Name="Datum" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="StatusDokumenta" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="Redosled" Type="Int32" />
-          <Property Name="IDProjekta" Type="Int32" />
-          <NavigationProperty Name="Projekat" Relationship="Self.FK_Dokumentacija_Projekat" FromRole="Dokumentacija" ToRole="Projekat" />
-        </EntityType>
         <EntityType Name="Korisnik">
           <Key>
             <PropertyRef Name="KorisnickoIme" />
@@ -141,12 +127,42 @@
           <Property Name="StanjeProjekta" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="DatumPocetka" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="DatumIzgradnje" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Dokumentacija" Relationship="Self.FK_Dokumentacija_Projekat" FromRole="Projekat" ToRole="Dokumentacija" />
           <NavigationProperty Name="Korisnik" Relationship="Self.Interakcija" FromRole="Projekat" ToRole="Korisnik" />
+          <NavigationProperty Name="Dokumentacija" Relationship="DataContext.FK_Dokumentacija_Projekat" FromRole="Projekat" ToRole="Dokumentacija" />
+        </EntityType>
+        <Association Name="Interakcija">
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="*" />
+          <End Role="Projekat" Type="Self.Projekat" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="ExtentBazaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Korisnik" EntityType="Self.Korisnik" />
+          <EntitySet Name="Projekat" EntityType="Self.Projekat" />
+          <AssociationSet Name="Interakcija" Association="Self.Interakcija">
+            <End Role="Korisnik" EntitySet="Korisnik" />
+            <End Role="Projekat" EntitySet="Projekat" />
+          </AssociationSet>
+          <EntitySet Name="Dokumentacija" EntityType="DataContext.Dokumentacija" />
+          <AssociationSet Name="FK_Dokumentacija_Projekat" Association="DataContext.FK_Dokumentacija_Projekat">
+            <End Role="Projekat" EntitySet="Projekat" />
+            <End Role="Dokumentacija" EntitySet="Dokumentacija" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Dokumentacija">
+          <Key>
+            <PropertyRef Name="IDDokumenta" />
+          </Key>
+          <Property Name="IDDokumenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Naziv" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="PDFFajl" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Datum" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="StatusDokumenta" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Redosled" Type="Int32" />
+          <Property Name="IDProjekta" Type="Int32" />
+          <NavigationProperty Name="Projekat" Relationship="DataContext.FK_Dokumentacija_Projekat" FromRole="Dokumentacija" ToRole="Projekat" />
         </EntityType>
         <Association Name="FK_Dokumentacija_Projekat">
-          <End Role="Projekat" Type="Self.Projekat" Multiplicity="0..1" />
-          <End Role="Dokumentacija" Type="Self.Dokumentacija" Multiplicity="*" />
+          <End Type="DataContext.Projekat" Role="Projekat" Multiplicity="0..1" />
+          <End Type="DataContext.Dokumentacija" Role="Dokumentacija" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Projekat">
               <PropertyRef Name="IDProjekta" />
@@ -156,42 +172,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Interakcija">
-          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="*" />
-          <End Role="Projekat" Type="Self.Projekat" Multiplicity="*" />
-        </Association>
-        <EntityContainer Name="ExtentBazaEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Dokumentacija" EntityType="Self.Dokumentacija" />
-          <EntitySet Name="Korisnik" EntityType="Self.Korisnik" />
-          <EntitySet Name="Projekat" EntityType="Self.Projekat" />
-          <AssociationSet Name="FK_Dokumentacija_Projekat" Association="Self.FK_Dokumentacija_Projekat">
-            <End Role="Projekat" EntitySet="Projekat" />
-            <End Role="Dokumentacija" EntitySet="Dokumentacija" />
-          </AssociationSet>
-          <AssociationSet Name="Interakcija" Association="Self.Interakcija">
-            <End Role="Korisnik" EntitySet="Korisnik" />
-            <End Role="Projekat" EntitySet="Projekat" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DataContextStoreContainer" CdmEntityContainer="ExtentBazaEntities">
-          <EntitySetMapping Name="Dokumentacija">
-            <EntityTypeMapping TypeName="DataContext.Dokumentacija">
-              <MappingFragment StoreEntitySet="Dokumentacija">
-                <ScalarProperty Name="IDDokumenta" ColumnName="IDDokumenta" />
-                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
-                <ScalarProperty Name="PDFFajl" ColumnName="PDFFajl" />
-                <ScalarProperty Name="Datum" ColumnName="Datum" />
-                <ScalarProperty Name="StatusDokumenta" ColumnName="StatusDokumenta" />
-                <ScalarProperty Name="Redosled" ColumnName="Redosled" />
-                <ScalarProperty Name="IDProjekta" ColumnName="IDProjekta" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Korisnik">
             <EntityTypeMapping TypeName="DataContext.Korisnik">
               <MappingFragment StoreEntitySet="Korisnik">
@@ -224,6 +210,19 @@
               <ScalarProperty Name="IDProjekta" ColumnName="IDProjekta" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Dokumentacija">
+            <EntityTypeMapping TypeName="DataContext.Dokumentacija">
+              <MappingFragment StoreEntitySet="Dokumentacija">
+                <ScalarProperty Name="IDProjekta" ColumnName="IDProjekta" />
+                <ScalarProperty Name="Redosled" ColumnName="Redosled" />
+                <ScalarProperty Name="StatusDokumenta" ColumnName="StatusDokumenta" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="PDFFajl" ColumnName="PDFFajl" />
+                <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="IDDokumenta" ColumnName="IDDokumenta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
