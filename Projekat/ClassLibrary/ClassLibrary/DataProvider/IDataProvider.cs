@@ -28,8 +28,8 @@ namespace ClassLibrary.DataProvider
         Task<IList<Projekat>> GetProjekteAsync();
         Task<int> GetProjekatCountAsync();
 
-        Task AddInterakcijaAsync(Korisnik korisnik, Projekat projekat);
-        Task<int> DeleteInterakcijaAsync(Korisnik korisnik, Projekat projekat);
+        Task AddInterakcijaAsync(String korisnickoIme, long IDprojekta);
+        Task<int> DeleteInterakcijaAsync(String korisnickoIme, long IDprojekta);
         Task<IList<Korisnik>> GetKorisnikeProjektaAsync(long IDProjekta); //ova funkcija uzima sve korisnike koji su angazovani na jedan projekat
         Task<IList<Projekat>> GetProjekteKorisnikaAsync(String KorisnickoIme); //ova funkcija uzima sve projekte na kojima je angazovan bio jedan korisnik
         /*Necu pisati funkcije koje ce da prebroje stvari kojima se bave dve prethodne funkcije, zbog toga sto 
