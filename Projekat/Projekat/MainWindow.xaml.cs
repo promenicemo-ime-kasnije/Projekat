@@ -30,13 +30,22 @@ namespace Projekat
             {
                 this.Height = 485;
                 this.Width = 810;
+                this.WindowState = WindowState.Normal;
                 this.ResizeMode = ResizeMode.NoResize;
             }
-            else if (oldContent?.GetType() == typeof(LoginPage))
+            else if (newContent?.GetType() == typeof(StartPage))
             {
-                this.Height = 720;
-                this.Width = 1280;
+                this.Height = 635;
+                this.Width = 1075;
+                this.ResizeMode = ResizeMode.CanMinimize;
+                this.WindowState = WindowState.Normal;
+            }
+            else if (newContent?.GetType() == typeof(ProjectPage))
+            {
+                this.Height = 635;
+                this.Width = 1075;
                 this.ResizeMode = ResizeMode.CanResize;
+                this.WindowState = WindowState.Maximized;
             }
         }
     }
