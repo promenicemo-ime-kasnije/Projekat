@@ -37,6 +37,7 @@ namespace Projekat
         private async Task UcitajProjekte()
         {
             var projekti = await new EFCoreDataProvider().GetProjekteAsync() as List<ClassLibrary.Projekat>;
+            projekti.Reverse(); // Da ih poredja od novijih ka starijim po ID-u
 
             ListaAktivnihProjekata.Clear();
             ListaArhiviranihProjekata.Clear();
@@ -66,8 +67,11 @@ namespace Projekat
         private void OtvoriProjekat_Click(object sender, MouseButtonEventArgs e)
         {
             var p = (sender as ListView).SelectedItem as ClassLibrary.Projekat;
-            (Parent as MainWindow).TrenutniProjekat = p;
-            (Parent as Window).Content = new ProjectPage();
+            if (p != null)
+            {
+                (Parent as MainWindow).TrenutniProjekat = p;
+                (Parent as Window).Content = new ProjectPage();
+            }
         }
     }
 }

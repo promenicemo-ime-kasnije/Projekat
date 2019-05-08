@@ -41,13 +41,13 @@
                 <RadioButton Grid.Column="0"
                              Style="{StaticResource MaterialDesignTabRadioButton}"
                              Margin="4"
-                             IsChecked="True"
+                             IsChecked="False"
                              Content="Informacija o lokaciji" 
                              Click="OdaberiKategoriju_Click"/>
                 <RadioButton Grid.Column="1"
                              Style="{StaticResource MaterialDesignTabRadioButton}"
                              Margin="4"
-                             IsChecked="False"
+                             IsChecked="True"
                              Content="Lokacijski uslovi" 
                              Click="OdaberiKategoriju_Click"/>
                 <RadioButton Grid.Column="2"
@@ -78,8 +78,8 @@
                   materialDesign:DataGridAssist.ColumnHeaderPadding="8">
             
             <DataGrid.Columns>
-                
-                <DataGridCheckBoxColumn Binding="{Binding IsSelected}"
+
+                <DataGridCheckBoxColumn Binding="{Binding StatusDokumenta}"
                                         ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
                                         EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}"
                                         Header="Status"/>

@@ -26,6 +26,7 @@ namespace Projekat.Pages
     /// </summary>
     public partial class DokumentaPage : Page
     {
+        public ObservableCollection<Dokumentacija> OblastInformacijaOLokaciji { get; set; }
         public ObservableCollection<Dokumentacija> OblastLokacijskiUslovi { get; set; }
         public ObservableCollection<Dokumentacija> OblastGradjevinskaDozvola { get; set; }
         public ObservableCollection<Dokumentacija> OblastIzgradnja { get; set; }
@@ -39,6 +40,7 @@ namespace Projekat.Pages
 
         private async void UcitajListe(int projectID)
         {
+            OblastInformacijaOLokaciji = new ObservableCollection<Dokumentacija>();
             OblastLokacijskiUslovi = new ObservableCollection<Dokumentacija>();
             OblastGradjevinskaDozvola= new ObservableCollection<Dokumentacija>();
             OblastIzgradnja= new ObservableCollection<Dokumentacija>();
@@ -46,7 +48,9 @@ namespace Projekat.Pages
             IList<Dokumentacija> svaDokumenta = await new EFCoreDataProvider().GetDokumentaProjekta(projectID);
             for (int i = 0; i < svaDokumenta.Count; i++)
             {
-                if (i >= 1 && i <= 10)
+                if (i == 0)
+                    OblastInformacijaOLokaciji.Add(svaDokumenta[i]);
+                else if (i >= 1 && i <= 10)
                     OblastLokacijskiUslovi.Add(svaDokumenta[i]);
                 else if (i > 10 && i <= 27)
                     OblastGradjevinskaDozvola.Add(svaDokumenta[i]);
@@ -62,7 +66,7 @@ namespace Projekat.Pages
             switch (rb.Content)
             {
                 case "Informacija o lokaciji":
-                    DataGrid.ItemsSource = OblastLokacijskiUslovi;
+                    DataGrid.ItemsSource = OblastInformacijaOLokaciji;
                     break;
                 case "Lokacijski uslovi":
                     DataGrid.ItemsSource = OblastLokacijskiUslovi;
