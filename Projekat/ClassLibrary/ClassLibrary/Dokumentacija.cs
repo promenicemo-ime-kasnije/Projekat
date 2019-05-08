@@ -23,5 +23,8 @@ namespace ClassLibrary
         public Nullable<int> IDProjekta { get; set; }
     
         public virtual Projekat Projekat { get; set; }
+
+        // Ovo mi treba za DataGrid da znam koji row je ukljucen a koji iskljucen
+        public bool IsEnable { get; set; } = false;
     }
 }

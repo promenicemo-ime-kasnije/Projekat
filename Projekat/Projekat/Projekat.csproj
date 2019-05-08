@@ -111,7 +111,7 @@
     <Compile Include="Pages\NoviProjekatPage.xaml.cs">
       <DependentUpon>NoviProjekatPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Pages\ProgressPage.xaml.cs">
+    <Compile Include="Tehnoloski visak\ProgressPage.xaml.cs">
       <DependentUpon>ProgressPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ProjectPage.xaml.cs">
@@ -189,7 +189,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Pages\ProgressPage.xaml">
+    <Page Include="Tehnoloski visak\ProgressPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -20,6 +20,16 @@
     <Page.Resources>
         <valueconverters:ObjectToColor x:Key="ObjectToColorConverter"/>
         <valueconverters:ObjectToPackIconKind x:Key="ObjectToPackIconKindConverter"/>
+
+        <Style x:Key="DataGridCellStyle" TargetType="DataGridRow">
+            <Setter Property="IsEnabled" Value="True"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsEnable}" Value="False">
+                    <Setter Property="IsEnabled" Value="False" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        
     </Page.Resources>
 
     <Grid>
@@ -74,6 +84,7 @@
                   CanUserAddRows="False"
                   IsReadOnly="True"
                   AutoGenerateColumns="False"
+                  RowStyle="{StaticResource DataGridCellStyle}"
                   materialDesign:DataGridAssist.CellPadding="13 8 8 8"
                   materialDesign:DataGridAssist.ColumnHeaderPadding="8">
             
