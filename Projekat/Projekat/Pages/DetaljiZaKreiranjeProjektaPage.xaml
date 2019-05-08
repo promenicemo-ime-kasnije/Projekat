@@ -10,50 +10,104 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
       TextElement.FontWeight="Regular"
-      TextElement.FontSize="13"
+      TextElement.FontSize="15"
       TextOptions.TextFormattingMode="Ideal" 
       TextOptions.TextRenderingMode="Auto"        
       Background="{DynamicResource MaterialDesignPaper}"
       FontFamily="{DynamicResource MaterialDesignFont}">
 
-    <StackPanel VerticalAlignment="Center"
-                HorizontalAlignment="Center">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
         <!--Naslov-->
         <TextBlock Text="Detalji za kreiranje projekta"
                    FontSize="30"
-                   HorizontalAlignment="Center"
-                   Margin="20"/>
-        
+                   Margin="0, 0, 0, 20"
+                   Grid.Row="0"
+                   HorizontalAlignment="Center"/>
+
         <!--Naziv projekta-->
         <StackPanel Orientation="Horizontal"
-                    Margin="10">
+                    Margin="20"
+                    Grid.Row="1"
+                    HorizontalAlignment="Center">
             <TextBlock Text="Naziv projekta: "/>
             <TextBlock Text="{Binding ZapocetiProjekat.NazivProjekta}"/>
         </StackPanel>
-        
+
         <!--Tip projekta-->
         <StackPanel Orientation="Horizontal"
-                    Margin="10">
+                    Margin="20"
+                    Grid.Row="2"
+                    HorizontalAlignment="Center">
             <TextBlock Text="Tip projekta: "/>
             <TextBlock Text="{Binding ZapocetiProjekat.VrstaProjekta}"/>
         </StackPanel>
-        
-        <!--Datum pocetka projekta-->
-        <DatePicker Name="dpDatumPocetkaProjekta"
-                    HorizontalAlignment="Left"  
-                    Width="100"
-                    Margin="20"
-                    materialDesign:HintAssist.Hint="Datum pocetka projekta"
-                    Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
-        
-        
 
-        <TextBlock Text="Ovde se nalaze polja gde se unose podaci za kreiranje novog projekta i checkboxovi/comboboxovi za podesavanja..."
+
+
+        <WrapPanel Grid.Row="3" 
                    HorizontalAlignment="Center"
-                   Margin="10, 80"/>
-        
+                   MaxWidth="800">
+
+            <!--Datum pocetka projekta-->
+            <DatePicker Name="dpDatumPocetkaProjekta"
+                        HorizontalAlignment="Left"  
+                        Width="300"
+                        Margin="20"
+                        materialDesign:HintAssist.Hint="Datum pocetka projekta"
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
+            <!--Maksimalni indeks izgradjenosti-->
+            <TextBox Name="tbMaksimalniIndeksIzgradjenosti" 
+                     materialDesign:HintAssist.Hint="Maksimalni indeks izgradjenosti"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     Margin="20"
+                     Width="300"/>
+            <!--Maksimalni indeks zauzetosti-->
+            <TextBox Name="tbMaksimalniIndeksZauzetosti" 
+                     materialDesign:HintAssist.Hint="Maksimalni indeks zauzetosti"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     Margin="20"
+                     Width="300"/>
+            <!--Minimalni procenat zelenila-->
+            <TextBox Name="tbMinimalniProcenatZelenila"
+                     materialDesign:HintAssist.Hint="Minimalni procenat zelenila"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     Margin="20"
+                     Width="300"/>
+            <!--Maksimanla visina ili spratnost-->
+            <TextBox Name="tbMaksimalnaVisinaIliSpratnost"
+                     materialDesign:HintAssist.Hint="Namena"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     Margin="20"
+                     Width="300"/>
+            <!--Polozaj regulacionih i gradjevinskih linija-->
+            <TextBox Name="tbPolozajRegulacionihIGradjevinskihLinija"
+                     materialDesign:HintAssist.Hint="Polozaj regulacionih i gradjevinskih linija"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                     Margin="20"
+                     Width="300"/>
+        </WrapPanel>
+
+        <Button Content="Dodaj pdf dokument informacije o lokaciji"
+                Width="320"
+                HorizontalAlignment="Center"
+                Grid.Row="4"
+                Margin="20, 50, 20, 20"
+                Click="DodajPDF_Click"/>
+
         <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Center">
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                    Grid.Row="5" Grid.ColumnSpan="2">
             <Button Content="Potvrdi"
                     Click="Potvrdi_Click"
                     Margin="10"
@@ -63,5 +117,5 @@
                     Margin="10"
                     MinWidth="100"/>
         </StackPanel>
-    </StackPanel>
+    </Grid>
 </Page>

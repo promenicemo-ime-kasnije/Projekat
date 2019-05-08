@@ -1,5 +1,8 @@
 ﻿using ClassLibrary;
 using ClassLibrary.DataProvider;
+using Microsoft.Win32;
+using Projekat.Pomocne_klase;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -11,6 +14,7 @@ namespace Projekat.Pages
     public partial class DetaljiZaKreiranjeProjektaPage : Page
     {
         public ClassLibrary.Projekat ZapocetiProjekat { get; set; }
+        private byte[] informacijaOLokaciji;
 
         public DetaljiZaKreiranjeProjektaPage(ClassLibrary.Projekat projekat)
         {
@@ -31,11 +35,15 @@ namespace Projekat.Pages
             ZapocetiProjekat.StanjeProjekta = "Aktivan";
 
             // Kreiranje i prikazivanje progress windowa
-            var progressWindow = new Window { Title = "Kreiranje projekta u toku", Height = 200, Width = 600 , Content = new ProgressPage("Kreiranje projekta u toku")};
+            var progressWindow = new ProgressWindow("Kreiranje projekta u toku...");
             progressWindow.Show();
 
             // U bazi se kreira novi projekat i za njega se kreiraju odgovarajuca dokumenta
-            await new EFCoreDataProvider().KreirajProjekatIDodajDokumenta(ZapocetiProjekat, GetListuDokumenata(ZapocetiProjekat.VrstaProjekta));
+            var listaDokumenata = GetListuDokumenata(ZapocetiProjekat.VrstaProjekta);
+            if (informacijaOLokaciji != null) // Ako je vec uneta informacija o lokaciji onda se ona pamti u bazi pri kreiranju projekta
+                listaDokumenata[0].PDFFajl = informacijaOLokaciji;
+            // TODO: Ovde mogu i ostali atributi informaicje o lokaciji da se unose
+            await new EFCoreDataProvider().KreirajProjekatIDodajDokumenta(ZapocetiProjekat, listaDokumenata);
 
             // Zatvaranja ProgressWindow-a
             progressWindow.Close();
@@ -95,6 +103,22 @@ namespace Projekat.Pages
                 new Dokumentacija{ Naziv = "Geodetski snimak izgradjenih temelja"                        , Redosled = 10, StatusDokumenta = false },
                 new Dokumentacija{ Naziv = "Dokaz o uplati administrativne takse 5"                      , Redosled = 11, StatusDokumenta = false }
             };
+        }
+
+        private void DodajPDF_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "PDF dokument | *.pdf";
+            if (dlg.ShowDialog() == true)
+            {
+                string path = dlg.FileName.ToString();
+                informacijaOLokaciji = File.ReadAllBytes(path); //ovo pretvara izabrani fajl u bajtove i pamti ga u infromacijiOLokaciji byte[]
+            }
+
+            var button = sender as Button;
+            if (button.Content.ToString() == "Dodaj pdf dokument informacije o lokaciji")
+                button.Content = "Promeni pdf dokument informacije o lokaciji";
+
         }
     }
 }

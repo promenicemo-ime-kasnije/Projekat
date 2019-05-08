@@ -39,18 +39,19 @@
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" MinWidth="320"/>
-                <ColumnDefinition Width="Auto" MinWidth="320"/>
+                <ColumnDefinition Width="Auto" MinWidth="330"/>
+                <ColumnDefinition Width="Auto" MinWidth="330"/>
             </Grid.ColumnDefinitions>
 
             
             <!--Lista svih korisnika koji nisu aktivni na projektu-->
-            <TextBlock Text="Svi korisnici"/>
+            <TextBlock Text="Svi korisnici"
+                       HorizontalAlignment="Center"/>
 
             <Border BorderBrush="Black" 
                     BorderThickness="1"
                     Grid.Row="1"
-                    Margin="1, 20">
+                    Margin="5, 20">
                 <ListView ItemsSource="{Binding SviKorisnici}" 
                           MouseLeftButtonUp="PrebaciUDruguListu_Click"
                           Tag="1">
@@ -81,13 +82,14 @@
             
             <!--Lista korisnika koji su aktivni na projektu-->
             <TextBlock Text="Korisnici koji rade na ovom projektu" 
-                       Grid.Column="1"/>
+                       Grid.Column="1"
+                       HorizontalAlignment="Center"/>
 
             <Border BorderBrush="Black"
                     BorderThickness="1"
                     Grid.Row="1"
                     Grid.Column="1"
-                    Margin="1, 20">
+                    Margin="5, 20">
                 <ListView ItemsSource="{Binding KorisniciKojiRadeNaProjektu}" 
                           MouseLeftButtonUp="PrebaciUDruguListu_Click"
                           Tag="2">

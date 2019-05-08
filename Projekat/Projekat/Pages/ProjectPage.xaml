@@ -27,6 +27,7 @@
         
         <!--Naziv projekta-->
         <TextBlock Grid.Row="0"
+                   Grid.ColumnSpan="2"
                    Name="txtImeProjekta"
                    Text=""
                    FontSize="22"
@@ -82,8 +83,7 @@
             </Grid>
         </Grid>
         <Frame Grid.Column="1"
-               Grid.Row="0"
-               Grid.RowSpan="2"
+               Grid.Row="1"
                Name="Frame"
                NavigationUIVisibility="Hidden"/>
     </Grid>
