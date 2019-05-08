@@ -32,18 +32,13 @@
         
     </Page.Resources>
 
-    <StackPanel>
-        <TextBlock Margin="50 5 50 0"
-                   Name="txtImeProjekta"
-                           Text="Dokumentacija | *ime projekta*"
-                           FontSize="25"/>
-        <Separator Grid.Column="1" Margin="20 5 20 0"/>
-        <Grid>
+
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
+
         <!--Meni za odabir kategorije-->
         <materialDesign:ColorZone Margin="15 0 15 0">
             <Grid>
@@ -53,20 +48,20 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                
+
                 <RadioButton Grid.Column="0"
                              Style="{StaticResource MaterialDesignTabRadioButton}"
                              Margin="4"
                              IsChecked="False"
                              Content="Informacija o lokaciji" 
                              Click="OdaberiKategoriju_Click" BorderBrush="#FF008BFF"/>
-                    <RadioButton Grid.Column="1"
+                <RadioButton Grid.Column="1"
                              Style="{StaticResource MaterialDesignTabRadioButton}"
                              Margin="4"
                              IsChecked="True"
                              Content="Lokacijski uslovi" 
                              Click="OdaberiKategoriju_Click" BorderBrush="#FF008BFF"/>
-                    <RadioButton Grid.Column="2"
+                <RadioButton Grid.Column="2"
                              Style="{StaticResource MaterialDesignTabRadioButton}"
                              Margin="4"
                              IsChecked="False"
@@ -78,7 +73,7 @@
                              IsChecked="False"
                              Content="Izgradnja" 
                              Click="OdaberiKategoriju_Click" BorderBrush="#FF008BFF"/>
-                
+
             </Grid>
         </materialDesign:ColorZone>
 
@@ -94,37 +89,37 @@
                   materialDesign:DataGridAssist.CellPadding="13 8 8 8"
                   materialDesign:DataGridAssist.ColumnHeaderPadding="8">
 
-                <DataGrid.Columns>
-                   
-                    <DataGridCheckBoxColumn Binding="{Binding StatusDokumenta}"
+            <DataGrid.Columns>
+
+                <DataGridCheckBoxColumn Binding="{Binding StatusDokumenta}"
                                         ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
                                         EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}"
                                         Header="Status"/>
 
-                    <materialDesign:MaterialDataGridTextColumn Binding="{Binding Naziv}"
+                <materialDesign:MaterialDataGridTextColumn Binding="{Binding Naziv}"
                                                            Header="Naziv dokumenta"
                                                            MaxLength="255"
                                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" 
                                                            MinWidth="1100" FontWeight="Bold">
-                        <DataGridTextColumn.ElementStyle>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="VerticalAlignment" Value="Center" />
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
-                    </materialDesign:MaterialDataGridTextColumn>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </materialDesign:MaterialDataGridTextColumn>
 
-                    <materialDesign:MaterialDataGridTextColumn Binding="{Binding Datum}"
+                <materialDesign:MaterialDataGridTextColumn Binding="{Binding Datum}"
                                                            Header="Datum pocetka/kraja"
                                                            MaxLength="150"
                                                            MinWidth="250"
                                                            
                                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}">
-                        <DataGridTextColumn.ElementStyle>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="VerticalAlignment" Value="Center" />
-                            </Style>
-                        </DataGridTextColumn.ElementStyle>
-                    </materialDesign:MaterialDataGridTextColumn>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </materialDesign:MaterialDataGridTextColumn>
 
                 <DataGridTemplateColumn Header="PDF fajl">
                     <DataGridTemplateColumn.CellTemplate>
@@ -140,6 +135,5 @@
         </DataGrid>
 
     </Grid>
-    </StackPanel>
 
 </Page>

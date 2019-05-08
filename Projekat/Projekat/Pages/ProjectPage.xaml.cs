@@ -20,7 +20,7 @@ namespace Projekat.Pages
 
         private void ProjectPage_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            txtImeProjekta.Text = "Projekat: " + (Parent as MainWindow).TrenutniProjekat.NazivProjekta;
         }
 
         private void Nazad_Click(object sender, RoutedEventArgs e)

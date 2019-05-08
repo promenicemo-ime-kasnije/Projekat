@@ -16,103 +16,89 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        
+
         <!--Naziv projekta-->
         <TextBlock Grid.Row="0"
                    Grid.ColumnSpan="2"
                    Name="txtImeProjekta"
                    Text=""
-                   FontSize="22"
+                   FontSize="25"
                    VerticalAlignment="Center"
-                   Margin="20 0 0 0"/>
-        
+                   HorizontalAlignment="Left"
+                   Margin="20"/>
+
         <Grid Grid.Row="1">
             <!-- Ovde da se napravi da svaka ova opcija ima svoju ikonicu-->
-            <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-        <Menu VerticalAlignment="Center"
+
+                <Menu VerticalAlignment="Center"
                       FontSize="14"
                       Height="30">
-            <MenuItem Header="Projekat"
-                      Height="30">
-                <MenuItem Header="Uredi postavke projekta"
+                    <MenuItem Header="Projekat"
+                              Height="30">
+                        <MenuItem Header="Uredi postavke projekta"
                                   FontWeight="Regular"
                                   Click="ComingSoon_Click"/>
-                <MenuItem Header="Zatvori projekat"
+                        <MenuItem Header="Zatvori projekat"
                                   FontWeight="Regular"
                                   Click="Nazad_Click"/>
-            </MenuItem>
-            <MenuItem Header="Uredi"
-                      Height="30"
+                    </MenuItem>
+                    <MenuItem Header="Uredi"
+                              Height="30"
                               Click="ComingSoon_Click"/>
-        </Menu>
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="300"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+                </Menu>
 
-
-
-            <!--Naziv projekta-->
-            <TextBlock Grid.Row="0"
-                   Name="txtImeProjekta"
-                   Text=""
-                   FontSize="22"
-                   VerticalAlignment="Center"
-                   Margin="20 0 0 0"/>
-
-            <Grid Grid.Row="1">
-                <!-- Ovde da se napravi da svaka ova opcija ima svoju ikonicu-->
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal" Background="#FF008BFF">
-                        <TextBlock Height="40" ><materialDesign:PackIcon Kind="Details" Height="40" Width="30" Margin="10 0 0 0" Foreground="White"/></TextBlock>
-                        <TextBlock FontSize="18" Margin="10" Foreground="White">Navigacija</TextBlock>
+                <Grid Grid.Row="1">
+                    <!-- Ovde da se napravi da svaka ova opcija ima svoju ikonicu-->
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Background="#FF008BFF">
+                            <TextBlock Height="40" ><materialDesign:PackIcon Kind="Details" Height="40" Width="30" Margin="10 0 0 0" Foreground="White"/></TextBlock>
+                            <TextBlock FontSize="18" Margin="10" Foreground="White">Navigacija</TextBlock>
+                        </StackPanel>
+                        <ListBox HorizontalContentAlignment="Stretch" BorderThickness="0"
+                                     Grid.Column="0"
+                                     Height="2000"
+                                     Background="#ededed"
+                                     Grid.Row="1"
+                                     Padding="10">
+                            <TextBlock
+                                            FontSize="20"
+                                            MouseLeftButtonUp="PrikaziDokumenta_Click"><materialDesign:PackIcon Kind="FileDocumentOutline" Margin="0 0 10 0"/> Dokumenta</TextBlock>
+                            <TextBlock
+                                            FontSize="20"
+                                            MouseLeftButtonUp="PrikaziTroskove_Click"><materialDesign:PackIcon Kind="EuroSymbol" Margin="0 0 10 0"/> Troškovi</TextBlock>
+                            <TextBlock
+                                            FontSize="20"
+                                            MouseLeftButtonUp="PrikaziTabelu_Click"><materialDesign:PackIcon Kind="Table" Margin="0 0 10 0"/> Tabela</TextBlock>
+                            <TextBlock
+                                            FontSize="20"
+                                            MouseLeftButtonUp="PrikaziTimeline_Click"><materialDesign:PackIcon Kind="TimelineTextOutline" Margin="0 0 10 0"/> Timeline</TextBlock>
+                            <Separator/>
+                            <TextBlock
+                                            FontSize="20"
+                                            MouseLeftButtonUp="ClanoviProjekta_Click"><materialDesign:PackIcon Kind="AccountSupervisor" Margin="0 0 10 0"/> Članovi projekta</TextBlock>
+                            <TextBlock
+                                            FontSize="20"
+                                            MouseLeftButtonUp="ComingSoon_Click"><materialDesign:PackIcon Kind="SettingsOutline" Margin="0 0 10 0"/> Settings</TextBlock>
+                        </ListBox>
                     </StackPanel>
-                    <ListBox HorizontalContentAlignment="Stretch" BorderThickness="0"
-                         Grid.Column="0"
-                         Height="2000"
-                         Background="#ededed"
-                         Grid.Row="1"
-                     Padding="10">
-                        <TextBlock
-                               FontSize="20"
-                               MouseLeftButtonUp="PrikaziDokumenta_Click"><materialDesign:PackIcon Kind="FileDocumentOutline" Margin="0 0 10 0"/> Dokumenta</TextBlock>
-                        <TextBlock
-                               FontSize="20"
-                               MouseLeftButtonUp="PrikaziTroskove_Click"><materialDesign:PackIcon Kind="EuroSymbol" Margin="0 0 10 0"/> Troškovi</TextBlock>
-                        <TextBlock
-                               FontSize="20"
-                               MouseLeftButtonUp="PrikaziTabelu_Click"><materialDesign:PackIcon Kind="Table" Margin="0 0 10 0"/> Tabela</TextBlock>
-                        <TextBlock
-                               FontSize="20"
-                               MouseLeftButtonUp="PrikaziTimeline_Click"><materialDesign:PackIcon Kind="TimelineTextOutline" Margin="0 0 10 0"/> Timeline</TextBlock>
-                        <Separator/>
-                        <TextBlock
-                               FontSize="20"
-                               MouseLeftButtonUp="ClanoviProjekta_Click"><materialDesign:PackIcon Kind="AccountSupervisor" Margin="0 0 10 0"/> Članovi projekta</TextBlock>
-                        <TextBlock
-                               FontSize="20"
-                               MouseLeftButtonUp="ComingSoon_Click"><materialDesign:PackIcon Kind="SettingsOutline" Margin="0 0 10 0"/> Settings</TextBlock>
-                    </ListBox>
-                </StackPanel>
-            </Grid>
+                </Grid>
+
         </Grid>
         <Frame Grid.Column="1"
                Grid.Row="1"
                Name="Frame"
                NavigationUIVisibility="Hidden"/>
-        </Grid>
     </Grid>
 </Page>

@@ -38,6 +38,7 @@ namespace Projekat.Pages
         private async void DokumentaPage_Loaded(object sender, System.Windows.RoutedEventArgs e)
         {
             await UcitajListe(projectID);
+            DataGrid.ItemsSource = OblastLokacijskiUslovi;
         }
 
         private async Task UcitajListe(int projectID)
