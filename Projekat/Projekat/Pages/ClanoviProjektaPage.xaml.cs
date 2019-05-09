@@ -1,5 +1,6 @@
 ﻿using ClassLibrary;
 using ClassLibrary.DataProvider;
+using Projekat.Pomocne_klase;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -44,18 +45,9 @@ namespace Projekat.Pages
 
         private async Task UcitajPodatke()
         {
-            projectID = (Window.GetWindow(this) as MainWindow).TrenutniProjekat.IDProjekta;
+            projectID = Helper.GetTrenutniProjekat(this).IDProjekta;
             var sviKorisnici = await new EFCoreDataProvider().GetKorisniciAsync();
             var korisniciProjekta = await new EFCoreDataProvider().GetKorisnikeProjektaAsync(projectID);
-
-            if(korisniciProjekta.Count > 0)
-            {
-                for (int i = 0; i < korisniciProjekta.Count; i++)
-                {
-                    Console.WriteLine(korisniciProjekta[i].KorisnickoIme);
-                }
-            }
-            
 
             foreach (Korisnik k in sviKorisnici)
                 if (korisniciProjekta.Contains(k))
@@ -66,7 +58,8 @@ namespace Projekat.Pages
 
         private void OtvoriProjectPage_Click(object sender, RoutedEventArgs e)
         {
-            (Window.GetWindow(this) as Window).Content = new ProjectPage();
+            var mainWindow = Helper.GetMainWindow(this);
+            mainWindow.Content = new ProjectPage();
         }
 
         private void PrebaciUDruguListu_Click(object sender, MouseButtonEventArgs e)
@@ -93,17 +86,16 @@ namespace Projekat.Pages
         {
             var dataProvider = new EFCoreDataProvider();
             var korisniciUBazi = await dataProvider.GetKorisnikeProjektaAsync(projectID) as List<Korisnik>;
-            var trenutniProjekat = await dataProvider.GetProjekatAsync(projectID);
 
             // Izbaci iz baze one koji vise nisu tu
             foreach (Korisnik k in korisniciUBazi)
                 if (!KorisniciKojiRadeNaProjektu.Contains(k))
-                    await dataProvider.DeleteInterakcijaAsync(k.KorisnickoIme, trenutniProjekat.IDProjekta);
+                    await dataProvider.DeleteInterakcijaAsync(k.KorisnickoIme, projectID);
 
             // Dodaj one koji vec nisu bili u bazi
             foreach (Korisnik k in KorisniciKojiRadeNaProjektu)
                 if (!korisniciUBazi.Contains(k))
-                    await dataProvider.AddInterakcijaAsync(k.KorisnickoIme, trenutniProjekat.IDProjekta);
+                    await dataProvider.AddInterakcijaAsync(k.KorisnickoIme, projectID);
 
         }
     }
