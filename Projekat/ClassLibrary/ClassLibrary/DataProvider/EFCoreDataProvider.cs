@@ -105,6 +105,9 @@ namespace ClassLibrary.DataProvider
                 _context.Projekat.Add(projekat);
                 await _context.SaveChangesAsync();
 
+                // Dodaj aktivnost o tome da je kreiran novi projekat
+                await AddAktivnostAsync(new Aktivnost { IDProjekta = projekat.IDProjekta, Poruka = $"Kreiran je projekat {projekat.NazivProjekta}" });
+
                 return projekat.IDProjekta;
             }
         }
@@ -168,6 +171,9 @@ namespace ClassLibrary.DataProvider
                 //_context.Korisnik.AsNoTracking().FirstOrDefault(a => a.KorisnickoIme == korisnik.KorisnickoIme).Projekat.Add(projekat);
                 await _context.Database.ExecuteSqlCommandAsync("Insert into Interakcija Values({0},{1})", IDprojekta, korisnickoIme);
                 await _context.SaveChangesAsync();
+
+                // Dodaj aktivnost o tome da je korisnik dodeljen projektu
+                await AddAktivnostAsync(new Aktivnost { IDProjekta = (int)IDprojekta, Poruka = $"{(await GetKorisnikAsync(korisnickoIme)).PunoIme} je dodeljen projektu." });
             }
         }
 
@@ -177,6 +183,9 @@ namespace ClassLibrary.DataProvider
             {
                 //_context.Korisnik.FirstOrDefault(a => a.KorisnickoIme == korisnik.KorisnickoIme).Projekat.Remove(projekat);
                 await _context.Database.ExecuteSqlCommandAsync("Delete from Interakcija where IDProjekta = {0} and KorisnickoIme = {1}", IDprojekta, korisnickoIme);
+
+                // Dodaj aktivnost o tome da je korisnik uklonjen sa projekta
+                await AddAktivnostAsync(new Aktivnost { IDProjekta = (int)IDprojekta, Poruka = $"{(await GetKorisnikAsync(korisnickoIme)).PunoIme} je uklonjen sa projekta." });
                 return await _context.SaveChangesAsync();
             }
         }
@@ -206,6 +215,7 @@ namespace ClassLibrary.DataProvider
             using (ExtentBazaEntities _context = new ExtentBazaEntities())
             {
                 _context.Dokumentacija.Add(dokument);
+                //await AddAktivnostAsync(new Aktivnost { IDProjekta = (int)dokument.IDProjekta, Poruka = $"{korisnik.PunoIme} je prilozio dokument {dokument.Naziv}" });
                 await _context.SaveChangesAsync();
             }
         }
@@ -216,6 +226,9 @@ namespace ClassLibrary.DataProvider
             foreach (Dokumentacija d in dokumenti)
                 d.IDProjekta = idProjekta;
             await AddDokumentaAsync(dokumenti);
+
+            // Dodaj aktivnost - kreiran je novi projekat
+            await AddAktivnostAsync(new Aktivnost { IDProjekta = idProjekta, Poruka = $"Kreiran je projekat {projekat.NazivProjekta}" });
         }
 
         public async Task AddDokumentaAsync(params Dokumentacija[] dokumenti)
@@ -269,7 +282,6 @@ namespace ClassLibrary.DataProvider
         }
 
 
-
         public async Task<bool> DokumentImaPDFFajl(long IDDokumenta)
         {
             using (ExtentBazaEntities _context = new ExtentBazaEntities())
@@ -282,12 +294,17 @@ namespace ClassLibrary.DataProvider
 
         #region PDF
 
-        public async Task<int> AddPDFAsync(PDF pdf)
+        public async Task<int> AddPDFAsync(PDF pdf, Korisnik korisnik)
         {
             using (ExtentBazaEntities _context = new ExtentBazaEntities())
             {
                 _context.PDF.Add(pdf);
                 await _context.SaveChangesAsync();
+
+                // Dodaj aktivnost o tome da je prolozen novi dokument
+                var dokument = await GetDokumentAsync(pdf.IDDokumenta);
+                await AddAktivnostAsync(new Aktivnost { IDProjekta = (int)dokument.IDProjekta, Poruka = $"{korisnik.PunoIme} je prilozio dokument {dokument.Naziv}" });
+
                 return pdf.IDDokumenta;
             }
         }
@@ -363,19 +380,30 @@ namespace ClassLibrary.DataProvider
             }
         }
 
-        public async Task<IList<Aktivnost>> GetAktivnostiProjektaAsync(long IDProjekta)
+        public async Task<IList<Aktivnost>> GetAktivnostiProjektaAsync(long IDProjekta, string vrstaKorisnika)
         {
+            // TODO: Mora da se uzme u obzir i tip korisnika
             using (ExtentBazaEntities _context = new ExtentBazaEntities())
             {
                 return await _context.Aktivnost.Where(a => a.IDProjekta == IDProjekta).ToListAsync();
             }
         }
 
-        #endregion
 
-        #region Zahtev
+        public async Task<IList<Aktivnost>> GetAktivnostiAsync(string vrstaKorisnika)
+        {
+            // TODO: Mora da se uzme u obzir i tip korisnika
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                return await _context.Aktivnost.ToListAsync();
+            }
 
-        public async Task AddZahtevAsync(Zahtev zahtev)
+        }
+            #endregion
+
+            #region Zahtev
+
+            public async Task AddZahtevAsync(Zahtev zahtev)
         {
             using (ExtentBazaEntities _context = new ExtentBazaEntities())
             {

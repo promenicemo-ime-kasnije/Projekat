@@ -43,7 +43,7 @@ namespace ClassLibrary.DataProvider
         Task<IList<Dokumentacija>> GetDokumentaProjekta(long IDProjekta); //vraca listu dokumenata jednog projekta
         Task<bool> DokumentImaPDFFajl(long IDDokumenta);
 
-        Task<int> AddPDFAsync(PDF pdf);
+        Task<int> AddPDFAsync(PDF pdf, Korisnik korisnik);
         Task AddPDFAsync(params PDF[] pdf);
         Task<int> DeletePDFAsync(params PDF[] pdf);
         Task<int> UpdatePDFAsync(PDF pdf);
@@ -52,7 +52,8 @@ namespace ClassLibrary.DataProvider
         Task AddAktivnostAsync(Aktivnost aktivnost);
         Task AddAktivnostiAsync(params Aktivnost[] aktivnosti);
         Task<int> DeleteAktivnostAsync(params Aktivnost[] aktivnosti);
-        Task<IList<Aktivnost>> GetAktivnostiProjektaAsync(long IDProjekta);
+        Task<IList<Aktivnost>> GetAktivnostiProjektaAsync(long IDProjekta, string vrstaKorisnika);
+        Task<IList<Aktivnost>> GetAktivnostiAsync(string vrstaKorisnika);
 
         Task AddZahtevAsync(Zahtev zahtev);
         Task AddZahteveAsync(params Zahtev[] zahtev);
