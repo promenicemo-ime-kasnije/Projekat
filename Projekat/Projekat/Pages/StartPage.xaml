@@ -46,10 +46,12 @@
                    FontFamily="NewsGoth Cn BT Regular"
                    Margin="30 0 0 0"/>
                 <TextBox
+                    Name="tbSearch"
                     FontSize="15"
                     Margin="30 30 110 0"
-                    materialDesign:HintAssist.Hint="Pretraga"/>
-                <TextBlock
+                    materialDesign:HintAssist.Hint="Pretraga"
+                    TextChanged="TbSearch_TextChanged"/>
+                <TextBlock 
                     Margin="40 25 0 0"
                     FontSize="13"
                     FontWeight="Bold"

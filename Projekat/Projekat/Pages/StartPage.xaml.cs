@@ -2,6 +2,7 @@
 using Projekat.Pages;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -71,6 +72,19 @@ namespace Projekat
             {
                 (Parent as MainWindow).TrenutniProjekat = p;
                 (Parent as Window).Content = new ProjectPage();
+            }
+        }
+
+        private void TbSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string txt = tbSearch.Text;
+
+            if (string.IsNullOrEmpty(txt))
+                lvAktivniProjekti.ItemsSource = ListaAktivnihProjekata;
+            else
+            {
+                lvAktivniProjekti.ItemsSource = ListaAktivnihProjekata.Where(p => p.NazivProjekta.ToUpper().Contains(txt.ToUpper()));
+                 
             }
         }
     }
