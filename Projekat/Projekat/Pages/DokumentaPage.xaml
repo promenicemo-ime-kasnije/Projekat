@@ -19,7 +19,7 @@
       FontFamily="{DynamicResource MaterialDesignFont}">
     <Page.Resources>
         <valueconverters:ObjectToColor x:Key="ObjectToColorConverter"/>
-        <valueconverters:ObjectToPackIconKind x:Key="ObjectToPackIconKindConverter"/>
+        <valueconverters:BoolToPackIconKind x:Key="BoolToPackIconKindConverter"/>
 
         <Style x:Key="DataGridCellStyle" TargetType="DataGridRow">
             <Setter Property="IsEnabled" Value="True"/>
@@ -125,7 +125,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Click="ShowHideDetails">
-                                <materialDesign:PackIcon Kind="{Binding PDFFajl, Converter={StaticResource ObjectToPackIconKindConverter}}" Foreground="White"/>
+                                <materialDesign:PackIcon Kind="{Binding StatusDokumenta, Converter={StaticResource BoolToPackIconKindConverter}}" Foreground="White"/>
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

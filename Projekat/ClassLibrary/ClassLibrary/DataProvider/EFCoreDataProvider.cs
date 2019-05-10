@@ -268,16 +268,27 @@ namespace ClassLibrary.DataProvider
             }
         }
 
+
+
+        public async Task<bool> DokumentImaPDFFajl(long IDDokumenta)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                return await _context.PDF.FirstOrDefaultAsync(p => p.IDDokumenta == IDDokumenta) != default(PDF);
+            }
+        }
+
         #endregion
 
         #region PDF
 
-        public async Task AddPDFAsync(PDF pdf)
+        public async Task<int> AddPDFAsync(PDF pdf)
         {
             using (ExtentBazaEntities _context = new ExtentBazaEntities())
             {
                 _context.PDF.Add(pdf);
                 await _context.SaveChangesAsync();
+                return pdf.IDDokumenta;
             }
         }
 

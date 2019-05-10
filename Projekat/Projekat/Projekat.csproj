@@ -138,7 +138,7 @@
       <DependentUpon>pocetnaStranaUC.xaml</DependentUpon>
     </Compile>
     <Compile Include="ValueConverters\ObjectToColor.cs" />
-    <Compile Include="ValueConverters\ObjectToPackIconKind.cs" />
+    <Compile Include="ValueConverters\BoolToPackIconKind.cs" />
     <Page Include="Pomocne klase\ProgressWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

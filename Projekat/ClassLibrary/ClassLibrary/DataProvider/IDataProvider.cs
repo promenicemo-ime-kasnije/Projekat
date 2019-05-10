@@ -41,8 +41,9 @@ namespace ClassLibrary.DataProvider
         Task<int> UpdateDokumentAsync(Dokumentacija dokument);
         Task<Dokumentacija> GetDokumentAsync(long IDDokumenta);
         Task<IList<Dokumentacija>> GetDokumentaProjekta(long IDProjekta); //vraca listu dokumenata jednog projekta
+        Task<bool> DokumentImaPDFFajl(long IDDokumenta);
 
-        Task AddPDFAsync(PDF pdf);
+        Task<int> AddPDFAsync(PDF pdf);
         Task AddPDFAsync(params PDF[] pdf);
         Task<int> DeletePDFAsync(params PDF[] pdf);
         Task<int> UpdatePDFAsync(PDF pdf);

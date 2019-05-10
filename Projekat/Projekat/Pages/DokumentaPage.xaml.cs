@@ -7,10 +7,6 @@ using System.Windows.Controls;
 using Microsoft.Win32;
 using Projekat.Pomocne_klase;
 using System.Threading.Tasks;
-using System.ComponentModel;
-using System;
-using System.Collections;
-using System.Data;
 
 namespace Projekat.Pages
 {
@@ -49,6 +45,10 @@ namespace Projekat.Pages
             OblastIzgradnja= new ObservableCollection<Dokumentacija>();
 
             svaDokumenta = await new EFCoreDataProvider().GetDokumentaProjekta(projectID);
+            // Ako za dati projekat nema dokumenata
+            if (svaDokumenta.Count == 0)
+                return;
+
             ProveriKojiDokumentiImajuUslov();
             for (int i = 0; i < svaDokumenta.Count; i++)
             {
@@ -104,31 +104,37 @@ namespace Projekat.Pages
             Dokumentacija doc = DataGrid.SelectedItem as Dokumentacija;
             var dataProvider = new EFCoreDataProvider();
 
-            if ((DataGrid.SelectedItem as Dokumentacija).PDFFajl != null)
+            if ( await dataProvider.DokumentImaPDFFajl(doc.IDDokumenta)) // Otvori taj fajl, da li je StatusDokumenta isto kao i to Da li ima pdf fajl??? za sad jeste
             {
                 string filename = "temp.pdf";
-                File.WriteAllBytes(filename, doc.PDFFajl); //ovo kreira lokalni pdf fajl od bajtova 
+                File.WriteAllBytes(filename, (await dataProvider.GetPDFAsync(doc.IDDokumenta)).PDFFajl); //ovo kreira lokalni pdf fajl od bajtova 
                 System.Diagnostics.Process.Start(filename); // Otvara ga u default pdf vieweru
             }
-            else
+            else // Prilozi pdf fajl
             {
                 byte[] a;
                 OpenFileDialog dlg = new OpenFileDialog();
                 dlg.Filter = "PDF dokument | *.pdf";
                 if (dlg.ShowDialog() == true)
                 {
-                    string path = dlg.FileName.ToString();
-                    a = File.ReadAllBytes(path); //ovo pretvara izabrani fajl u bajtove 
-                    doc.PDFFajl = a;
-                    doc.StatusDokumenta = true;
-
                     // Kreira se i prikazu progressWindows sa porukom dok se vrsi slanje dokumenta na server
                     var progressWindow = new ProgressWindow("Upload PDF dokumenta");
                     progressWindow.Show();
+
+                    string path = dlg.FileName.ToString();
+                    a = File.ReadAllBytes(path); //ovo pretvara izabrani fajl u bajtove 
+                    int idFajla = await dataProvider.AddPDFAsync(new PDF
+                    {
+                        IDDokumenta = doc.IDDokumenta,
+                        PDFFajl = a
+                    });
+                    doc.StatusDokumenta = true;
                     await dataProvider.UpdateDokumentAsync(doc); // pamti fajl u bazi
+
+                    // ProgressWindow moze da se zatvori
                     progressWindow.Close();
 
-
+                    // Update podataka koji se prikazuju u dataGridu
                     ProveriKojiDokumentiImajuUslov();
                     UpdateDataGrid();
                 }
