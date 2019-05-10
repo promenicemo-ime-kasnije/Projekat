@@ -82,10 +82,7 @@ namespace Projekat
             if (string.IsNullOrEmpty(txt))
                 lvAktivniProjekti.ItemsSource = ListaAktivnihProjekata;
             else
-            {
                 lvAktivniProjekti.ItemsSource = ListaAktivnihProjekata.Where(p => p.NazivProjekta.ToUpper().Contains(txt.ToUpper()));
-                 
-            }
         }
     }
 }
