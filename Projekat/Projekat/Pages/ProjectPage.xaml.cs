@@ -21,7 +21,7 @@ namespace Projekat.Pages
 
         private void ProjectPage_Loaded(object sender, RoutedEventArgs e)
         {
-            txtImeProjekta.Text = "Projekat: " + Helper.GetTrenutniProjekat(this).NazivProjekta;
+            //txtImeProjekta.Text = "Projekat: " + Helper.GetTrenutniProjekat(this).NazivProjekta;
         }
 
         private void Nazad_Click(object sender, RoutedEventArgs e)

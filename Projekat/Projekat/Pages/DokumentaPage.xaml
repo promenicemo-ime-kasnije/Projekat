@@ -100,7 +100,7 @@
                                                            Header="Naziv dokumenta"
                                                            MaxLength="255"
                                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" 
-                                                           MinWidth="1100" FontWeight="Bold">
+                                                           Width="*" FontWeight="Bold">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="VerticalAlignment" Value="Center" />

@@ -18,20 +18,14 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>  <!--Naslov-->
             <RowDefinition Height="*"/>     <!--Liste-->
             <RowDefinition Height="Auto"/>  <!--Buttoni-->
         </Grid.RowDefinitions>
-
-        <!--Naslov - mozda ovo moze i da se izbaci-->
-        <TextBlock Text="Clanovi projekta" 
-                   FontSize="40"
-                   HorizontalAlignment="Center"
-                   Margin="0, 0, 0, 20"/>
         
         <!--Liste-->
-        <Grid Grid.Row="1"
-              HorizontalAlignment="Center">
+        <Grid Grid.Row="0"
+              HorizontalAlignment="Center"
+              Margin="10, 20">
             
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -39,8 +33,8 @@
             </Grid.RowDefinitions>
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" MinWidth="330"/>
-                <ColumnDefinition Width="Auto" MinWidth="330"/>
+                <ColumnDefinition Width="Auto" MinWidth="400"/>
+                <ColumnDefinition Width="Auto" MinWidth="400"/>
             </Grid.ColumnDefinitions>
 
             
@@ -52,31 +46,39 @@
                     BorderThickness="1"
                     Grid.Row="1"
                     Margin="5, 20">
-                <ListView ItemsSource="{Binding SviKorisnici}" 
-                          MouseLeftButtonUp="PrebaciUDruguListu_Click"
-                          Tag="1">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <!--Ikonica-->
-                                <materialDesign:PackIcon Kind="Person"
+                <StackPanel>
+                    <TextBox Name="tbSearch1"
+                             FontSize="15"
+                             Margin="10"
+                             materialDesign:HintAssist.Hint="Pretraga"
+                             TextChanged="TbSearch1_TextChanged"/>
+                    <ListView ItemsSource="{Binding SviKorisnici}" 
+                              Name="lvSviKorisnici"
+                              MouseLeftButtonUp="PrebaciUDruguListu_Click"
+                              Tag="1">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <!--Ikonica-->
+                                    <materialDesign:PackIcon Kind="Person"
                                                          Margin="10"
                                                          VerticalAlignment="Center"/>
-                                <StackPanel>
-                                    <!--Puno ime korisnika-->
-                                    <TextBlock Text="{Binding PunoIme}" 
+                                    <StackPanel>
+                                        <!--Puno ime korisnika-->
+                                        <TextBlock Text="{Binding PunoIme}" 
                                                Margin="10"
                                                FontSize="15"/>
-                                    <!--Vrsta korisnika-->
-                                    <TextBlock Text="{Binding VrstaKorisnika}" 
+                                        <!--Vrsta korisnika-->
+                                        <TextBlock Text="{Binding VrstaKorisnika}" 
                                                Margin="10, 0" 
                                                HorizontalAlignment="Center" 
                                                Foreground="Blue"/>
+                                    </StackPanel>
                                 </StackPanel>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
             </Border>
             
             
@@ -90,31 +92,39 @@
                     Grid.Row="1"
                     Grid.Column="1"
                     Margin="5, 20">
-                <ListView ItemsSource="{Binding KorisniciKojiRadeNaProjektu}" 
-                          MouseLeftButtonUp="PrebaciUDruguListu_Click"
-                          Tag="2">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <!--Ikonica-->
-                                <materialDesign:PackIcon Kind="Person"
-                                                         Margin="10"
-                                                         VerticalAlignment="Center"/>
-                                <StackPanel>
-                                    <!--Puno ime korisnika-->
-                                    <TextBlock Text="{Binding PunoIme}" 
-                                               Margin="10"
-                                               FontSize="15"/>
-                                    <!--Vrsta korisnika-->
-                                    <TextBlock Text="{Binding VrstaKorisnika}" 
-                                               Margin="10, 0" 
-                                               HorizontalAlignment="Center" 
-                                               Foreground="Blue"/>
+                <StackPanel>
+                    <TextBox Name="tbSearch2"
+                             FontSize="15"
+                             Margin="10"
+                             materialDesign:HintAssist.Hint="Pretraga"
+                             TextChanged="TbSearch2_TextChanged"/>
+                    <ListView ItemsSource="{Binding KorisniciKojiRadeNaProjektu}" 
+                              Name="lvKorisniciKojiRadeNaProjektu"
+                              MouseLeftButtonUp="PrebaciUDruguListu_Click"
+                              Tag="2">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <!--Ikonica-->
+                                    <materialDesign:PackIcon Kind="Person"
+                                                             Margin="10"
+                                                             VerticalAlignment="Center"/>
+                                    <StackPanel>
+                                        <!--Puno ime korisnika-->
+                                        <TextBlock Text="{Binding PunoIme}" 
+                                                   Margin="10"
+                                                   FontSize="15"/>
+                                        <!--Vrsta korisnika-->
+                                        <TextBlock Text="{Binding VrstaKorisnika}" 
+                                                   Margin="10, 0" 
+                                                   HorizontalAlignment="Center" 
+                                                   Foreground="Blue"/>
+                                    </StackPanel>
                                 </StackPanel>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackPanel>
             </Border>
             
         </Grid>
@@ -122,7 +132,7 @@
         <!--Buttoni-->
         <StackPanel Orientation="Horizontal"
                     HorizontalAlignment="Center"
-                    Grid.Row="2">
+                    Grid.Row="1">
             <Button Content="Zapamti izmene"
                     Margin="20"
                     Click="ZapamtiIzmene_Click"/>

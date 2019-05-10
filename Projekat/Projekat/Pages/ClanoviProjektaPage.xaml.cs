@@ -4,6 +4,7 @@ using Projekat.Pomocne_klase;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,10 @@ namespace Projekat.Pages
         {
             SviKorisnici = new ObservableCollection<Korisnik>();
             KorisniciKojiRadeNaProjektu = new ObservableCollection<Korisnik>();
+
+            // Kad dodje do promene kolekcije poziva se i textChanged eventHandler da bi se azurirali rezultati pretrage
+            SviKorisnici.CollectionChanged += new NotifyCollectionChangedEventHandler((e, sender) => TbSearch1_TextChanged(e, null));
+            KorisniciKojiRadeNaProjektu.CollectionChanged += new NotifyCollectionChangedEventHandler((e, sender) => TbSearch2_TextChanged(e, null));
 
             InitializeComponent();
             Loaded += ClanoviProjektaPage_Loaded;
@@ -79,7 +84,6 @@ namespace Projekat.Pages
                 SviKorisnici.Add(temp);
                 KorisniciKojiRadeNaProjektu.Remove(temp);
             }
-
         }
 
         private async void ZapamtiIzmene_Click(object sender, RoutedEventArgs e)
@@ -96,7 +100,26 @@ namespace Projekat.Pages
             foreach (Korisnik k in KorisniciKojiRadeNaProjektu)
                 if (!korisniciUBazi.Contains(k))
                     await dataProvider.AddInterakcijaAsync(k.KorisnickoIme, projectID);
+        }
 
+        private void TbSearch1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string txt = tbSearch1.Text;
+
+            if (string.IsNullOrEmpty(txt))
+                lvSviKorisnici.ItemsSource = SviKorisnici;
+            else
+                lvSviKorisnici.ItemsSource = SviKorisnici.Where(p => p.PunoIme.ToUpper().Contains(txt.ToUpper()));
+        }
+
+        private void TbSearch2_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string txt = tbSearch2.Text;
+
+            if (string.IsNullOrEmpty(txt))
+                lvKorisniciKojiRadeNaProjektu.ItemsSource = KorisniciKojiRadeNaProjektu;
+            else
+                lvKorisniciKojiRadeNaProjektu.ItemsSource = KorisniciKojiRadeNaProjektu.Where(p => p.PunoIme.ToUpper().Contains(txt.ToUpper()));
         }
     }
 }

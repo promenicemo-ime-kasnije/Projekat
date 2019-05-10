@@ -15,27 +15,13 @@
       Title="ProjectPage">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <!--Naziv projekta-->
-        <TextBlock Grid.Row="0"
-                   Grid.ColumnSpan="2"
-                   Name="txtImeProjekta"
-                   Text=""
-                   FontSize="25"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Left"
-                   Margin="20"/>
-
-        <Grid Grid.Row="1">
+        <Grid>
             <!-- Ovde da se napravi da svaka ova opcija ima svoju ikonicu-->
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
