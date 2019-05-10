@@ -48,5 +48,18 @@ namespace ClassLibrary.DataProvider
         Task<int> DeletePDFAsync(params PDF[] pdf);
         Task<int> UpdatePDFAsync(PDF pdf);
         Task<PDF> GetPDFAsync(long IDDokumenta);
+
+        Task AddAktivnostAsync(Aktivnost aktivnost);
+        Task AddAktivnostiAsync(params Aktivnost[] aktivnosti);
+        Task<int> DeleteAktivnostAsync(params Aktivnost[] aktivnosti);
+        Task<IList<Aktivnost>> GetAktivnostiProjektaAsync(long IDProjekta);
+
+        Task AddZahtevAsync(Zahtev zahtev);
+        Task AddZahteveAsync(params Zahtev[] zahtev);
+        Task<int> DeleteZahtevAsync(params Zahtev[] zahtev);
+        Task<int> UpdateZahtevAsync(Zahtev zahtev);
+        Task<IList<Zahtev>> GetZahteveProjektaAsync(long IDProjekta);
+        Task<IList<Zahtev>> GetZahtevePosiljaocaAsync(string KorisnickoIme, long IDProjekta); //ova funkcija vraca sve zahteve koje je ulogovani korisnik poslao sa tog projekta
+        Task<IList<Zahtev>> GetZahtevePrimaocaAsync(string KorisnickoIme, long IDProjekta);
     }
 }

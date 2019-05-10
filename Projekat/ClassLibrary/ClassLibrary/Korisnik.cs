@@ -18,6 +18,8 @@ namespace ClassLibrary
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Korisnik()
         {
+            this.Zahtev = new HashSet<Zahtev>();
+            this.Zahtev1 = new HashSet<Zahtev>();
             this.Projekat = new HashSet<Projekat>();
         }
     
@@ -27,14 +29,18 @@ namespace ClassLibrary
         public string VrstaKorisnika { get; set; }
         public string Ime { get; set; }
         public string Prezime { get; set; }
-        public string PunoIme { get => Regex.Replace($"{Ime} {Prezime}", @"\s+", " "); } // vraca ime + prezime u jednom stringu
+
+        public string PunoIme { get => Regex.Replace($"{Ime} {Prezime}", @"/s+", " "); }
 
         public override bool Equals(object obj)
         {
             return KorisnickoIme == (obj as Korisnik)?.KorisnickoIme;
         }
 
-
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Zahtev> Zahtev { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Zahtev> Zahtev1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Projekat> Projekat { get; set; }
     }

@@ -331,5 +331,114 @@ namespace ClassLibrary.DataProvider
         }
 
         #endregion
+
+        #region Aktivnost
+
+        public async Task AddAktivnostAsync(Aktivnost aktivnost)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                _context.Aktivnost.Add(aktivnost);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task AddAktivnostiAsync(params Aktivnost[] aktivnosti)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                foreach (var a in aktivnosti)
+                    _context.Aktivnost.Add(a);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<int> DeleteAktivnostAsync(params Aktivnost[] aktivnosti)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                foreach (var a in aktivnosti)
+                    _context.Aktivnost.Remove(a);
+                return await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<IList<Aktivnost>> GetAktivnostiProjektaAsync(long IDProjekta)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                return await _context.Aktivnost.Where(a => a.IDProjekta == IDProjekta).ToListAsync();
+            }
+        }
+
+        #endregion
+
+        #region Zahtev
+
+        public async Task AddZahtevAsync(Zahtev zahtev)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                _context.Zahtev.Add(zahtev);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task AddZahteveAsync(params Zahtev[] zahtev)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                foreach (var z in zahtev)
+                    _context.Zahtev.Add(z);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<int> DeleteZahtevAsync(params Zahtev[] zahtev)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                foreach (var z in zahtev)
+                    _context.Zahtev.Remove(z);
+                return await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<int> UpdateZahtevAsync(Zahtev zahtev)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                var obj = await _context.Zahtev.FirstOrDefaultAsync(a => a.IDZahteva == zahtev.IDZahteva);
+                obj.Naslov = zahtev.Naslov;
+                obj.Poruka = zahtev.Poruka;
+                return await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<IList<Zahtev>> GetZahteveProjektaAsync(long IDProjekta)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                return await _context.Zahtev.Where(a => a.IDProjekta == IDProjekta).ToListAsync();
+            }
+        }
+
+        public async Task<IList<Zahtev>> GetZahtevePosiljaocaAsync(string KorisnickoIme, long IDProjekta)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                return await _context.Zahtev.Where(a => a.IDProjekta == IDProjekta && a.KorisnickoImePosiljaoca == KorisnickoIme).ToListAsync();
+            }
+        }
+
+        public async Task<IList<Zahtev>> GetZahtevePrimaocaAsync(string KorisnickoIme, long IDProjekta)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                return await _context.Zahtev.Where(a => a.IDProjekta == IDProjekta && a.KorisnickoImePrimaoca == KorisnickoIme).ToListAsync();
+            }
+        }
+
+        #endregion
     }
 }

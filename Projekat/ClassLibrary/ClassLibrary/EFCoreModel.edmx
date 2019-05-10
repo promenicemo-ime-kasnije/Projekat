@@ -5,6 +5,18 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DataContext.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Aktivnost">
+          <Key>
+            <PropertyRef Name="IDProjekta" />
+          </Key>
+          <Property Name="IDProjekta" Type="int" Nullable="false" />
+          <Property Name="DozvolaAdmin" Type="bit" />
+          <Property Name="DozvolaProjektanta" Type="bit" />
+          <Property Name="DozvolaInvestitora" Type="bit" />
+          <Property Name="DozvolaEksternogIgraca" Type="bit" />
+          <Property Name="Poruka" Type="nvarchar(max)" />
+          <Property Name="Datum" Type="nchar" MaxLength="20" />
+        </EntityType>
         <EntityType Name="Dokumentacija">
           <Key>
             <PropertyRef Name="IDDokumenta" />
@@ -53,6 +65,30 @@
           <Property Name="DatumPocetka" Type="nchar" MaxLength="20" />
           <Property Name="DatumIzgradnje" Type="nchar" MaxLength="20" />
         </EntityType>
+        <EntityType Name="Zahtev">
+          <Key>
+            <PropertyRef Name="IDProjekta" />
+          </Key>
+          <Property Name="IDZahteva" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDProjekta" Type="int" Nullable="false" />
+          <Property Name="KorisnickoImePosiljaoca" Type="nchar" MaxLength="30" />
+          <Property Name="KorisnickoImePrimaoca" Type="nchar" MaxLength="30" />
+          <Property Name="Naslov" Type="nchar" MaxLength="255" />
+          <Property Name="Poruka" Type="nvarchar(max)" />
+          <Property Name="Odgovor" Type="bit" />
+        </EntityType>
+        <Association Name="FK_Aktivnost_Projekat">
+          <End Role="Projekat" Type="Self.Projekat" Multiplicity="1" />
+          <End Role="Aktivnost" Type="Self.Aktivnost" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Projekat">
+              <PropertyRef Name="IDProjekta" />
+            </Principal>
+            <Dependent Role="Aktivnost">
+              <PropertyRef Name="IDProjekta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Dokumentacija_Projekat">
           <End Role="Projekat" Type="Self.Projekat" Multiplicity="0..1" />
           <End Role="Dokumentacija" Type="Self.Dokumentacija" Multiplicity="*" />
@@ -101,12 +137,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Zahtev_KorisnikPosiljalac">
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="0..1" />
+          <End Role="Zahtev" Type="Self.Zahtev" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="KorisnickoIme" />
+            </Principal>
+            <Dependent Role="Zahtev">
+              <PropertyRef Name="KorisnickoImePosiljaoca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zahtev_KorisnikPrimalac">
+          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="0..1" />
+          <End Role="Zahtev" Type="Self.Zahtev" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="KorisnickoIme" />
+            </Principal>
+            <Dependent Role="Zahtev">
+              <PropertyRef Name="KorisnickoImePrimaoca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zahtev_Projekat">
+          <End Role="Projekat" Type="Self.Projekat" Multiplicity="1" />
+          <End Role="Zahtev" Type="Self.Zahtev" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Projekat">
+              <PropertyRef Name="IDProjekta" />
+            </Principal>
+            <Dependent Role="Zahtev">
+              <PropertyRef Name="IDProjekta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="DataContextStoreContainer">
+          <EntitySet Name="Aktivnost" EntityType="Self.Aktivnost" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Dokumentacija" EntityType="Self.Dokumentacija" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Interakcija" EntityType="Self.Interakcija" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Korisnik" EntityType="Self.Korisnik" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PDF" EntityType="Self.PDF" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Projekat" EntityType="Self.Projekat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zahtev" EntityType="Self.Zahtev" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Aktivnost_Projekat" Association="Self.FK_Aktivnost_Projekat">
+            <End Role="Projekat" EntitySet="Projekat" />
+            <End Role="Aktivnost" EntitySet="Aktivnost" />
+          </AssociationSet>
           <AssociationSet Name="FK_Dokumentacija_Projekat" Association="Self.FK_Dokumentacija_Projekat">
             <End Role="Projekat" EntitySet="Projekat" />
             <End Role="Dokumentacija" EntitySet="Dokumentacija" />
@@ -123,58 +201,59 @@
             <End Role="Dokumentacija" EntitySet="Dokumentacija" />
             <End Role="PDF" EntitySet="PDF" />
           </AssociationSet>
+          <AssociationSet Name="FK_Zahtev_KorisnikPosiljalac" Association="Self.FK_Zahtev_KorisnikPosiljalac">
+            <End Role="Korisnik" EntitySet="Korisnik" />
+            <End Role="Zahtev" EntitySet="Zahtev" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zahtev_KorisnikPrimalac" Association="Self.FK_Zahtev_KorisnikPrimalac">
+            <End Role="Korisnik" EntitySet="Korisnik" />
+            <End Role="Zahtev" EntitySet="Zahtev" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zahtev_Projekat" Association="Self.FK_Zahtev_Projekat">
+            <End Role="Projekat" EntitySet="Projekat" />
+            <End Role="Zahtev" EntitySet="Zahtev" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DataContext" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Korisnik">
-          <Key>
-            <PropertyRef Name="KorisnickoIme" />
-          </Key>
-          <Property Name="KorisnickoIme" Type="String" MaxLength="30" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Lozinka" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="EmailAdresa" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
-          <Property Name="VrstaKorisnika" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
-          <Property Name="Ime" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="Prezime" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Projekat" Relationship="Self.Interakcija" FromRole="Korisnik" ToRole="Projekat" />
-        </EntityType>
-        <EntityType Name="Projekat">
-          <Key>
-            <PropertyRef Name="IDProjekta" />
-          </Key>
-          <Property Name="IDProjekta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NazivProjekta" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="VrstaProjekta" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
-          <Property Name="StanjeProjekta" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="DatumPocetka" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <Property Name="DatumIzgradnje" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Korisnik" Relationship="Self.Interakcija" FromRole="Projekat" ToRole="Korisnik" />
-          <NavigationProperty Name="Dokumentacija" Relationship="DataContext.FK_Dokumentacija_Projekat" FromRole="Projekat" ToRole="Dokumentacija" />
-        </EntityType>
-        <Association Name="Interakcija">
-          <End Role="Korisnik" Type="Self.Korisnik" Multiplicity="*" />
-          <End Role="Projekat" Type="Self.Projekat" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="ExtentBazaEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Korisnik" EntityType="Self.Korisnik" />
-          <EntitySet Name="Projekat" EntityType="Self.Projekat" />
-          <AssociationSet Name="Interakcija" Association="Self.Interakcija">
-            <End Role="Korisnik" EntitySet="Korisnik" />
-            <End Role="Projekat" EntitySet="Projekat" />
-          </AssociationSet>
           <EntitySet Name="Dokumentacija" EntityType="DataContext.Dokumentacija" />
           <EntitySet Name="PDF" EntityType="DataContext.PDF" />
-          <AssociationSet Name="FK_Dokumentacija_Projekat" Association="DataContext.FK_Dokumentacija_Projekat">
-            <End Role="Projekat" EntitySet="Projekat" />
-            <End Role="Dokumentacija" EntitySet="Dokumentacija" />
-          </AssociationSet>
           <AssociationSet Name="FK_PDF_Dokumentacija" Association="DataContext.FK_PDF_Dokumentacija">
             <End Role="Dokumentacija" EntitySet="Dokumentacija" />
             <End Role="PDF" EntitySet="PDF" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="Aktivnost" EntityType="DataContext.Aktivnost" />
+          <EntitySet Name="Korisnik" EntityType="DataContext.Korisnik" />
+          <EntitySet Name="Projekat" EntityType="DataContext.Projekat" />
+          <EntitySet Name="Zahtev" EntityType="DataContext.Zahtev" />
+          <AssociationSet Name="FK_Aktivnost_Projekat" Association="DataContext.FK_Aktivnost_Projekat">
+            <End Role="Projekat" EntitySet="Projekat" />
+            <End Role="Aktivnost" EntitySet="Aktivnost" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Dokumentacija_Projekat" Association="DataContext.FK_Dokumentacija_Projekat">
+            <End Role="Projekat" EntitySet="Projekat" />
+            <End Role="Dokumentacija" EntitySet="Dokumentacija" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zahtev_KorisnikPosiljalac" Association="DataContext.FK_Zahtev_KorisnikPosiljalac">
+            <End Role="Korisnik" EntitySet="Korisnik" />
+            <End Role="Zahtev" EntitySet="Zahtev" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zahtev_KorisnikPrimalac" Association="DataContext.FK_Zahtev_KorisnikPrimalac">
+            <End Role="Korisnik" EntitySet="Korisnik" />
+            <End Role="Zahtev" EntitySet="Zahtev" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zahtev_Projekat" Association="DataContext.FK_Zahtev_Projekat">
+            <End Role="Projekat" EntitySet="Projekat" />
+            <End Role="Zahtev" EntitySet="Zahtev" />
+          </AssociationSet>
+          <AssociationSet Name="Interakcija" Association="DataContext.Interakcija">
+            <End Role="Korisnik" EntitySet="Korisnik" />
+            <End Role="Projekat" EntitySet="Projekat" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Dokumentacija">
           <Key>
             <PropertyRef Name="IDDokumenta" />
@@ -185,8 +264,8 @@
           <Property Name="StatusDokumenta" Type="Boolean" />
           <Property Name="Redosled" Type="Int32" />
           <Property Name="IDProjekta" Type="Int32" />
-          <NavigationProperty Name="Projekat" Relationship="DataContext.FK_Dokumentacija_Projekat" FromRole="Dokumentacija" ToRole="Projekat" />
           <NavigationProperty Name="PDF" Relationship="DataContext.FK_PDF_Dokumentacija" FromRole="Dokumentacija" ToRole="PDF" />
+          <NavigationProperty Name="Projekat" Relationship="DataContext.FK_Dokumentacija_Projekat" FromRole="Dokumentacija" ToRole="Projekat" />
         </EntityType>
         <EntityType Name="PDF">
           <Key>
@@ -196,18 +275,6 @@
           <Property Name="PDFFajl" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Dokumentacija" Relationship="DataContext.FK_PDF_Dokumentacija" FromRole="PDF" ToRole="Dokumentacija" />
         </EntityType>
-        <Association Name="FK_Dokumentacija_Projekat">
-          <End Type="DataContext.Projekat" Role="Projekat" Multiplicity="0..1" />
-          <End Type="DataContext.Dokumentacija" Role="Dokumentacija" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Projekat">
-              <PropertyRef Name="IDProjekta" />
-            </Principal>
-            <Dependent Role="Dokumentacija">
-              <PropertyRef Name="IDProjekta" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_PDF_Dokumentacija">
           <End Type="DataContext.Dokumentacija" Role="Dokumentacija" Multiplicity="1" />
           <End Type="DataContext.PDF" Role="PDF" Multiplicity="0..1" />
@@ -220,44 +287,133 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <EntityType Name="Aktivnost">
+          <Key>
+            <PropertyRef Name="IDProjekta" />
+          </Key>
+          <Property Name="IDProjekta" Type="Int32" Nullable="false" />
+          <Property Name="DozvolaAdmin" Type="Boolean" />
+          <Property Name="DozvolaProjektanta" Type="Boolean" />
+          <Property Name="DozvolaInvestitora" Type="Boolean" />
+          <Property Name="DozvolaEksternogIgraca" Type="Boolean" />
+          <Property Name="Poruka" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Datum" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Projekat" Relationship="DataContext.FK_Aktivnost_Projekat" FromRole="Aktivnost" ToRole="Projekat" />
+        </EntityType>
+        <EntityType Name="Korisnik">
+          <Key>
+            <PropertyRef Name="KorisnickoIme" />
+          </Key>
+          <Property Name="KorisnickoIme" Type="String" Nullable="false" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Lozinka" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="EmailAdresa" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="VrstaKorisnika" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Ime" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Prezime" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Zahtev" Relationship="DataContext.FK_Zahtev_KorisnikPosiljalac" FromRole="Korisnik" ToRole="Zahtev" />
+          <NavigationProperty Name="Zahtev1" Relationship="DataContext.FK_Zahtev_KorisnikPrimalac" FromRole="Korisnik" ToRole="Zahtev" />
+          <NavigationProperty Name="Projekat" Relationship="DataContext.Interakcija" FromRole="Korisnik" ToRole="Projekat" />
+        </EntityType>
+        <EntityType Name="Projekat">
+          <Key>
+            <PropertyRef Name="IDProjekta" />
+          </Key>
+          <Property Name="IDProjekta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NazivProjekta" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="VrstaProjekta" Type="String" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="StanjeProjekta" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="DatumPocetka" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="DatumIzgradnje" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Aktivnost" Relationship="DataContext.FK_Aktivnost_Projekat" FromRole="Projekat" ToRole="Aktivnost" />
+          <NavigationProperty Name="Dokumentacija" Relationship="DataContext.FK_Dokumentacija_Projekat" FromRole="Projekat" ToRole="Dokumentacija" />
+          <NavigationProperty Name="Zahtev" Relationship="DataContext.FK_Zahtev_Projekat" FromRole="Projekat" ToRole="Zahtev" />
+          <NavigationProperty Name="Korisnik" Relationship="DataContext.Interakcija" FromRole="Projekat" ToRole="Korisnik" />
+        </EntityType>
+        <EntityType Name="Zahtev">
+          <Key>
+            <PropertyRef Name="IDProjekta" />
+          </Key>
+          <Property Name="IDZahteva" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDProjekta" Type="Int32" Nullable="false" />
+          <Property Name="KorisnickoImePosiljaoca" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="KorisnickoImePrimaoca" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Naslov" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
+          <Property Name="Poruka" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Odgovor" Type="Boolean" />
+          <NavigationProperty Name="Korisnik" Relationship="DataContext.FK_Zahtev_KorisnikPosiljalac" FromRole="Zahtev" ToRole="Korisnik" />
+          <NavigationProperty Name="Korisnik1" Relationship="DataContext.FK_Zahtev_KorisnikPrimalac" FromRole="Zahtev" ToRole="Korisnik" />
+          <NavigationProperty Name="Projekat" Relationship="DataContext.FK_Zahtev_Projekat" FromRole="Zahtev" ToRole="Projekat" />
+        </EntityType>
+        <Association Name="FK_Aktivnost_Projekat">
+          <End Type="DataContext.Projekat" Role="Projekat" Multiplicity="1" />
+          <End Type="DataContext.Aktivnost" Role="Aktivnost" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Projekat">
+              <PropertyRef Name="IDProjekta" />
+            </Principal>
+            <Dependent Role="Aktivnost">
+              <PropertyRef Name="IDProjekta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Dokumentacija_Projekat">
+          <End Type="DataContext.Projekat" Role="Projekat" Multiplicity="0..1" />
+          <End Type="DataContext.Dokumentacija" Role="Dokumentacija" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projekat">
+              <PropertyRef Name="IDProjekta" />
+            </Principal>
+            <Dependent Role="Dokumentacija">
+              <PropertyRef Name="IDProjekta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zahtev_KorisnikPosiljalac">
+          <End Type="DataContext.Korisnik" Role="Korisnik" Multiplicity="0..1" />
+          <End Type="DataContext.Zahtev" Role="Zahtev" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="KorisnickoIme" />
+            </Principal>
+            <Dependent Role="Zahtev">
+              <PropertyRef Name="KorisnickoImePosiljaoca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zahtev_KorisnikPrimalac">
+          <End Type="DataContext.Korisnik" Role="Korisnik" Multiplicity="0..1" />
+          <End Type="DataContext.Zahtev" Role="Zahtev" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Korisnik">
+              <PropertyRef Name="KorisnickoIme" />
+            </Principal>
+            <Dependent Role="Zahtev">
+              <PropertyRef Name="KorisnickoImePrimaoca" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zahtev_Projekat">
+          <End Type="DataContext.Projekat" Role="Projekat" Multiplicity="1" />
+          <End Type="DataContext.Zahtev" Role="Zahtev" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Projekat">
+              <PropertyRef Name="IDProjekta" />
+            </Principal>
+            <Dependent Role="Zahtev">
+              <PropertyRef Name="IDProjekta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Interakcija">
+          <End Type="DataContext.Korisnik" Role="Korisnik" Multiplicity="*" />
+          <End Type="DataContext.Projekat" Role="Projekat" Multiplicity="*" />
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DataContextStoreContainer" CdmEntityContainer="ExtentBazaEntities">
-          <EntitySetMapping Name="Korisnik">
-            <EntityTypeMapping TypeName="DataContext.Korisnik">
-              <MappingFragment StoreEntitySet="Korisnik">
-                <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
-                <ScalarProperty Name="Lozinka" ColumnName="Lozinka" />
-                <ScalarProperty Name="EmailAdresa" ColumnName="EmailAdresa" />
-                <ScalarProperty Name="VrstaKorisnika" ColumnName="VrstaKorisnika" />
-                <ScalarProperty Name="Ime" ColumnName="Ime" />
-                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Projekat">
-            <EntityTypeMapping TypeName="DataContext.Projekat">
-              <MappingFragment StoreEntitySet="Projekat">
-                <ScalarProperty Name="IDProjekta" ColumnName="IDProjekta" />
-                <ScalarProperty Name="NazivProjekta" ColumnName="NazivProjekta" />
-                <ScalarProperty Name="VrstaProjekta" ColumnName="VrstaProjekta" />
-                <ScalarProperty Name="StanjeProjekta" ColumnName="StanjeProjekta" />
-                <ScalarProperty Name="DatumPocetka" ColumnName="DatumPocetka" />
-                <ScalarProperty Name="DatumIzgradnje" ColumnName="DatumIzgradnje" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="Interakcija" TypeName="DataContext.Interakcija" StoreEntitySet="Interakcija">
-            <EndProperty Name="Korisnik">
-              <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
-            </EndProperty>
-            <EndProperty Name="Projekat">
-              <ScalarProperty Name="IDProjekta" ColumnName="IDProjekta" />
-            </EndProperty>
-          </AssociationSetMapping>
           <EntitySetMapping Name="Dokumentacija">
             <EntityTypeMapping TypeName="DataContext.Dokumentacija">
               <MappingFragment StoreEntitySet="Dokumentacija">
@@ -278,6 +434,64 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Aktivnost">
+            <EntityTypeMapping TypeName="DataContext.Aktivnost">
+              <MappingFragment StoreEntitySet="Aktivnost">
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="Poruka" ColumnName="Poruka" />
+                <ScalarProperty Name="DozvolaEksternogIgraca" ColumnName="DozvolaEksternogIgraca" />
+                <ScalarProperty Name="DozvolaInvestitora" ColumnName="DozvolaInvestitora" />
+                <ScalarProperty Name="DozvolaProjektanta" ColumnName="DozvolaProjektanta" />
+                <ScalarProperty Name="DozvolaAdmin" ColumnName="DozvolaAdmin" />
+                <ScalarProperty Name="IDProjekta" ColumnName="IDProjekta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Korisnik">
+            <EntityTypeMapping TypeName="DataContext.Korisnik">
+              <MappingFragment StoreEntitySet="Korisnik">
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="VrstaKorisnika" ColumnName="VrstaKorisnika" />
+                <ScalarProperty Name="EmailAdresa" ColumnName="EmailAdresa" />
+                <ScalarProperty Name="Lozinka" ColumnName="Lozinka" />
+                <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projekat">
+            <EntityTypeMapping TypeName="DataContext.Projekat">
+              <MappingFragment StoreEntitySet="Projekat">
+                <ScalarProperty Name="DatumIzgradnje" ColumnName="DatumIzgradnje" />
+                <ScalarProperty Name="DatumPocetka" ColumnName="DatumPocetka" />
+                <ScalarProperty Name="StanjeProjekta" ColumnName="StanjeProjekta" />
+                <ScalarProperty Name="VrstaProjekta" ColumnName="VrstaProjekta" />
+                <ScalarProperty Name="NazivProjekta" ColumnName="NazivProjekta" />
+                <ScalarProperty Name="IDProjekta" ColumnName="IDProjekta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zahtev">
+            <EntityTypeMapping TypeName="DataContext.Zahtev">
+              <MappingFragment StoreEntitySet="Zahtev">
+                <ScalarProperty Name="Odgovor" ColumnName="Odgovor" />
+                <ScalarProperty Name="Poruka" ColumnName="Poruka" />
+                <ScalarProperty Name="Naslov" ColumnName="Naslov" />
+                <ScalarProperty Name="KorisnickoImePrimaoca" ColumnName="KorisnickoImePrimaoca" />
+                <ScalarProperty Name="KorisnickoImePosiljaoca" ColumnName="KorisnickoImePosiljaoca" />
+                <ScalarProperty Name="IDProjekta" ColumnName="IDProjekta" />
+                <ScalarProperty Name="IDZahteva" ColumnName="IDZahteva" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Interakcija" TypeName="DataContext.Interakcija" StoreEntitySet="Interakcija">
+            <EndProperty Name="Projekat">
+              <ScalarProperty Name="IDProjekta" ColumnName="IDProjekta" />
+            </EndProperty>
+            <EndProperty Name="Korisnik">
+              <ScalarProperty Name="KorisnickoIme" ColumnName="KorisnickoIme" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

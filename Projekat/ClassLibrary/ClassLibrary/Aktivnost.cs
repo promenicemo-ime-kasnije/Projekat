@@ -9,22 +9,19 @@
 
 namespace ClassLibrary
 {
-    using ClassLibrary.DataProvider;
     using System;
     using System.Collections.Generic;
     
-    public partial class Dokumentacija
+    public partial class Aktivnost
     {
-        public int IDDokumenta { get; set; }
-        public string Naziv { get; set; }
+        public int IDProjekta { get; set; }
+        public Nullable<bool> DozvolaAdmin { get; set; }
+        public Nullable<bool> DozvolaProjektanta { get; set; }
+        public Nullable<bool> DozvolaInvestitora { get; set; }
+        public Nullable<bool> DozvolaEksternogIgraca { get; set; }
+        public string Poruka { get; set; }
         public string Datum { get; set; }
-        public Nullable<bool> StatusDokumenta { get; set; }
-        public Nullable<int> Redosled { get; set; }
-        public Nullable<int> IDProjekta { get; set; }
-
-        public bool IsEnable { get; set; } = false;
-
-        public virtual PDF PDF { get; set; }
+    
         public virtual Projekat Projekat { get; set; }
     }
 }

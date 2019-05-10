@@ -132,6 +132,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aktivnost.cs">
+      <DependentUpon>EFCoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataProvider\EFCoreDataProvider.cs" />
     <Compile Include="DataProvider\IDataProvider.cs" />
     <Compile Include="Dokumentacija.cs">
@@ -162,6 +165,9 @@
       <DependentUpon>EFCoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Zahtev.cs">
+      <DependentUpon>EFCoreModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
