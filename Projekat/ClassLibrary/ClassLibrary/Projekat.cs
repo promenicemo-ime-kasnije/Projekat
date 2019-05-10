@@ -17,7 +17,9 @@ namespace ClassLibrary
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Projekat()
         {
+            this.Aktivnost = new HashSet<Aktivnost>();
             this.Dokumentacija = new HashSet<Dokumentacija>();
+            this.Zahtev = new HashSet<Zahtev>();
             this.Korisnik = new HashSet<Korisnik>();
         }
     
@@ -28,10 +30,12 @@ namespace ClassLibrary
         public string DatumPocetka { get; set; }
         public string DatumIzgradnje { get; set; }
     
-        public virtual Aktivnost Aktivnost { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Aktivnost> Aktivnost { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Dokumentacija> Dokumentacija { get; set; }
-        public virtual Zahtev Zahtev { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Zahtev> Zahtev { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Korisnik> Korisnik { get; set; }
     }

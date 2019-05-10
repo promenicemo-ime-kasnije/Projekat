@@ -7,8 +7,9 @@
     <Schema Namespace="DataContext.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Aktivnost">
           <Key>
-            <PropertyRef Name="IDProjekta" />
+            <PropertyRef Name="IDAktivnosti" />
           </Key>
+          <Property Name="IDAktivnosti" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDProjekta" Type="int" Nullable="false" />
           <Property Name="DozvolaAdmin" Type="bit" />
           <Property Name="DozvolaProjektanta" Type="bit" />
@@ -67,7 +68,7 @@
         </EntityType>
         <EntityType Name="Zahtev">
           <Key>
-            <PropertyRef Name="IDProjekta" />
+            <PropertyRef Name="IDZahteva" />
           </Key>
           <Property Name="IDZahteva" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IDProjekta" Type="int" Nullable="false" />
@@ -79,7 +80,7 @@
         </EntityType>
         <Association Name="FK_Aktivnost_Projekat">
           <End Role="Projekat" Type="Self.Projekat" Multiplicity="1" />
-          <End Role="Aktivnost" Type="Self.Aktivnost" Multiplicity="0..1" />
+          <End Role="Aktivnost" Type="Self.Aktivnost" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Projekat">
               <PropertyRef Name="IDProjekta" />
@@ -163,7 +164,7 @@
         </Association>
         <Association Name="FK_Zahtev_Projekat">
           <End Role="Projekat" Type="Self.Projekat" Multiplicity="1" />
-          <End Role="Zahtev" Type="Self.Zahtev" Multiplicity="0..1" />
+          <End Role="Zahtev" Type="Self.Zahtev" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Projekat">
               <PropertyRef Name="IDProjekta" />
@@ -289,8 +290,9 @@
         </Association>
         <EntityType Name="Aktivnost">
           <Key>
-            <PropertyRef Name="IDProjekta" />
+            <PropertyRef Name="IDAktivnosti" />
           </Key>
+          <Property Name="IDAktivnosti" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IDProjekta" Type="Int32" Nullable="false" />
           <Property Name="DozvolaAdmin" Type="Boolean" />
           <Property Name="DozvolaProjektanta" Type="Boolean" />
@@ -331,7 +333,7 @@
         </EntityType>
         <EntityType Name="Zahtev">
           <Key>
-            <PropertyRef Name="IDProjekta" />
+            <PropertyRef Name="IDZahteva" />
           </Key>
           <Property Name="IDZahteva" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IDProjekta" Type="Int32" Nullable="false" />
@@ -346,7 +348,7 @@
         </EntityType>
         <Association Name="FK_Aktivnost_Projekat">
           <End Type="DataContext.Projekat" Role="Projekat" Multiplicity="1" />
-          <End Type="DataContext.Aktivnost" Role="Aktivnost" Multiplicity="0..1" />
+          <End Type="DataContext.Aktivnost" Role="Aktivnost" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Projekat">
               <PropertyRef Name="IDProjekta" />
@@ -394,7 +396,7 @@
         </Association>
         <Association Name="FK_Zahtev_Projekat">
           <End Type="DataContext.Projekat" Role="Projekat" Multiplicity="1" />
-          <End Type="DataContext.Zahtev" Role="Zahtev" Multiplicity="0..1" />
+          <End Type="DataContext.Zahtev" Role="Zahtev" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Projekat">
               <PropertyRef Name="IDProjekta" />
@@ -444,6 +446,7 @@
                 <ScalarProperty Name="DozvolaProjektanta" ColumnName="DozvolaProjektanta" />
                 <ScalarProperty Name="DozvolaAdmin" ColumnName="DozvolaAdmin" />
                 <ScalarProperty Name="IDProjekta" ColumnName="IDProjekta" />
+                <ScalarProperty Name="IDAktivnosti" ColumnName="IDAktivnosti" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
