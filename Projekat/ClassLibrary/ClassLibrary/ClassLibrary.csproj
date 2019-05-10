@@ -155,6 +155,9 @@
     <Compile Include="Korisnik.cs">
       <DependentUpon>EFCoreModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="PDF.cs">
+      <DependentUpon>EFCoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Projekat.cs">
       <DependentUpon>EFCoreModel.tt</DependentUpon>
     </Compile>

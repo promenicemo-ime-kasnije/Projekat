@@ -30,6 +30,8 @@ namespace Projekat.Pages
 
         private async void Potvrdi_Click(object sender, RoutedEventArgs e)
         {
+            var dataProvider = new EFCoreDataProvider();
+
             // Dodavanje podataka za trenutni projekat
             ZapocetiProjekat.DatumPocetka = dpDatumPocetkaProjekta.DisplayDate.ToShortDateString();
             ZapocetiProjekat.StanjeProjekta = "Aktivan";
@@ -40,10 +42,16 @@ namespace Projekat.Pages
 
             // U bazi se kreira novi projekat i za njega se kreiraju odgovarajuca dokumenta
             var listaDokumenata = GetListuDokumenata(ZapocetiProjekat.VrstaProjekta);
-            if (informacijaOLokaciji != null) // Ako je vec uneta informacija o lokaciji onda se ona pamti u bazi pri kreiranju projekta
-                listaDokumenata[0].PDFFajl = informacijaOLokaciji;
+            await dataProvider.KreirajProjekatIDodajDokumenta(ZapocetiProjekat, listaDokumenata);
             // TODO: Ovde mogu i ostali atributi informaicje o lokaciji da se unose
-            await new EFCoreDataProvider().KreirajProjekatIDodajDokumenta(ZapocetiProjekat, listaDokumenata);
+
+            if (informacijaOLokaciji != null) // Ako je vec uneta informacija o lokaciji onda se ona pamti u bazi pri kreiranju projekta
+            {
+                await dataProvider.AddPDFAsync(new PDF {
+                    IDDokumenta = listaDokumenata[0].IDDokumenta,
+                    PDFFajl = informacijaOLokaciji
+                });
+            }
 
             // Zatvaranja ProgressWindow-a
             progressWindow.Close();

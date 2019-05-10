@@ -9,6 +9,7 @@
 
 namespace ClassLibrary
 {
+    using ClassLibrary.DataProvider;
     using System;
     using System.Collections.Generic;
     
@@ -20,6 +21,7 @@ namespace ClassLibrary
         public Nullable<bool> StatusDokumenta { get; set; }
         public Nullable<int> Redosled { get; set; }
         public Nullable<int> IDProjekta { get; set; }
+        
         // Ovo mi treba za DataGrid da znam koji row je ukljucen a koji iskljucen
         public bool IsEnable { get; set; } = false;
 
