@@ -115,6 +115,7 @@ namespace Projekat.Pages
                 byte[] a;
                 OpenFileDialog dlg = new OpenFileDialog();
                 dlg.Filter = "PDF dokument | *.pdf";
+
                 if (dlg.ShowDialog() == true)
                 {
                     // Kreira se i prikazu progressWindows sa porukom dok se vrsi slanje dokumenta na server
@@ -122,14 +123,17 @@ namespace Projekat.Pages
                     progressWindow.Show();
 
                     string path = dlg.FileName.ToString();
-                    a = File.ReadAllBytes(path); //ovo pretvara izabrani fajl u bajtove 
-                    int idFajla = await dataProvider.AddPDFAsync(new PDF
+                    a = File.ReadAllBytes(path); //ovo pretvara izabrani fajl u bajtove
+                    // Dodavanje novog PDF u tabelu 
+                    await dataProvider.AddPDFAsync( new PDF
                     {
                         IDDokumenta = doc.IDDokumenta,
                         PDFFajl = a
                     });
+
+                    //Update dokumenta
                     doc.StatusDokumenta = true;
-                    await dataProvider.UpdateDokumentAsync(doc); // pamti fajl u bazi
+                    await dataProvider.UpdateDokumentAsync(doc);
 
                     // ProgressWindow moze da se zatvori
                     progressWindow.Close();
