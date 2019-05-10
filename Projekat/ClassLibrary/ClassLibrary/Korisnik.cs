@@ -30,7 +30,7 @@ namespace ClassLibrary
         public string Ime { get; set; }
         public string Prezime { get; set; }
 
-        public string PunoIme { get => Regex.Replace($"{Ime} {Prezime}", @"/s+", " "); }
+        public string PunoIme { get => Regex.Replace($"{Ime} {Prezime}", @"\s+", " "); } // vraca ime + prezime u jednom stringu
 
         public override bool Equals(object obj)
         {

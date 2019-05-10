@@ -215,20 +215,16 @@ namespace ClassLibrary.DataProvider
             using (ExtentBazaEntities _context = new ExtentBazaEntities())
             {
                 _context.Dokumentacija.Add(dokument);
-                //await AddAktivnostAsync(new Aktivnost { IDProjekta = (int)dokument.IDProjekta, Poruka = $"{korisnik.PunoIme} je prilozio dokument {dokument.Naziv}" });
                 await _context.SaveChangesAsync();
             }
         }
 
         public async Task KreirajProjekatIDodajDokumenta(Projekat projekat, params Dokumentacija[] dokumenti)
         {
-            int idProjekta = await AddProjekatAsync(projekat);
+            int idProjekta = await AddProjekatAsync(projekat); // ova funkcija dodaje aktivnost
             foreach (Dokumentacija d in dokumenti)
                 d.IDProjekta = idProjekta;
             await AddDokumentaAsync(dokumenti);
-
-            // Dodaj aktivnost - kreiran je novi projekat
-            await AddAktivnostAsync(new Aktivnost { IDProjekta = idProjekta, Poruka = $"Kreiran je projekat {projekat.NazivProjekta}" });
         }
 
         public async Task AddDokumentaAsync(params Dokumentacija[] dokumenti)

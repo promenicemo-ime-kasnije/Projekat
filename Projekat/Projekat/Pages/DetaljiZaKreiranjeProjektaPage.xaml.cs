@@ -50,7 +50,7 @@ namespace Projekat.Pages
                 await dataProvider.AddPDFAsync(new PDF {
                     IDDokumenta = listaDokumenata[0].IDDokumenta,
                     PDFFajl = informacijaOLokaciji
-                });
+                }, Helper.GetTrenutniKorisnik(this));
             }
 
             // Zatvaranja ProgressWindow-a
