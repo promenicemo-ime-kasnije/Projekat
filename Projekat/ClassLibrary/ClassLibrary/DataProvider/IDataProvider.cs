@@ -21,7 +21,6 @@ namespace ClassLibrary.DataProvider
         Task<int> GetKorisniciCountAsync();
 
         Task<int> AddProjekatAsync(Projekat projekat);
-        Task KreirajProjekatIDodajDokumenta(Projekat projekat, params Dokumentacija[] dokumenti);
         Task<int> DeleteProjekatAsync(params Projekat[] projekti);
         Task<int> UpdateProjekatAsync(Projekat projekat);
         Task<Projekat> GetProjekatAsync(long IDProjekta);
@@ -36,10 +35,17 @@ namespace ClassLibrary.DataProvider
         * prethodne funkcije vracaju listu, a lista ima atribut length i samim tim se dobija count ako je potreban */
 
         Task AddDokumentAsync(Dokumentacija dokument);
+        Task KreirajProjekatIDodajDokumenta(Projekat projekat, params Dokumentacija[] dokumenti);
         Task AddDokumentaAsync(params Dokumentacija[] dokumenti);
         Task<int> DeleteDokumentAsync(params Dokumentacija[] dokumenti);
         Task<int> UpdateDokumentAsync(Dokumentacija dokument);
         Task<Dokumentacija> GetDokumentAsync(long IDDokumenta);
         Task<IList<Dokumentacija>> GetDokumentaProjekta(long IDProjekta); //vraca listu dokumenata jednog projekta
+
+        Task AddPDFAsync(PDF pdf);
+        Task AddPDFAsync(params PDF[] pdf);
+        Task<int> DeletePDFAsync(params PDF[] pdf);
+        Task<int> UpdatePDFAsync(PDF pdf);
+        Task<PDF> GetPDFAsync(long IDDokumenta);
     }
 }

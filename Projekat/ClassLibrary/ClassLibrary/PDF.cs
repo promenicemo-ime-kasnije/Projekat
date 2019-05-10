@@ -12,16 +12,11 @@ namespace ClassLibrary
     using System;
     using System.Collections.Generic;
     
-    public partial class Dokumentacija
+    public partial class PDF
     {
         public int IDDokumenta { get; set; }
-        public string Naziv { get; set; }
-        public string Datum { get; set; }
-        public Nullable<bool> StatusDokumenta { get; set; }
-        public Nullable<int> Redosled { get; set; }
-        public Nullable<int> IDProjekta { get; set; }
+        public byte[] PDFFajl { get; set; }
     
-        public virtual Projekat Projekat { get; set; }
-        public virtual PDF PDF { get; set; }
+        public virtual Dokumentacija Dokumentacija { get; set; }
     }
 }

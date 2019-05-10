@@ -244,7 +244,6 @@ namespace ClassLibrary.DataProvider
             {
                 var obj = await _context.Dokumentacija.FirstOrDefaultAsync(a => a.IDDokumenta == dokument.IDDokumenta);
                 obj.Naziv = dokument.Naziv;
-                obj.PDFFajl = dokument.PDFFajl;
                 obj.Datum = dokument.Datum;
                 obj.StatusDokumenta = dokument.StatusDokumenta;
                 obj.Redosled = dokument.Redosled;
@@ -266,6 +265,57 @@ namespace ClassLibrary.DataProvider
             using (ExtentBazaEntities _context = new ExtentBazaEntities())
             {
                 return await _context.Dokumentacija.Where(a => a.IDProjekta == IDProjekta).ToListAsync();
+            }
+        }
+
+        #endregion
+
+        #region PDF
+
+        public async Task AddPDFAsync(PDF pdf)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                _context.PDF.Add(pdf);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task AddPDFAsync(params PDF[] pdf)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                foreach (var p in pdf)
+                    _context.PDF.Add(p);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<int> DeletePDFAsync(params PDF[] pdf)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                foreach (var p in pdf)
+                    _context.PDF.Remove(p);
+                return await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<int> UpdatePDFAsync(PDF pdf)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                var obj = await _context.PDF.FirstOrDefaultAsync(a => a.IDDokumenta == pdf.IDDokumenta);
+                obj.PDFFajl = pdf.PDFFajl;
+                return await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<PDF> GetPDFAsync(long IDDokumenta)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+               return await _context.PDF.FindAsync(IDDokumenta);
             }
         }
 

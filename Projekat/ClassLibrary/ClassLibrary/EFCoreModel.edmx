@@ -11,7 +11,6 @@
           </Key>
           <Property Name="IDDokumenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Naziv" Type="nchar" MaxLength="100" />
-          <Property Name="PDFFajl" Type="varbinary(max)" />
           <Property Name="Datum" Type="nchar" MaxLength="20" />
           <Property Name="StatusDokumenta" Type="bit" />
           <Property Name="Redosled" Type="int" />
@@ -35,6 +34,13 @@
           <Property Name="VrstaKorisnika" Type="nchar" MaxLength="30" />
           <Property Name="Ime" Type="nchar" MaxLength="20" />
           <Property Name="Prezime" Type="nchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="PDF">
+          <Key>
+            <PropertyRef Name="IDDokumenta" />
+          </Key>
+          <Property Name="IDDokumenta" Type="int" Nullable="false" />
+          <Property Name="PDFFajl" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Projekat">
           <Key>
@@ -83,10 +89,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PDF_Dokumentacija">
+          <End Role="Dokumentacija" Type="Self.Dokumentacija" Multiplicity="1" />
+          <End Role="PDF" Type="Self.PDF" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Dokumentacija">
+              <PropertyRef Name="IDDokumenta" />
+            </Principal>
+            <Dependent Role="PDF">
+              <PropertyRef Name="IDDokumenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="DataContextStoreContainer">
           <EntitySet Name="Dokumentacija" EntityType="Self.Dokumentacija" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Interakcija" EntityType="Self.Interakcija" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Korisnik" EntityType="Self.Korisnik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PDF" EntityType="Self.PDF" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Projekat" EntityType="Self.Projekat" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Dokumentacija_Projekat" Association="Self.FK_Dokumentacija_Projekat">
             <End Role="Projekat" EntitySet="Projekat" />
@@ -99,6 +118,10 @@
           <AssociationSet Name="FK_Interakcija_Projekat" Association="Self.FK_Interakcija_Projekat">
             <End Role="Projekat" EntitySet="Projekat" />
             <End Role="Interakcija" EntitySet="Interakcija" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PDF_Dokumentacija" Association="Self.FK_PDF_Dokumentacija">
+            <End Role="Dokumentacija" EntitySet="Dokumentacija" />
+            <End Role="PDF" EntitySet="PDF" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -142,9 +165,14 @@
             <End Role="Projekat" EntitySet="Projekat" />
           </AssociationSet>
           <EntitySet Name="Dokumentacija" EntityType="DataContext.Dokumentacija" />
+          <EntitySet Name="PDF" EntityType="DataContext.PDF" />
           <AssociationSet Name="FK_Dokumentacija_Projekat" Association="DataContext.FK_Dokumentacija_Projekat">
             <End Role="Projekat" EntitySet="Projekat" />
             <End Role="Dokumentacija" EntitySet="Dokumentacija" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PDF_Dokumentacija" Association="DataContext.FK_PDF_Dokumentacija">
+            <End Role="Dokumentacija" EntitySet="Dokumentacija" />
+            <End Role="PDF" EntitySet="PDF" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Dokumentacija">
@@ -153,12 +181,20 @@
           </Key>
           <Property Name="IDDokumenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Naziv" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
-          <Property Name="PDFFajl" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="Datum" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="StatusDokumenta" Type="Boolean" />
           <Property Name="Redosled" Type="Int32" />
           <Property Name="IDProjekta" Type="Int32" />
           <NavigationProperty Name="Projekat" Relationship="DataContext.FK_Dokumentacija_Projekat" FromRole="Dokumentacija" ToRole="Projekat" />
+          <NavigationProperty Name="PDF" Relationship="DataContext.FK_PDF_Dokumentacija" FromRole="Dokumentacija" ToRole="PDF" />
+        </EntityType>
+        <EntityType Name="PDF">
+          <Key>
+            <PropertyRef Name="IDDokumenta" />
+          </Key>
+          <Property Name="IDDokumenta" Type="Int32" Nullable="false" />
+          <Property Name="PDFFajl" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Dokumentacija" Relationship="DataContext.FK_PDF_Dokumentacija" FromRole="PDF" ToRole="Dokumentacija" />
         </EntityType>
         <Association Name="FK_Dokumentacija_Projekat">
           <End Type="DataContext.Projekat" Role="Projekat" Multiplicity="0..1" />
@@ -169,6 +205,18 @@
             </Principal>
             <Dependent Role="Dokumentacija">
               <PropertyRef Name="IDProjekta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PDF_Dokumentacija">
+          <End Type="DataContext.Dokumentacija" Role="Dokumentacija" Multiplicity="1" />
+          <End Type="DataContext.PDF" Role="PDF" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Dokumentacija">
+              <PropertyRef Name="IDDokumenta" />
+            </Principal>
+            <Dependent Role="PDF">
+              <PropertyRef Name="IDDokumenta" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -217,8 +265,15 @@
                 <ScalarProperty Name="Redosled" ColumnName="Redosled" />
                 <ScalarProperty Name="StatusDokumenta" ColumnName="StatusDokumenta" />
                 <ScalarProperty Name="Datum" ColumnName="Datum" />
-                <ScalarProperty Name="PDFFajl" ColumnName="PDFFajl" />
                 <ScalarProperty Name="Naziv" ColumnName="Naziv" />
+                <ScalarProperty Name="IDDokumenta" ColumnName="IDDokumenta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PDF">
+            <EntityTypeMapping TypeName="DataContext.PDF">
+              <MappingFragment StoreEntitySet="PDF">
+                <ScalarProperty Name="PDFFajl" ColumnName="PDFFajl" />
                 <ScalarProperty Name="IDDokumenta" ColumnName="IDDokumenta" />
               </MappingFragment>
             </EntityTypeMapping>

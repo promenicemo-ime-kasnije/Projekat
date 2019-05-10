@@ -8,8 +8,10 @@
         <EntityTypeShape EntityType="DataContext.Korisnik" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="DataContext.Projekat" Width="1.5" PointX="3.25" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="DataContext.Interakcija" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="DataContext.Dokumentacija" Width="1.5" PointX="5.5" PointY="0.75" />
+        <EntityTypeShape EntityType="DataContext.Dokumentacija" Width="1.5" PointX="5.375" PointY="0.5" />
+        <EntityTypeShape EntityType="DataContext.PDF" Width="1.5" PointX="7.625" PointY="1" />
         <AssociationConnector Association="DataContext.FK_Dokumentacija_Projekat" />
+        <AssociationConnector Association="DataContext.FK_PDF_Dokumentacija" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
