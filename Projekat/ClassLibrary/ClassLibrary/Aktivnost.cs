@@ -22,6 +22,9 @@ namespace ClassLibrary
         public Nullable<bool> DozvolaEksternogIgraca { get; set; } = true;
         public string Poruka { get; set; }
         public string Datum { get; set; } = DateTime.Now.ToString();
+
+        //custom made
+        public string NazivProjekta { get; set; }
     
         public virtual Projekat Projekat { get; set; }
     }
