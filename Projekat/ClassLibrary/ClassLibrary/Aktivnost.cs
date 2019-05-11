@@ -16,13 +16,14 @@ namespace ClassLibrary
     {
         public int IDAktivnosti { get; set; }
         public int IDProjekta { get; set; }
-        public Nullable<bool> DozvolaAdmin { get; set; }
-        public Nullable<bool> DozvolaProjektanta { get; set; }
-        public Nullable<bool> DozvolaInvestitora { get; set; }
-        public Nullable<bool> DozvolaEksternogIgraca { get; set; }
+        public Nullable<bool> DozvolaAdmin { get; set; } = true;
+        public Nullable<bool> DozvolaProjektanta { get; set; } = true;
+        public Nullable<bool> DozvolaInvestitora { get; set; } = true;
+        public Nullable<bool> DozvolaEksternogIgraca { get; set; } = true;
         public string Poruka { get; set; }
-        public string Datum { get; set; }
+        public string Datum { get; set; } = DateTime.Now.ToString();
 
+        //custom made
         public string NazivProjekta { get; set; }
 
         public virtual Projekat Projekat { get; set; }
