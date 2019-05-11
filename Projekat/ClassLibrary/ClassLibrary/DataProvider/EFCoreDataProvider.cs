@@ -381,7 +381,7 @@ namespace ClassLibrary.DataProvider
             // TODO: Mora da se uzme u obzir i tip korisnika
             using (ExtentBazaEntities _context = new ExtentBazaEntities())
             {
-                return await _context.Aktivnost.Where(a => a.IDProjekta == IDProjekta).ToListAsync();
+                return await _context.Aktivnost.OrderByDescending(a => a.IDAktivnosti).Where(a => a.IDProjekta == IDProjekta).ToListAsync();
             }
         }
 
@@ -391,7 +391,7 @@ namespace ClassLibrary.DataProvider
             // TODO: Mora da se uzme u obzir i tip korisnika
             using (ExtentBazaEntities _context = new ExtentBazaEntities())
             {
-                return await _context.Aktivnost.ToListAsync();
+                return await _context.Aktivnost.OrderByDescending(a => a.IDAktivnosti).ToListAsync();
             }
 
         }

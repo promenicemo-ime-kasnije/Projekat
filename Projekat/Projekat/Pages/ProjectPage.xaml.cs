@@ -47,7 +47,7 @@ namespace Projekat.Pages
 
         private void PrikaziTimeline_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Content = new TimelinePage();
+            Frame.Content = new TimelinePage(false);
         }
 
         private void ComingSoon_Click(object sender, RoutedEventArgs e)

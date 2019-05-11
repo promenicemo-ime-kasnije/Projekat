@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Projekat.Pages;
+using Projekat.Pomocne_klase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,6 +33,11 @@ namespace Projekat.UserControls
             Grid parentform = (this.Parent as Grid);
             parentform.Children.Remove(this);
             parentform.Children.Add(dnp);
+        }
+
+        private void OtvoriTimeline_Click(object sender, RoutedEventArgs e)
+        {
+            Helper.GetMainWindow(this).Content = new TimelinePage();
         }
     }
 }

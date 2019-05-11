@@ -60,10 +60,11 @@
                 materialDesign:RippleAssist.Feedback="#DD000000"
                 materialDesign:ShadowAssist.ShadowDepth="Depth0"
                 HorizontalContentAlignment="Left"
+                Click="OtvoriTimeline_Click"
                 VerticalContentAlignment="Center">
             <StackPanel Orientation="Horizontal">
                 <materialDesign:PackIcon Kind="AccountEdit" Height="45" Width="45" />
-                <TextBlock VerticalAlignment="Center" FontSize="15" Margin="10 4 10 0" FontWeight="Light">Neki balaban</TextBlock>
+                <TextBlock VerticalAlignment="Center" FontSize="15" Margin="10 4 10 0" FontWeight="Light">Timeline</TextBlock>
             </StackPanel>
         </Button>
     </StackPanel>
