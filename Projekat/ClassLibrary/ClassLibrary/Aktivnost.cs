@@ -22,7 +22,9 @@ namespace ClassLibrary
         public Nullable<bool> DozvolaEksternogIgraca { get; set; }
         public string Poruka { get; set; }
         public string Datum { get; set; }
-    
+
+        public string NazivProjekta { get; set; }
+
         public virtual Projekat Projekat { get; set; }
     }
 }
