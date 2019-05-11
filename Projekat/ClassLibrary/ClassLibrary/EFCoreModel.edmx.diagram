@@ -4,20 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9d17e8ca74c44b4b984370f244121fb0" Name="Diagram1">
-        <EntityTypeShape EntityType="DataContext.Dokumentacija" Width="1.5" PointX="5.375" PointY="0.5" />
-        <EntityTypeShape EntityType="DataContext.PDF" Width="1.5" PointX="7.625" PointY="1" />
+      <Diagram DiagramId="9d17e8ca74c44b4b984370f244121fb0" Name="Diagram1" ZoomLevel="85">
+        <EntityTypeShape EntityType="DataContext.Dokumentacija" Width="1.5" PointX="9.875" PointY="5.25" />
+        <EntityTypeShape EntityType="DataContext.PDF" Width="1.5" PointX="12" PointY="5.375" />
         <AssociationConnector Association="DataContext.FK_PDF_Dokumentacija" />
-        <EntityTypeShape EntityType="DataContext.Aktivnost" Width="1.5" PointX="3.875" PointY="4.375" />
-        <EntityTypeShape EntityType="DataContext.Korisnik" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="DataContext.Projekat" Width="1.5" PointX="3.125" PointY="0.625" />
-        <EntityTypeShape EntityType="DataContext.Zahtev" Width="1.5" PointX="0.875" PointY="4.375" />
-        <AssociationConnector Association="DataContext.FK_Aktivnost_Projekat" />
-        <AssociationConnector Association="DataContext.FK_Dokumentacija_Projekat" />
+        <EntityTypeShape EntityType="DataContext.Aktivnost" Width="1.5" PointX="5.625" PointY="0.5" />
+        <EntityTypeShape EntityType="DataContext.Korisnik" Width="1.5" PointX="3.625" PointY="1.75" />
+        <EntityTypeShape EntityType="DataContext.Zahtev" Width="1.5" PointX="3.75" PointY="5.25" />
         <AssociationConnector Association="DataContext.FK_Zahtev_KorisnikPosiljalac" />
         <AssociationConnector Association="DataContext.FK_Zahtev_KorisnikPrimalac" />
+        <EntityTypeShape EntityType="DataContext.GeneralniTrosak" Width="1.5" PointX="8.875" PointY="0.75" />
+        <EntityTypeShape EntityType="DataContext.Projekat" Width="1.5" PointX="7.25" PointY="3.625" />
+        <AssociationConnector Association="DataContext.FK_Aktivnost_Projekat" />
+        <AssociationConnector Association="DataContext.FK_Dokumentacija_Projekat" />
+        <AssociationConnector Association="DataContext.FK_GeneralniTrosak_Projekat" />
         <AssociationConnector Association="DataContext.FK_Zahtev_Projekat" />
         <AssociationConnector Association="DataContext.Interakcija" />
+        <EntityTypeShape EntityType="DataContext.Trosak" Width="1.5" PointX="11.375" PointY="1.5" />
+        <AssociationConnector Association="DataContext.FK_Trosak_GeneralniTrosak" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

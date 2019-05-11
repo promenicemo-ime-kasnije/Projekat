@@ -62,5 +62,25 @@ namespace ClassLibrary.DataProvider
         Task<IList<Zahtev>> GetZahteveProjektaAsync(long IDProjekta);
         Task<IList<Zahtev>> GetZahtevePosiljaocaAsync(string KorisnickoIme, long IDProjekta); //ova funkcija vraca sve zahteve koje je ulogovani korisnik poslao sa tog projekta
         Task<IList<Zahtev>> GetZahtevePrimaocaAsync(string KorisnickoIme, long IDProjekta);
+
+        Task AddGeneralniTrosakAsync(GeneralniTrosak generalniTrosak);
+        Task AddGeneralneTroskoveAsync(params GeneralniTrosak[] generalniTrosak);
+        Task<int> DeleteGeneralniTrosak(params GeneralniTrosak[] generalniTrosak);
+        Task<int> UpdateGeneralniTrosakAsync(GeneralniTrosak generalniTrosak);
+        Task<IList<GeneralniTrosak>> GetGeneralniTrosakAsync(long IDProjekta);
+        Task<int> GetUkupnoNovcaAsync(long IDProjekta);
+        Task<int> GetBrojUplataAsync(long IDProjekta);
+        Task<string> GetProcenteAsync(long IDProjekta);
+
+        Task AddTrosakAsync(Trosak trosak);
+        Task AddTroskoveAsync(params Trosak[] trosak);
+        Task<int> DeleteTrosak(params Trosak[] trosak);
+        Task<int> UpdateTrosakAsync(Trosak trosak);
+        Task<Trosak> GetTrosakAsync(long IDTroska);
+        Task<IList<Trosak>> GetTroskoveProjektaAsync(long IDProjekta);
+        Task<IList<Trosak>> GetTroskoveKategorijeAsync(long IDProjekta, string Kategorija);
+        Task<IList<Trosak>> GetTroskovePodkategorijeAsync(long IDProjekta, string Podkategorija);
+        Task<int> GetKolicinaTroskaAsync(long IDTroska);
+        Task<int> GetCenaTroskaAsync(long IDTroska);
     }
 }

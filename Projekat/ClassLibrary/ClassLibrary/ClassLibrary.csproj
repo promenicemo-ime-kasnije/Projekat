@@ -155,6 +155,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EFCoreModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="GeneralniTrosak.cs">
+      <DependentUpon>EFCoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Korisnik.cs">
       <DependentUpon>EFCoreModel.tt</DependentUpon>
     </Compile>
@@ -165,6 +168,9 @@
       <DependentUpon>EFCoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Trosak.cs">
+      <DependentUpon>EFCoreModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Zahtev.cs">
       <DependentUpon>EFCoreModel.tt</DependentUpon>
     </Compile>

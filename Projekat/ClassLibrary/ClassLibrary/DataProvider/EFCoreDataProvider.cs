@@ -397,9 +397,9 @@ namespace ClassLibrary.DataProvider
         }
             #endregion
 
-            #region Zahtev
+        #region Zahtev
 
-            public async Task AddZahtevAsync(Zahtev zahtev)
+        public async Task AddZahtevAsync(Zahtev zahtev)
         {
             using (ExtentBazaEntities _context = new ExtentBazaEntities())
             {
@@ -460,6 +460,183 @@ namespace ClassLibrary.DataProvider
             using (ExtentBazaEntities _context = new ExtentBazaEntities())
             {
                 return await _context.Zahtev.Where(a => a.IDProjekta == IDProjekta && a.KorisnickoImePrimaoca == KorisnickoIme).ToListAsync();
+            }
+        }
+
+        #endregion
+
+        #region GeneralniTrosak
+
+        public async Task AddGeneralniTrosakAsync(GeneralniTrosak generalniTrosak)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                _context.GeneralniTrosak.Add(generalniTrosak);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task AddGeneralneTroskoveAsync(params GeneralniTrosak[] generalniTrosak)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                foreach (var g in generalniTrosak)
+                    _context.GeneralniTrosak.Add(g);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<int> DeleteGeneralniTrosak(params GeneralniTrosak[] generalniTrosak)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                foreach (var g in generalniTrosak)
+                    _context.GeneralniTrosak.Remove(g);
+                return await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<int> UpdateGeneralniTrosakAsync(GeneralniTrosak generalniTrosak)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                var obj = await _context.GeneralniTrosak.FirstOrDefaultAsync(a => a.IDProjekta == generalniTrosak.IDProjekta);
+                obj.UkupnoNovca = generalniTrosak.UkupnoNovca;
+                obj.BrojUplata = generalniTrosak.BrojUplata;
+                obj.Procenti = generalniTrosak.Procenti;
+                return await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<IList<GeneralniTrosak>> GetGeneralniTrosakAsync(long IDProjekta)
+        {
+            using(ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                return await _context.GeneralniTrosak.Where(a => a.IDProjekta == IDProjekta).ToListAsync();
+            }
+        }
+
+        public async Task<int> GetUkupnoNovcaAsync(long IDProjekta)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                var pom = await _context.GeneralniTrosak.Where(a => a.IDProjekta == IDProjekta).Select(a => a.UkupnoNovca).SingleOrDefaultAsync();
+                return pom.GetValueOrDefault();
+            }
+        }
+
+        public async Task<int> GetBrojUplataAsync(long IDProjekta)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                var pom = await _context.GeneralniTrosak.Where(a => a.IDProjekta == IDProjekta).Select(a => a.BrojUplata).SingleOrDefaultAsync();
+                return pom.GetValueOrDefault(); 
+            }
+        }
+
+        public async Task<string> GetProcenteAsync(long IDProjekta)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                var pom = await _context.GeneralniTrosak.Where(a => a.IDProjekta == IDProjekta).Select(a => a.Procenti).SingleOrDefaultAsync();
+                return pom;
+            }
+        }
+
+        #endregion
+
+        #region Trosak
+
+        public async Task AddTrosakAsync(Trosak trosak)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                _context.Trosak.Add(trosak);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task AddTroskoveAsync(params Trosak[] trosak)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                foreach(var t in trosak)
+                _context.Trosak.Add(t);
+                await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<int> DeleteTrosak(params Trosak[] trosak)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                foreach (var t in trosak)
+                    _context.Trosak.Remove(t);
+                return await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<int> UpdateTrosakAsync(Trosak trosak)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                var obj = await _context.Trosak.FirstOrDefaultAsync(a => a.IDTroska == trosak.IDTroska);
+                obj.Kategorija = trosak.Kategorija;
+                obj.Podkategorija = trosak.Podkategorija;
+                obj.Artikal = trosak.Artikal;
+                obj.Kolicina = trosak.Kolicina;
+                obj.Cena = trosak.Cena;
+                return await _context.SaveChangesAsync();
+            }
+        }
+
+        public async Task<Trosak> GetTrosakAsync(long IDTroska)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                return await _context.Trosak.FindAsync(IDTroska);
+            }
+        }
+
+        public async Task<IList<Trosak>> GetTroskoveProjektaAsync(long IDProjekta)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                return await _context.Trosak.Where(a => a.IDProjekta == IDProjekta).ToListAsync();
+            }
+        }
+
+        public async Task<IList<Trosak>> GetTroskoveKategorijeAsync(long IDProjekta, string Kategorija)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                return await _context.Trosak.Where(a => a.IDProjekta == IDProjekta && a.Kategorija == Kategorija).ToListAsync();
+            }
+        }
+
+        public async Task<IList<Trosak>> GetTroskovePodkategorijeAsync(long IDProjekta, string Podkategorija)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                return await _context.Trosak.Where(a => a.IDProjekta == IDProjekta && a.Podkategorija == Podkategorija).ToListAsync();
+            }
+        }
+
+        public async Task<int> GetKolicinaTroskaAsync(long IDTroska)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                var pom = await _context.Trosak.Where(a => a.IDTroska == IDTroska).Select(a => a.Kolicina).SingleOrDefaultAsync();
+                return pom.GetValueOrDefault();
+            }
+        }
+
+        public async Task<int> GetCenaTroskaAsync(long IDTroska)
+        {
+            using (ExtentBazaEntities _context = new ExtentBazaEntities())
+            {
+                var pom = await _context.Trosak.Where(a => a.IDTroska == IDTroska).Select(a => a.Cena).SingleOrDefaultAsync();
+                return pom.GetValueOrDefault();
             }
         }
 

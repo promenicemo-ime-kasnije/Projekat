@@ -12,17 +12,21 @@ namespace ClassLibrary
     using System;
     using System.Collections.Generic;
     
-    public partial class Aktivnost
+    public partial class GeneralniTrosak
     {
-        public int IDAktivnosti { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public GeneralniTrosak()
+        {
+            this.Trosak = new HashSet<Trosak>();
+        }
+    
         public int IDProjekta { get; set; }
-        public Nullable<bool> DozvolaAdmin { get; set; }
-        public Nullable<bool> DozvolaProjektanta { get; set; }
-        public Nullable<bool> DozvolaInvestitora { get; set; }
-        public Nullable<bool> DozvolaEksternogIgraca { get; set; }
-        public string Poruka { get; set; }
-        public string Datum { get; set; }
+        public Nullable<int> UkupnoNovca { get; set; }
+        public Nullable<int> BrojUplata { get; set; }
+        public string Procenti { get; set; }
     
         public virtual Projekat Projekat { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Trosak> Trosak { get; set; }
     }
 }
