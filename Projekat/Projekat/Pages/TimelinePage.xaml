@@ -104,6 +104,33 @@
                        Margin="45 7 30 0">
                 Ahmet Halilović
             </CheckBox>
+            <TextBlock Text="Vrsta aktivnosti"
+                       FontSize="15"
+                       Margin="40 30 30 0"/>
+            <Separator Margin="40 3 20 0"/>
+            <ComboBox materialDesign:HintAssist.Hint="Odaberi vrstu aktivnosti"
+                      MinWidth="72"
+                      Margin="45 15 30 10"
+                      VerticalAlignment="Bottom"
+                      IsEditable="True"
+                      ItemsSource="{Binding LongListToTestComboVirtualization}">
+
+                <ComboBox.Text>
+                    <Binding
+                                Path="SelectedTextTwo"
+                                Mode="TwoWay"
+                                UpdateSourceTrigger="PropertyChanged">
+                    </Binding>
+                </ComboBox.Text>
+                <ComboBoxItem>Dodavanje dokumenta</ComboBoxItem>
+                <ComboBoxItem>Prilaganje zahteva</ComboBoxItem>
+                <ComboBoxItem>Upravljanje clanovima</ComboBoxItem>
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
             <TextBlock Text="Datum"
                        FontSize="15"
                        Margin="40 30 30 0"/>
@@ -114,6 +141,7 @@
             <DatePicker Margin="45 7 30 0"
                         materialDesign:HintAssist.Hint="Krajnji datum"
                         Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+            
             <StackPanel Orientation="Horizontal"
                         Margin="40 40 20 0">
                 
