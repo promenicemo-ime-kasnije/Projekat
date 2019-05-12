@@ -31,6 +31,7 @@
                             Margin="10">
                     <Button Content="Sacuvaj"
                             Click="Sacuvaj_Click"
+                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
                             Margin="10"/>
                     <Button Content="Odbaci"
                             Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"

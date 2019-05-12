@@ -37,7 +37,8 @@ namespace Projekat.Pages
 
         private async Task UcitajTroskove()
         {
-            var lista = await new EFCoreDataProvider().GetTroskoveProjektaAsync(30) as List<Trosak>;
+            var idProjekta = Helper.GetTrenutniProjekat(this).IDProjekta;
+            var lista = await new EFCoreDataProvider().GetTroskoveProjektaAsync(idProjekta) as List<Trosak>;
 
             // Za grupisanje u datagridu itemssource se veze za ListCollectionView
             ListCollectionView collection = new ListCollectionView(lista);
@@ -69,14 +70,17 @@ namespace Projekat.Pages
             {
                 MessageBox.Show("Niste selektovali nijedan trosak!", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-            else if(MessageBox.Show("Da li ste sigurni da zelite da izbrisete selektovani trosak?", "Brisanje", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            else 
             {
                 // Brise se selektovani trosak
                 var trosak = MyDataGrid.SelectedItem as Trosak;
-                await new EFCoreDataProvider().DeleteTrosak(trosak);
 
-                //Azuriraj tabelu
-                await UcitajTroskove();
+                if (MessageBox.Show($"Da li ste sigurni da zelite da izbrisete {trosak.Artikal} iz kategorije {trosak.Kategorija}/{trosak.Podkategorija}?", "Brisanje", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+                {
+                    await new EFCoreDataProvider().DeleteTrosak(trosak);
+                    //Azuriraj tabelu
+                    await UcitajTroskove();
+                }
             }
         }
 
