@@ -21,6 +21,8 @@ namespace ClassLibrary
         public Nullable<int> Kolicina { get; set; }
         public Nullable<int> Cena { get; set; }
         public int IDTroska { get; set; }
+
+        public int UkupnaCena { get => (int)Kolicina * (int)Cena; }
     
         public virtual GeneralniTrosak GeneralniTrosak { get; set; }
     }

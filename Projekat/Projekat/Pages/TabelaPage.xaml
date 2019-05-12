@@ -15,10 +15,69 @@
       Background="{DynamicResource MaterialDesignPaper}"
       FontFamily="{DynamicResource MaterialDesignFont}">
 
+    
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
         <TextBlock HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    Text="Tabela"
                    FontSize="30"/>
+        <ScrollViewer Grid.Row="1">
+        <DataGrid AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  Name="MyDataGrid">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Artikal}"
+                                        Header="Naziv troska"
+                                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                    <DataGridTextColumn Binding="{Binding Kolicina}"
+                                        Header="Kolicina"
+                                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                    <DataGridTextColumn Binding="{Binding Cena}"
+                                        Header="Cena komada"
+                                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                    <DataGridTextColumn Binding="{Binding UkupnaCena}"
+                                        Header="Ukupna cena"
+                                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                </DataGrid.Columns>
+            <DataGrid.GroupStyle>
+                <!-- Style for groups at top level. -->
+                <GroupStyle>
+                    <GroupStyle.ContainerStyle>
+                        <Style TargetType="{x:Type GroupItem}">
+                            <Setter Property="Margin" Value="0,0,0,5"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type GroupItem}">
+                                        <Expander IsExpanded="False" BorderBrush="Black" BorderThickness="1">
+                                                <Expander.Header>
+                                                    <TextBlock FontWeight="Bold" FontSize="24" Text="{Binding Name}" Margin="5,0,0,0" HorizontalAlignment="Left"/>
+                                                </Expander.Header>
+                                            <Expander.Content>
+                                                <ItemsPresenter />
+                                            </Expander.Content>
+                                        </Expander>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </GroupStyle.ContainerStyle>
+                </GroupStyle>
+                <!-- Style for groups under the top level. -->
+                <GroupStyle>
+                    <GroupStyle.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" FontSize="20" Margin="5, 10" FontWeight="Bold" HorizontalAlignment="Left"/>
+                            </DataTemplate>
+                    </GroupStyle.HeaderTemplate>
+                </GroupStyle>
+            </DataGrid.GroupStyle>
+
+        </DataGrid>
+        </ScrollViewer>
     </Grid>
 </Page>

@@ -20,7 +20,7 @@ namespace Projekat
         public MainWindow()
         {
             InitializeComponent();
-            Content = new LoginPage();
+            Content = new TabelaPage();
         }
 
         protected override void OnContentChanged(object oldContent, object newContent)
