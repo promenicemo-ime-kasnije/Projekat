@@ -32,9 +32,9 @@ namespace Projekat.Pages
 
         private void PrikaziDokumenta_Click(object sender, RoutedEventArgs e)
         {
-            int projectID = (this.Parent as MainWindow).TrenutniProjekat.IDProjekta;
-            Frame.Content = new DokumentaPage(projectID);
-            txtImeProjekta.Text = "Dokumenta | " + Helper.GetTrenutniProjekat(this).NazivProjekta;
+            var trenutniProjekat = Helper.GetTrenutniProjekat(this);
+            Frame.Content = new DokumentaPage(trenutniProjekat.IDProjekta);
+            txtImeProjekta.Text = "Dokumenta | " + trenutniProjekat.NazivProjekta;
         }
 
         private void PrikaziTroskove_Click(object sender, RoutedEventArgs e)

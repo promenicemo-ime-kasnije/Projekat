@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Projekat.Pages;
+using Projekat.Pomocne_klase;
 
 namespace Projekat.UserControls
 {
@@ -64,8 +65,7 @@ namespace Projekat.UserControls
                 VrstaProjekta = (lvTipoviProjekta.SelectedItem as TipProjekta).Naziv
             };
 
-            Window mainWindow = ((((Parent as Grid).Parent as Grid).Parent as Grid).Parent as Page).Parent as Window; //wtf
-            mainWindow.Content = new DetaljiZaKreiranjeProjektaPage(zapocetiProjekat);
+            Helper.GetMainWindow(this).Content = new DetaljiZaKreiranjeProjektaPage(zapocetiProjekat);
         }
 
         private bool SvaPoljaPopunjena()
