@@ -43,6 +43,8 @@ namespace Projekat.Pages
             // U bazi se kreira novi projekat i za njega se kreiraju odgovarajuca dokumenta
             var listaDokumenata = GetListuDokumenata(ZapocetiProjekat.VrstaProjekta);
             await dataProvider.KreirajProjekatIDodajDokumenta(ZapocetiProjekat, listaDokumenata);
+            // Unose se generalni troskovi
+            await dataProvider.AddGeneralniTrosakAsync(new GeneralniTrosak { IDProjekta = ZapocetiProjekat.IDProjekta, BrojUplata = 1, Procenti = "100", UkupnoNovca = 100 });
             // TODO: Ovde mogu i ostali atributi informaicje o lokaciji da se unose
 
             if (informacijaOLokaciji != null) // Ako je vec uneta informacija o lokaciji onda se ona pamti u bazi pri kreiranju projekta

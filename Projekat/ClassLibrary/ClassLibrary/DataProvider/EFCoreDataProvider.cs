@@ -571,7 +571,10 @@ namespace ClassLibrary.DataProvider
             using (ExtentBazaEntities _context = new ExtentBazaEntities())
             {
                 foreach (var t in trosak)
+                {
+                    _context.Trosak.Attach(t);
                     _context.Trosak.Remove(t);
+                }
                 return await _context.SaveChangesAsync();
             }
         }

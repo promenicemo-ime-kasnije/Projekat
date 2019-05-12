@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Projekat.Pages"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:usercontrols="clr-namespace:Projekat.UserControls"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TabelaPage"
@@ -16,131 +17,180 @@
       Background="{DynamicResource MaterialDesignPaper}"
       FontFamily="{DynamicResource MaterialDesignFont}">
 
+    <!--DrawerHost je kontrola koja omogucava da se otvara sa strane onaj popout?-->
     
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <materialDesign:DrawerHost>
+        <materialDesign:DrawerHost.RightDrawerContent>
+            <!--#region RightDrawerContent-->
+            <StackPanel>
+                <usercontrols:DetaljiTroska x:Name="DetaljiTroska"
+                                            Margin="10"/>
+
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Margin="10">
+                    <Button Content="Sacuvaj"
+                            Click="Sacuvaj_Click"
+                            Margin="10"/>
+                    <Button Content="Odbaci"
+                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                            Margin="10"/>
+                </StackPanel>
+            </StackPanel>
+            <!--#endregion-->
+        </materialDesign:DrawerHost.RightDrawerContent>
+        <!--#region Content DrawerHost-a-->
         
-        <!--Naslov, ovo moze i da se izbaci-->
-        <TextBlock HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Text="Tabela"
-                   FontSize="30"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <!--Buttoni-->
-        <StackPanel Grid.Row="1"
-                    Margin="20, 0"
-                    HorizontalAlignment="Right"
-                    Orientation="Horizontal">
-            
-            <Button Click="DodajTrosak_Click"
-                    Margin="10">
-                <StackPanel Orientation="Horizontal"
-                            VerticalAlignment="Center">
-                    <materialDesign:PackIcon Kind="Add" Foreground="White" Margin="10, 0"/>
-                    <TextBlock Text="Dodaj" VerticalAlignment="Center"/>
-                </StackPanel>
-            </Button>
-            
-            <Button Click="IzmeniTrosak_Click"
-                    Margin="10">
-                <StackPanel Orientation="Horizontal"
-                            VerticalAlignment="Center">
-                    <materialDesign:PackIcon Kind="Edit" Foreground="White" Margin="10, 0"/>
-                    <TextBlock Text="Izmeni" VerticalAlignment="Center"/>
-                </StackPanel>
-            </Button>
-            
-            <Button Click="IzbrisiTrosak_Click"
-                    Margin="10">
-                <StackPanel Orientation="Horizontal"
-                            VerticalAlignment="Center">
-                    <materialDesign:PackIcon Kind="Delete" Foreground="White" Margin="10, 0"/>
-                    <TextBlock Text="Izbrisi" VerticalAlignment="Center"/>
-                </StackPanel>
-            </Button>
+            <!--Naslov, ovo moze i da se izbaci-->
+            <TextBlock HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Text="Tabela"
+                       FontSize="30"/>
 
-            <Button Click="ExportUExcel_Click"
-                    Margin="10">
-                <StackPanel Orientation="Horizontal"
-                            VerticalAlignment="Center">
-                    <materialDesign:PackIcon Kind="Export" Foreground="White" Margin="10, 0"/>
-                    <TextBlock Text="Export u Excel" VerticalAlignment="Center"/>
-                </StackPanel>
-            </Button>
-        </StackPanel>
-        
-        <!--Treci red grida ima dve kolone-->
+            <!--#region Buttoni-->
+            <StackPanel Grid.Row="1"
+                        Margin="20, 0"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
 
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/> <!--Datagrid-->
-                <ColumnDefinition Width="Auto"/> <!--Detalji troska-->
-            </Grid.ColumnDefinitions>
+                <Button Click="DodajTrosak_Click"
+                        Margin="10"
+                        Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                        CommandParameter="{x:Static Dock.Right}">
+                    <StackPanel Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                        <materialDesign:PackIcon Kind="Add" Foreground="White" Margin="10, 0"/>
+                        <TextBlock Text="Dodaj" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
 
-            <!--DataGrid u scrollvieweru-->
-            <ScrollViewer Grid.Column="0"
-                          Margin="10">
-                <DataGrid AutoGenerateColumns="False"
-                      CanUserAddRows="False"
-                      Name="MyDataGrid">
+                <Button Click="IzmeniTrosak_Click"
+                        Margin="10"
+                        Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                        CommandParameter="{x:Static Dock.Right}">
+                    <StackPanel Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                        <materialDesign:PackIcon Kind="Edit" Foreground="White" Margin="10, 0"/>
+                        <TextBlock Text="Izmeni" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
 
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Artikal}"
-                                        Header="Naziv troska"
-                                        Width="*"
-                                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
-                        <DataGridTextColumn Binding="{Binding Kolicina}"
-                                        Header="Kolicina"
-                                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
-                        <DataGridTextColumn Binding="{Binding Cena}"
-                                        Header="Cena komada"
-                                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
-                        <DataGridTextColumn Binding="{Binding UkupnaCena}"
-                                        Header="Ukupna cena"
-                                        EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
-                    </DataGrid.Columns>
+                <Button Click="IzbrisiTrosak_Click"
+                        Margin="10">
+                    <StackPanel Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                        <materialDesign:PackIcon Kind="Delete" Foreground="White" Margin="10, 0"/>
+                        <TextBlock Text="Izbrisi" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
 
-                    <DataGrid.GroupStyle>
-                        <!-- Style for groups at top level. -->
-                        <GroupStyle>
-                            <GroupStyle.ContainerStyle>
-                                <Style TargetType="{x:Type GroupItem}">
-                                    <Setter Property="Margin" Value="0,0,0,5"/>
-                                    <Setter Property="Template">
-                                        <Setter.Value>
-                                            <ControlTemplate TargetType="{x:Type GroupItem}">
-                                                <Expander IsExpanded="False" BorderBrush="Black" BorderThickness="1">
-                                                    <Expander.Header>
-                                                        <TextBlock FontWeight="Bold" FontSize="24" Text="{Binding Name}" Margin="5,0,0,0" HorizontalAlignment="Left"/>
-                                                    </Expander.Header>
-                                                    <Expander.Content>
-                                                        <ItemsPresenter />
-                                                    </Expander.Content>
-                                                </Expander>
-                                            </ControlTemplate>
-                                        </Setter.Value>
-                                    </Setter>
-                                </Style>
-                            </GroupStyle.ContainerStyle>
-                        </GroupStyle>
-                        <!-- Style for groups under the top level. -->
-                        <GroupStyle>
-                            <GroupStyle.HeaderTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Name}" FontSize="20" Margin="5, 10" FontWeight="Bold" HorizontalAlignment="Left"/>
-                                </DataTemplate>
-                            </GroupStyle.HeaderTemplate>
-                        </GroupStyle>
-                    </DataGrid.GroupStyle>
+                <Button Click="DetaljiUplata_Click"
+                        Margin="10">
+                    <StackPanel Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                        <materialDesign:PackIcon Kind="Details" Foreground="White" Margin="10, 0"/>
+                        <TextBlock Text="Detalji uplata" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                
+                <Button Click="ExportUExcel_Click"
+                        Margin="10">
+                    <StackPanel Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                        <materialDesign:PackIcon Kind="Export" Foreground="White" Margin="10, 0"/>
+                        <TextBlock Text="Export u Excel" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            <!--#endregion-->
 
-                </DataGrid>
-            </ScrollViewer>
+            <!--#region DataGrid u ScrollVieweru-->
+                <ScrollViewer Grid.Row="2"
+                              Margin="10">
+                    <DataGrid AutoGenerateColumns="False"
+                              Margin="10"
+                              SelectionMode="Single"
+                              CanUserAddRows="False"
+                              IsReadOnly="True"
+                              Name="MyDataGrid">
 
-            
+                        <!--#region Kolone DataGrida-->
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Artikal}"
+                                            Header="Naziv troska"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                            <DataGridTextColumn Binding="{Binding Kolicina}"
+                                            Header="Kolicina"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                            <DataGridTextColumn Binding="{Binding Cena}"
+                                            Header="Cena komada"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                            <DataGridTextColumn Binding="{Binding UkupnaCena}"
+                                            Header="Ukupna cena"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                        </DataGrid.Columns>
+                        <!--#endregion-->
+                        
+                        <!--#region GroupStyle ovo je vazno za grupisanje-->
+
+                        <DataGrid.GroupStyle>
+                            <!-- Style for groups at top level. -->
+                            <GroupStyle>
+                                <GroupStyle.ContainerStyle>
+                                    <Style TargetType="{x:Type GroupItem}">
+                                        <Setter Property="Margin" Value="0,0,0,5"/>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type GroupItem}">
+                                                    <Expander IsExpanded="False" BorderBrush="Black" BorderThickness="1">
+                                                        <Expander.Header>
+                                                            <TextBlock FontWeight="Bold" FontSize="24" Text="{Binding Name}" Margin="5,0,0,0" HorizontalAlignment="Left"/>
+                                                        </Expander.Header>
+                                                        <Expander.Content>
+                                                            <ItemsPresenter />
+                                                        </Expander.Content>
+                                                    </Expander>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </GroupStyle.ContainerStyle>
+                            </GroupStyle>
+                            <!-- Style for groups under the top level. -->
+                            <GroupStyle>
+                                <GroupStyle.HeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" FontSize="20" Margin="5, 10" FontWeight="Bold" HorizontalAlignment="Left"/>
+                                    </DataTemplate>
+                                </GroupStyle.HeaderTemplate>
+                            </GroupStyle>
+                        </DataGrid.GroupStyle>
+                        
+                        <!--#endregion-->
+
+                        <!--#region Resavanje problema sa scrolovanjem-->
+                        <!--Imao sam neki problem sa scrolovanjem, kad je mis preko nekog itema i scroluje ne desava se nista, ovo to resava-->
+                        <DataGrid.Template>
+                            <ControlTemplate>
+                                <ItemsPresenter/>
+                            </ControlTemplate>
+                        </DataGrid.Template>
+                        <!--#endregion-->
+
+                    </DataGrid>
+                </ScrollViewer>
+            <!--#endregion-->
+
+
         </Grid>
-    </Grid>
+        
+        <!--#endregion-->
+    </materialDesign:DrawerHost>
 </Page>
