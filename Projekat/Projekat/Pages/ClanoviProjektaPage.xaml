@@ -45,7 +45,7 @@
                               Name="lvSviKorisnici"
                               MouseLeftButtonUp="PrebaciUDruguListu_Click"
                               Tag="1"
-                              Height="570">
+                              VerticalAlignment="Stretch">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">

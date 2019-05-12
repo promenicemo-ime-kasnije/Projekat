@@ -39,8 +39,8 @@ namespace Projekat.Pages
 
         private void PrikaziTroskove_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Content = new TroskoviPage();
-            txtImeProjekta.Text = "Troškovi | " + Helper.GetTrenutniProjekat(this).NazivProjekta;
+            Frame.Content = new ZahteviPage();
+            txtImeProjekta.Text = "Zahtevi | " + Helper.GetTrenutniProjekat(this).NazivProjekta;
         }
 
         private void PrikaziTabelu_Click(object sender, RoutedEventArgs e)

@@ -59,7 +59,7 @@
                                             MouseLeftButtonUp="PrikaziDokumenta_Click"><materialDesign:PackIcon Kind="FileDocumentOutline" Margin="0 0 10 0"/> Dokumenta</TextBlock>
                         <TextBlock
                                             FontSize="20"
-                                            MouseLeftButtonUp="PrikaziTroskove_Click"><materialDesign:PackIcon Kind="EuroSymbol" Margin="0 0 10 0"/> Troškovi</TextBlock>
+                                            MouseLeftButtonUp="PrikaziTroskove_Click"><materialDesign:PackIcon Kind="NotificationClearAll" Margin="0 0 10 0"/> Zahtevi</TextBlock>
                         <TextBlock
                                             FontSize="20"
                                             MouseLeftButtonUp="PrikaziTabelu_Click"><materialDesign:PackIcon Kind="Table" Margin="0 0 10 0"/> Tabela</TextBlock>
