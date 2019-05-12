@@ -65,5 +65,25 @@ namespace Projekat.Pages
             collection.GroupDescriptions.Add(new PropertyGroupDescription("Podkategorija"));
             MyDataGrid.ItemsSource = collection;
         }
+
+        private void IzmeniTrosak_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void IzbrisiTrosak_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DodajTrosak_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ExportUExcel_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
