@@ -18,26 +18,22 @@
 
     <!--Prva kolona - Istorija/timeline-->
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <!--Podnaslov-->
-        <TextBlock Text="Istorija promena"
-                               HorizontalAlignment="Left"
-                               Margin="30, 10"
-                               FontSize="18"/>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
         <!--Lista promena-->
+        <materialDesign:Card Grid.Column="1"
+                             Margin="40 105 40 40"
+                             MaxHeight="800"
+                             Width="800">
         <ListView ItemsSource="{Binding Aktivnosti}"
-                  Margin="10"
-                  Grid.Row="1"
-                  Width="600">
+                  Width="800">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="5"
-                          Width="550">
+                          Width="750">
 
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -76,16 +72,93 @@
                                        Margin="5"/>
                             
                             <!--Naziv projekta-->
-                            <TextBlock Text="{Binding NazivProjekta}"
+                                <TextBlock Text="{Binding NazivProjekta}"
                                        Foreground="Blue"
                                        Grid.Column="1"
-                                       TextWrapping="Wrap"
-                                       Margin="5"
+                                       Margin="150 5 5 5"
                                        HorizontalAlignment="Left"/>
                         </Grid>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        </materialDesign:Card>
+        <StackPanel Grid.Column="0">
+            <TextBlock Text="Filteri pretrage"
+                       FontSize="18"
+                       Margin="40 30 10 0"
+                       FontWeight="DemiBold"/>
+            <TextBlock Text="Član"
+                       FontSize="15"
+                       Margin="40 30 30 0"/>
+            <Separator Margin="40 3 20 0"/>
+            <CheckBox  Style="{StaticResource MaterialDesignCheckBox}"
+                       Margin="45 10 30 0">
+                Armin Bronja
+            </CheckBox>
+            <CheckBox  Style="{StaticResource MaterialDesignCheckBox}"
+                       Margin="45 7 30 0">
+                Samed Bejtović
+            </CheckBox>
+            <CheckBox  Style="{StaticResource MaterialDesignCheckBox}"
+                       Margin="45 7 30 0">
+                Ahmet Halilović
+            </CheckBox>
+            <TextBlock Text="Vrsta aktivnosti"
+                       FontSize="15"
+                       Margin="40 30 30 0"/>
+            <Separator Margin="40 3 20 0"/>
+            <ComboBox materialDesign:HintAssist.Hint="Odaberi vrstu aktivnosti"
+                      MinWidth="72"
+                      Margin="45 15 30 10"
+                      VerticalAlignment="Bottom"
+                      IsEditable="True"
+                      ItemsSource="{Binding LongListToTestComboVirtualization}">
+
+                <ComboBox.Text>
+                    <Binding
+                                Path="SelectedTextTwo"
+                                Mode="TwoWay"
+                                UpdateSourceTrigger="PropertyChanged">
+                    </Binding>
+                </ComboBox.Text>
+                <ComboBoxItem>Dodavanje dokumenta</ComboBoxItem>
+                <ComboBoxItem>Prilaganje zahteva</ComboBoxItem>
+                <ComboBoxItem>Upravljanje clanovima</ComboBoxItem>
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
+            <TextBlock Text="Datum"
+                       FontSize="15"
+                       Margin="40 30 30 0"/>
+            <Separator Margin="40 3 20 0"/>
+            <DatePicker Margin="45 7 30 0"
+                        materialDesign:HintAssist.Hint="Početni datum"
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+            <DatePicker Margin="45 7 30 0"
+                        materialDesign:HintAssist.Hint="Krajnji datum"
+                        Style="{StaticResource MaterialDesignFloatingHintDatePicker}"/>
+            
+            <StackPanel Orientation="Horizontal"
+                        Margin="40 40 20 0">
+                
+                <Button Width="175">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="CheckOutline" />
+                        <TextBlock Text=" Primeni filtere"/>
+                    </StackPanel>
+                </Button>
+                <Button Margin="20 0 0 0" Width="140" Padding="-10">
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="FilterRemoveOutline" />
+                        <TextBlock Text=" Obriši sve filtere"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+            
+        </StackPanel>
     </Grid>
 </Page>

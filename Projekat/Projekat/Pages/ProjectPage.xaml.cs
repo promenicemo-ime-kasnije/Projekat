@@ -21,6 +21,7 @@ namespace Projekat.Pages
 
         private void ProjectPage_Loaded(object sender, RoutedEventArgs e)
         {
+            txtImeProjekta.Text = "";
             //txtImeProjekta.Text = "Projekat: " + Helper.GetTrenutniProjekat(this).NazivProjekta;
         }
 
@@ -33,21 +34,25 @@ namespace Projekat.Pages
         {
             int projectID = (this.Parent as MainWindow).TrenutniProjekat.IDProjekta;
             Frame.Content = new DokumentaPage(projectID);
+            txtImeProjekta.Text = "Dokumenta | " + Helper.GetTrenutniProjekat(this).NazivProjekta;
         }
 
         private void PrikaziTroskove_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Content = new TroskoviPage();
+            Frame.Content = new ZahteviPage();
+            txtImeProjekta.Text = "Zahtevi | " + Helper.GetTrenutniProjekat(this).NazivProjekta;
         }
 
         private void PrikaziTabelu_Click(object sender, RoutedEventArgs e)
         {
             Frame.Content = new TabelaPage();
+            txtImeProjekta.Text = "Tabela | " + Helper.GetTrenutniProjekat(this).NazivProjekta;
         }
 
         private void PrikaziTimeline_Click(object sender, RoutedEventArgs e)
         {
             Frame.Content = new TimelinePage(false);
+            txtImeProjekta.Text = "Zapisnik aktivnosti | " + Helper.GetTrenutniProjekat(this).NazivProjekta;
         }
 
         private void ComingSoon_Click(object sender, RoutedEventArgs e)
@@ -58,6 +63,7 @@ namespace Projekat.Pages
         private void ClanoviProjekta_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Frame.Content = new ClanoviProjektaPage();
+            txtImeProjekta.Text = "Članovi projekta | " + Helper.GetTrenutniProjekat(this).NazivProjekta;
         }
     }
 }

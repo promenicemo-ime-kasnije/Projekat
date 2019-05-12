@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Projekat.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="900" d:DesignWidth="1600"
       Title="ClanoviProjektaPage"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -16,46 +16,36 @@
       Background="{DynamicResource MaterialDesignPaper}"
       FontFamily="{DynamicResource MaterialDesignFont}">
 
-    <Grid>
+    <Grid Margin="20">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>     <!--Liste-->
-            <RowDefinition Height="Auto"/>  <!--Buttoni-->
+            <RowDefinition Height="7*"/>     <!--Liste-->
+            <RowDefinition Height="4*"/>  <!--Buttoni-->
         </Grid.RowDefinitions>
         
         <!--Liste-->
-        <Grid Grid.Row="0"
-              HorizontalAlignment="Center"
-              Margin="10, 20">
-            
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" MinWidth="400"/>
-                <ColumnDefinition Width="Auto" MinWidth="400"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="11*"/>
             </Grid.ColumnDefinitions>
 
-            
             <!--Lista svih korisnika koji nisu aktivni na projektu-->
-            <TextBlock Text="Svi korisnici"
-                       HorizontalAlignment="Center"/>
-
             <Border BorderBrush="Black" 
                     BorderThickness="1"
                     Grid.Row="1"
-                    Margin="5, 20">
+                    VerticalAlignment="Stretch">
                 <StackPanel>
                     <TextBox Name="tbSearch1"
                              FontSize="15"
                              Margin="10"
-                             materialDesign:HintAssist.Hint="Pretraga"
+                             materialDesign:HintAssist.Hint="Pretraga članova van projekta"
                              TextChanged="TbSearch1_TextChanged"/>
-                    <ListView ItemsSource="{Binding SviKorisnici}" 
+                    <ListView ItemsSource="{Binding SviKorisnici}"
                               Name="lvSviKorisnici"
                               MouseLeftButtonUp="PrebaciUDruguListu_Click"
-                              Tag="1">
+                              Tag="1"
+                              VerticalAlignment="Stretch">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
@@ -83,20 +73,15 @@
             
             
             <!--Lista korisnika koji su aktivni na projektu-->
-            <TextBlock Text="Korisnici koji rade na ovom projektu" 
-                       Grid.Column="1"
-                       HorizontalAlignment="Center"/>
-
             <Border BorderBrush="Black"
-                    BorderThickness="1"
+                    BorderThickness="0 1 1 1"
                     Grid.Row="1"
-                    Grid.Column="1"
-                    Margin="5, 20">
+                    Grid.Column="1">
                 <StackPanel>
                     <TextBox Name="tbSearch2"
                              FontSize="15"
                              Margin="10"
-                             materialDesign:HintAssist.Hint="Pretraga"
+                             materialDesign:HintAssist.Hint="Pretraga članova koji učestvuju u projektu"
                              TextChanged="TbSearch2_TextChanged"/>
                     <ListView ItemsSource="{Binding KorisniciKojiRadeNaProjektu}" 
                               Name="lvKorisniciKojiRadeNaProjektu"
@@ -130,15 +115,33 @@
         </Grid>
         
         <!--Buttoni-->
-        <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Center"
-                    Grid.Row="1">
-            <Button Content="Zapamti izmene"
-                    Margin="20"
-                    Click="ZapamtiIzmene_Click"/>
-            <Button Content="Idi na projekat"
-                    Margin="20"
-                    Click="OtvoriProjectPage_Click"/>
-        </StackPanel>
+
+        <Border Grid.Row="1"
+                BorderThickness="1 0 1 1"
+                BorderBrush="Black"
+                VerticalAlignment="Stretch"
+                Height="280">
+            <Grid>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel>
+                        <materialDesign:PackIcon Kind="Account" Width="150" Height="150" Margin="132 20 132 0"/>
+                        <Button Content="Zapamti izmene"
+                                Margin="10 0 10 0"
+                                Click="ZapamtiIzmene_Click"/>
+                        <Button Content="Idi na projekat"
+                                Margin="20 10 20 10"
+                                Click="OtvoriProjectPage_Click"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBox materialDesign:HintAssist.Hint="Ime i prezime"  FontSize="18" Width="300" Margin="80 20 20 0"/>
+                        <TextBox materialDesign:HintAssist.Hint="Adresa"  FontSize="18" Width="300" Margin="80 20 20 0"/>
+                        <TextBox materialDesign:HintAssist.Hint="Firma"  FontSize="18" Width="300" Margin="80 20 20 0"/>
+                        <TextBox materialDesign:HintAssist.Hint="Kontakt tel"  FontSize="18" Width="300" Margin="80 20 20 0"/>
+                        <TextBox materialDesign:HintAssist.Hint="Broj telefona"  FontSize="18" Width="300" Margin="80 20 20 0"/>
+                    </StackPanel>
+                </StackPanel>
+            
+            </Grid>
+        </Border>
     </Grid>
 </Page>

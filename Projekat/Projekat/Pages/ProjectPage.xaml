@@ -16,75 +16,79 @@
 
     <Grid>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-
-        <Grid>
-            <!-- Ovde da se napravi da svaka ova opcija ima svoju ikonicu-->
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-
-                <Menu VerticalAlignment="Center"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Menu     VerticalAlignment="Center"
                       FontSize="14"
                       Height="30">
-                    <MenuItem Header="Projekat"
+            <MenuItem Header="Projekat"
                               Height="30">
-                        <MenuItem Header="Uredi postavke projekta"
+                <MenuItem Header="Uredi postavke projekta"
                                   FontWeight="Regular"
                                   Click="ComingSoon_Click"/>
-                        <MenuItem Header="Zatvori projekat"
+                <MenuItem Header="Zatvori projekat"
                                   FontWeight="Regular"
                                   Click="Nazad_Click"/>
-                    </MenuItem>
-                    <MenuItem Header="Uredi"
+            </MenuItem>
+            <MenuItem Header="Uredi"
                               Height="30"
                               Click="ComingSoon_Click"/>
-                </Menu>
+        </Menu>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-                <Grid Grid.Row="1">
-                    <!-- Ovde da se napravi da svaka ova opcija ima svoju ikonicu-->
-                    <StackPanel>
-                        <StackPanel Orientation="Horizontal" Background="#FF008BFF">
-                            <TextBlock Height="40" ><materialDesign:PackIcon Kind="Details" Height="40" Width="30" Margin="10 0 0 0" Foreground="White"/></TextBlock>
-                            <TextBlock FontSize="18" Margin="10" Foreground="White">Navigacija</TextBlock>
-                        </StackPanel>
-                        <ListBox HorizontalContentAlignment="Stretch" BorderThickness="0"
+            <Grid Grid.Row="1">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Background="#FF008BFF">
+                        <TextBlock Height="40" ><materialDesign:PackIcon Kind="Details" Height="40" Width="30" Margin="10 0 0 0" Foreground="White"/></TextBlock>
+                        <TextBlock FontSize="18" Margin="10" Foreground="White">Navigacija</TextBlock>
+                    </StackPanel>
+                    <ListBox HorizontalContentAlignment="Stretch" BorderThickness="0"
                                      Grid.Column="0"
                                      Height="2000"
                                      Background="#ededed"
                                      Grid.Row="1"
                                      Padding="10">
-                            <TextBlock
+                        <TextBlock
                                             FontSize="20"
                                             MouseLeftButtonUp="PrikaziDokumenta_Click"><materialDesign:PackIcon Kind="FileDocumentOutline" Margin="0 0 10 0"/> Dokumenta</TextBlock>
-                            <TextBlock
+                        <TextBlock
                                             FontSize="20"
-                                            MouseLeftButtonUp="PrikaziTroskove_Click"><materialDesign:PackIcon Kind="EuroSymbol" Margin="0 0 10 0"/> Troškovi</TextBlock>
-                            <TextBlock
+                                            MouseLeftButtonUp="PrikaziTroskove_Click"><materialDesign:PackIcon Kind="NotificationClearAll" Margin="0 0 10 0"/> Zahtevi</TextBlock>
+                        <TextBlock
                                             FontSize="20"
                                             MouseLeftButtonUp="PrikaziTabelu_Click"><materialDesign:PackIcon Kind="Table" Margin="0 0 10 0"/> Tabela</TextBlock>
-                            <TextBlock
+                        <TextBlock
                                             FontSize="20"
-                                            MouseLeftButtonUp="PrikaziTimeline_Click"><materialDesign:PackIcon Kind="TimelineTextOutline" Margin="0 0 10 0"/> Timeline</TextBlock>
-                            <Separator/>
-                            <TextBlock
+                                            MouseLeftButtonUp="PrikaziTimeline_Click"><materialDesign:PackIcon Kind="TimelineTextOutline" Margin="0 0 10 0"/> Zapisnik aktivnosti</TextBlock>
+                        <Separator/>
+                        <TextBlock
                                             FontSize="20"
                                             MouseLeftButtonUp="ClanoviProjekta_Click"><materialDesign:PackIcon Kind="AccountSupervisor" Margin="0 0 10 0"/> Članovi projekta</TextBlock>
-                            <TextBlock
+                        <TextBlock
                                             FontSize="20"
                                             MouseLeftButtonUp="ComingSoon_Click"><materialDesign:PackIcon Kind="SettingsOutline" Margin="0 0 10 0"/> Settings</TextBlock>
-                        </ListBox>
-                    </StackPanel>
-                </Grid>
-
+                    </ListBox>
+                </StackPanel>
+            </Grid>
+            <StackPanel Grid.Column="1">
+                <TextBlock Name="txtImeProjekta"
+                           Margin="50 6 50 0"
+                           FontFamily="NewsGoth Cn BT Regular"
+                           Text="Dokumentacija | *ime projekta*"
+                           FontSize="25"/>
+                <Separator Grid.Column="1" Margin="15 5 15 2"/>
+                <Frame 
+                    Grid.Column="1"
+                    Name="Frame"
+                    NavigationUIVisibility="Hidden"/>
+            </StackPanel>
         </Grid>
-        <Frame Grid.Column="1"
-               Grid.Row="1"
-               Name="Frame"
-               NavigationUIVisibility="Hidden"/>
     </Grid>
+
 </Page>

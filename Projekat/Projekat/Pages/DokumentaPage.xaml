@@ -94,7 +94,8 @@
                 <DataGridCheckBoxColumn Binding="{Binding StatusDokumenta}"
                                         ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
                                         EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}"
-                                        Header="Status"/>
+                                        Header="Status">
+                </DataGridCheckBoxColumn>
 
                 <materialDesign:MaterialDataGridTextColumn Binding="{Binding Naziv}"
                                                            Header="Naziv dokumenta"

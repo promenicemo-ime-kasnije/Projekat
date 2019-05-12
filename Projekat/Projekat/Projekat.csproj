@@ -87,6 +87,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Pages\ZahteviPage.xaml.cs">
+      <DependentUpon>ZahteviPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pomocne klase\Helper.cs" />
     <Compile Include="Pomocne klase\ProgressWindow.xaml.cs">
       <DependentUpon>ProgressWindow.xaml</DependentUpon>
@@ -142,6 +145,10 @@
     </Compile>
     <Compile Include="ValueConverters\ObjectToColor.cs" />
     <Compile Include="ValueConverters\BoolToPackIconKind.cs" />
+    <Page Include="Pages\ZahteviPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pomocne klase\ProgressWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
