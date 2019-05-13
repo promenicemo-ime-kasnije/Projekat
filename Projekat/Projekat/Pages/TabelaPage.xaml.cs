@@ -1,5 +1,6 @@
 ﻿using ClassLibrary;
 using ClassLibrary.DataProvider;
+using Microsoft.Win32;
 using Projekat.Pomocne_klase;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,9 @@ namespace Projekat.Pages
     /// </summary>
     public partial class TabelaPage : Page
     {
+        private int idProjekta;
+        private List<Trosak> listaTroskova;
+
         public TabelaPage()
         {
             InitializeComponent();
@@ -37,11 +41,11 @@ namespace Projekat.Pages
 
         private async Task UcitajTroskove()
         {
-            var idProjekta = Helper.GetTrenutniProjekat(this).IDProjekta;
-            var lista = await new EFCoreDataProvider().GetTroskoveProjektaAsync(idProjekta) as List<Trosak>;
+            idProjekta = Helper.GetTrenutniProjekat(this).IDProjekta;
+            listaTroskova = await new EFCoreDataProvider().GetTroskoveProjektaAsync(idProjekta) as List<Trosak>;
 
             // Za grupisanje u datagridu itemssource se veze za ListCollectionView
-            ListCollectionView collection = new ListCollectionView(lista);
+            ListCollectionView collection = new ListCollectionView(listaTroskova);
 
             //Na osnovu cega se vrsi grupisanje
             collection.GroupDescriptions.Add(new PropertyGroupDescription("Kategorija"));
@@ -72,11 +76,11 @@ namespace Projekat.Pages
             }
             else 
             {
-                // Brise se selektovani trosak
                 var trosak = MyDataGrid.SelectedItem as Trosak;
 
                 if (MessageBox.Show($"Da li ste sigurni da zelite da izbrisete {trosak.Artikal} iz kategorije {trosak.Kategorija}/{trosak.Podkategorija}?", "Brisanje", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
                 {
+                    // Brise se selektovani trosak
                     await new EFCoreDataProvider().DeleteTrosak(trosak);
                     //Azuriraj tabelu
                     await UcitajTroskove();
@@ -84,9 +88,31 @@ namespace Projekat.Pages
             }
         }
 
-        private void ExportUExcel_Click(object sender, RoutedEventArgs e)
+        private async void ExportUExcel_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Export svih troskova u excel tabelu");
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            saveFileDialog1.DefaultExt = "xlsx";
+            saveFileDialog1.Filter = "Excel file (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+            saveFileDialog1.FilterIndex = 0;
+
+            if (saveFileDialog1.ShowDialog() == true)
+            {
+                GeneralniTrosak generalniTrosak = (await new EFCoreDataProvider().GetGeneralniTrosakAsync(idProjekta))[0];
+                string[] procenti = generalniTrosak.Procenti.Split(',');
+
+                new ExcelExport(saveFileDialog1.FileName, listaTroskova, NizStringovaUNizBrojeva(procenti)).Exportuj();
+            }
+        }
+
+        private double[] NizStringovaUNizBrojeva(string[] procenti)
+        {
+            double[] temp = new double[procenti.Length];
+            for (int i = 0; i < procenti.Length; i++)
+            {
+                temp[i] = Double.Parse(procenti[i]);
+            }
+            return temp;
         }
 
         private void DetaljiUplata_Click(object sender, RoutedEventArgs e)
