@@ -42,93 +42,115 @@
         </materialDesign:DrawerHost.RightDrawerContent>
         <!--#region Content DrawerHost-a-->
         
-        <Grid>
+        <Grid Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="0"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!--Naslov, ovo moze i da se izbaci-->
-            <TextBlock HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       Text="Tabela"
-                       FontSize="30"/>
-
             <!--#region Buttoni-->
-            <StackPanel Grid.Row="1"
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Budzet projekta" Margin="30 20 100 0"/>
+                        <TextBlock Text="Broj rata" Margin="0 20 20 0"/>
+                        <TextBlock Text="1. Rata" Margin="0 20 60 0"/>
+                        <TextBlock Text="2. Rata" Margin="0 20 60 0"/>
+                        <TextBlock Text="3. Rata" Margin="0 20 60 0"/>
+                        <TextBlock Text="4. Rata" Margin="0 20 60 0"/>
+                        <TextBlock Text="5. Rata" Margin="0 20 60 0"/>
+                    </StackPanel>
+                    <Separator Style="{StaticResource MaterialDesignDarkSeparator}" Margin="20 -6 20 0"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="15'500'000 DIN" Margin="30 0 100 0" Foreground="Gray"/>
+                        <TextBlock Text="5" Margin="25 0 20 0" Foreground="Gray"/>
+                        <TextBlock Text="3'100'000" Margin="19 0 45 0" Foreground="Gray"/>
+                        <TextBlock Text="3'100'000" Margin="0 0 45 0" Foreground="Gray"/>
+                        <TextBlock Text="3'100'000" Margin="0 0 45 0" Foreground="Gray"/>
+                        <TextBlock Text="3'100'000" Margin="0 0 45 0" Foreground="Gray"/>
+                        <TextBlock Text="3'100'000" Margin="0 0 45 0" Foreground="Gray"/>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Grid.Column="1"
                         Margin="20, 0"
                         HorizontalAlignment="Right"
                         Orientation="Horizontal">
 
-                <Button Click="DodajTrosak_Click"
+                    <Button Click="DodajTrosak_Click"
                         Margin="10"
                         Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
                         CommandParameter="{x:Static Dock.Right}">
-                    <StackPanel Orientation="Horizontal"
+                        <StackPanel Orientation="Horizontal"
                                 VerticalAlignment="Center">
-                        <materialDesign:PackIcon Kind="Add" Foreground="White" Margin="10, 0"/>
-                        <TextBlock Text="Dodaj" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </Button>
+                            <materialDesign:PackIcon Kind="Add" Foreground="White" Margin="-3, 0, 5, 0"/>
+                            <TextBlock Text="Dodaj" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
 
-                <Button Click="IzmeniTrosak_Click"
+                    <Button Click="IzmeniTrosak_Click"
                         Margin="10"
                         Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
                         CommandParameter="{x:Static Dock.Right}">
-                    <StackPanel Orientation="Horizontal"
+                        <StackPanel Orientation="Horizontal"
                                 VerticalAlignment="Center">
-                        <materialDesign:PackIcon Kind="Edit" Foreground="White" Margin="10, 0"/>
-                        <TextBlock Text="Izmeni" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </Button>
+                            <materialDesign:PackIcon Kind="Edit" Foreground="White" Margin="-3, 0, 5, 0"/>
+                            <TextBlock Text="Izmeni" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
 
-                <Button Click="IzbrisiTrosak_Click"
+                    <Button Click="IzbrisiTrosak_Click"
                         Margin="10">
-                    <StackPanel Orientation="Horizontal"
+                        <StackPanel Orientation="Horizontal"
                                 VerticalAlignment="Center">
-                        <materialDesign:PackIcon Kind="Delete" Foreground="White" Margin="10, 0"/>
-                        <TextBlock Text="Izbrisi" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </Button>
+                            <materialDesign:PackIcon Kind="Delete" Foreground="White" Margin="-3, 0, 5, 0"/>
+                            <TextBlock Text="Izbrisi" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
 
-                <Button Click="DetaljiUplata_Click"
+                    <Button Click="DetaljiUplata_Click"
                         Margin="10">
-                    <StackPanel Orientation="Horizontal"
+                        <StackPanel Orientation="Horizontal"
                                 VerticalAlignment="Center">
-                        <materialDesign:PackIcon Kind="Details" Foreground="White" Margin="10, 0"/>
-                        <TextBlock Text="Detalji uplata" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </Button>
-                
-                <Button Click="ExportUExcel_Click"
+                            <materialDesign:PackIcon Kind="Details" Foreground="White" Margin="-3, 0, 5, 0"/>
+                            <TextBlock Text="Detalji uplata" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button Click="ExportUExcel_Click"
                         Margin="10">
-                    <StackPanel Orientation="Horizontal"
+                        <StackPanel Orientation="Horizontal"
                                 VerticalAlignment="Center">
-                        <materialDesign:PackIcon Kind="Export" Foreground="White" Margin="10, 0"/>
-                        <TextBlock Text="Export u Excel" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </Button>
-            </StackPanel>
+                            <materialDesign:PackIcon Kind="Export" Foreground="White" Margin="-3, 0, 5, 0"/>
+                            <TextBlock Text="Export u Excel" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+            
             <!--#endregion-->
 
             <!--#region DataGrid u ScrollVieweru-->
                 <ScrollViewer Grid.Row="2"
-                              Margin="10">
+                              Margin="10 20 10 10">
                     <DataGrid AutoGenerateColumns="False"
                               Margin="10"
                               SelectionMode="Single"
                               CanUserAddRows="False"
                               IsReadOnly="True"
                               Name="MyDataGrid">
-
-                        <!--#region Kolone DataGrida-->
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding Artikal}"
-                                            Header="Naziv troska"
+                    
+                    <!--#region Kolone DataGrida-->
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Artikal}"
+                                            Header="Naziv troška"
                                             EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
                             <DataGridTextColumn Binding="{Binding Kolicina}"
-                                            Header="Kolicina"
+                                            Header="Količina"
                                             EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
                             <DataGridTextColumn Binding="{Binding Cena}"
                                             Header="Cena komada"
@@ -150,9 +172,9 @@
                                         <Setter Property="Template">
                                             <Setter.Value>
                                                 <ControlTemplate TargetType="{x:Type GroupItem}">
-                                                    <Expander IsExpanded="False" BorderBrush="Black" BorderThickness="1">
+                                                    <Expander IsExpanded="False" BorderBrush="LightGray" BorderThickness="0 0 0 1">
                                                         <Expander.Header>
-                                                            <TextBlock FontWeight="Bold" FontSize="24" Text="{Binding Name}" Margin="5,0,0,0" HorizontalAlignment="Left"/>
+                                                            <TextBlock FontWeight="Bold" FontSize="24" Text="{Binding Name}" Margin="-8,0,0,0" HorizontalAlignment="Left"/>
                                                         </Expander.Header>
                                                         <Expander.Content>
                                                             <ItemsPresenter />
@@ -178,11 +200,13 @@
 
                         <!--#region Resavanje problema sa scrolovanjem-->
                         <!--Imao sam neki problem sa scrolovanjem, kad je mis preko nekog itema i scroluje ne desava se nista, ovo to resava-->
+                        <!--
                         <DataGrid.Template>
                             <ControlTemplate>
                                 <ItemsPresenter/>
                             </ControlTemplate>
                         </DataGrid.Template>
+                        -->
                         <!--#endregion-->
 
                     </DataGrid>
