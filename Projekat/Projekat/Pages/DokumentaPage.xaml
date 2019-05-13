@@ -95,9 +95,9 @@
                                         ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
                                         EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}"
                                         Header="Status">
+                  
                 </DataGridCheckBoxColumn>
-
-                <materialDesign:MaterialDataGridTextColumn Binding="{Binding Naziv}"
+                <!--<materialDesign:MaterialDataGridTextColumn Binding="{Binding Naziv}"
                                                            Header="Naziv dokumenta"
                                                            MaxLength="255"
                                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" 
@@ -108,6 +108,18 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </materialDesign:MaterialDataGridTextColumn>
+                -->
+                <DataGridTemplateColumn Header="Naziv dokumenta" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Expander Header="{Binding Naziv}" FontWeight="Bold" Background="White" Margin="-22 -8 -8 -8">
+                                <TextBlock TextWrapping="Wrap" FontWeight="Normal" Margin="22 0 0 15">
+                                    Jebo te krec kaljavi Jebo te krec kaljavi Jebo te krec kaljavi Jebo te krec kaljavi Jebo te krec kaljavi
+                                </TextBlock>
+                            </Expander>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
                 <materialDesign:MaterialDataGridTextColumn Binding="{Binding Datum}"
                                                            Header="Datum pocetka/kraja"
