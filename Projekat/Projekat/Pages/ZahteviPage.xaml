@@ -40,14 +40,16 @@
                          materialDesign:HintAssist.Hint="Pretraga zahteva"/>
             <StackPanel Orientation="Horizontal">
                 <materialDesign:Card Margin="30">
-                    <Grid Height="300" Width="200">
+                    <Grid Height="350" Width="250">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="9*"/>
                             <RowDefinition Height="2*"/>
                         </Grid.RowDefinitions>
-                        <TextBlock Text="Termoizolacija" FontSize="15" Margin="10 5" FontWeight="DemiBold"/>
-                        <TextBlock Grid.Row="1" FontSize="14" Margin="5 5" TextWrapping="Wrap">
+                        <TextBlock Text="Zahtev od:            Ahmet Halilović" FontSize="15" Margin="10 10 10 5" FontWeight="DemiBold"/>
+                        <TextBlock Grid.Row="1" FontSize="14" Margin="10 10 10 5" TextWrapping="Wrap">
+                            <Run Text="Termoizolacija" FontWeight="SemiBold"/>
+                            <LineBreak/>
                             <Run Text="10 kvadrata staklene vune"/>
                             <LineBreak/>
                             <Run Text="50 kanti lijepka za stiropor"/>
@@ -58,17 +60,214 @@
                         </TextBlock>
                         <Grid Grid.Row="2">
                             <StackPanel>
-                            <Separator Margin="5 0 5 0"/>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock FontSize="15" FontWeight="DemiBold" Margin="10 15 0 10">
-                                    Goran Marković
-                                </TextBlock>
-                                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="35 5 0 0"
-                                        IsHitTestVisible="False">
-                                    <materialDesign:PackIcon Kind="Check" />
-                                </Button>
+                                <Separator Style="{StaticResource MaterialDesignDarkSeparator}"
+                                           Margin="8 -5 8 -5" />
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel>
+                                        <TextBlock FontSize="15" FontWeight="DemiBold" Margin="20 8 0 0">
+                                             čeka potvrdu
+                                        </TextBlock>
+                                        <TextBlock FontSize="15" FontWeight="Light" Margin="20 0 0 0">
+                                            11.5.2019. 15:45h
+                                        </TextBlock>
+                                    </StackPanel>
+                                    <Button Grid.Column="1" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="0 5 0 0" 
+                                        IsHitTestVisible="False" Background="#ff8d14" BorderBrush="#ff8d14">
+                                        
+                                        <materialDesign:PackIcon Kind="TimerSandEmpty" />
+                                    </Button>
+                                </Grid>
                             </StackPanel>
-                        </StackPanel>
+                        </Grid>
+                    </Grid>
+                </materialDesign:Card>
+                <materialDesign:Card Margin="10 30 20 30">
+                    <Grid Height="350" Width="250">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="9*"/>
+                            <RowDefinition Height="2*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Zahtev od:            Ahmet Halilović" FontSize="15" Margin="10 10 10 5" FontWeight="DemiBold"/>
+                        <TextBlock Grid.Row="1" FontSize="14" Margin="10 10 10 5" TextWrapping="Wrap">
+                            <Run Text="Termoizolacija" FontWeight="SemiBold"/>
+                            <LineBreak/>
+                            <Run Text="10 kvadrata staklene vune"/>
+                            <LineBreak/>
+                            <Run Text="50 kanti lijepka za stiropor"/>
+                            <LineBreak/>
+                            <Run Text="10 toplih sendvica :P"/>
+                            <LineBreak/>
+                            <Run Text="100 kvadrata stiropora"/>
+                        </TextBlock>
+                        <Grid Grid.Row="2">
+                            <StackPanel>
+                                <Separator Style="{StaticResource MaterialDesignDarkSeparator}"
+                                           Margin="8 -5 8 -5" />
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel>
+                                        <TextBlock FontSize="15" FontWeight="DemiBold" Margin="20 8 0 0">
+                                             čeka potvrdu
+                                        </TextBlock>
+                                        <TextBlock FontSize="15" FontWeight="Light" Margin="20 0 0 0">
+                                            11.5.2019. 15:45h
+                                        </TextBlock>
+                                    </StackPanel>
+                                    <Button Grid.Column="1" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="0 5 0 0" 
+                                        IsHitTestVisible="False" Background="#ff8d14" BorderBrush="#ff8d14">
+
+                                        <materialDesign:PackIcon Kind="TimerSandEmpty" />
+                                    </Button>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </materialDesign:Card>
+                <materialDesign:Card Margin="20 30 20 30">
+                    <Grid Height="350" Width="250">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="9*"/>
+                            <RowDefinition Height="2*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Zahtev od:            Ahmet Halilović" FontSize="15" Margin="10 10 10 5" FontWeight="DemiBold"/>
+                        <TextBlock Grid.Row="1" FontSize="14" Margin="10 10 10 5" TextWrapping="Wrap">
+                            <Run Text="Termoizolacija" FontWeight="SemiBold"/>
+                            <LineBreak/>
+                            <Run Text="10 kvadrata staklene vune"/>
+                            <LineBreak/>
+                            <Run Text="50 kanti lijepka za stiropor"/>
+                            <LineBreak/>
+                            <Run Text="10 toplih sendvica :P"/>
+                            <LineBreak/>
+                            <Run Text="100 kvadrata stiropora"/>
+                        </TextBlock>
+                        <Grid Grid.Row="2">
+                            <StackPanel>
+                                <Separator Style="{StaticResource MaterialDesignDarkSeparator}"
+                                           Margin="8 -5 8 -5" />
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel>
+                                        <TextBlock FontSize="15" FontWeight="DemiBold" Margin="20 8 0 0">
+                                             Goran Marković
+                                        </TextBlock>
+                                        <TextBlock FontSize="15" FontWeight="Light" Margin="20 0 0 0">
+                                            11.5.2019. 15:45h
+                                        </TextBlock>
+                                    </StackPanel>
+                                    <Button Grid.Column="1" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="0 5 0 0" 
+                                        IsHitTestVisible="False">
+
+                                        <materialDesign:PackIcon Kind="Check" />
+                                    </Button>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </materialDesign:Card>
+                <materialDesign:Card Margin="20 30 20 30">
+                    <Grid Height="350" Width="250">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="9*"/>
+                            <RowDefinition Height="2*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Zahtev od:            Ahmet Halilović" FontSize="15" Margin="10 10 10 5" FontWeight="DemiBold"/>
+                        <TextBlock Grid.Row="1" FontSize="14" Margin="10 10 10 5" TextWrapping="Wrap">
+                            <Run Text="Termoizolacija" FontWeight="SemiBold"/>
+                            <LineBreak/>
+                            <Run Text="10 kvadrata staklene vune"/>
+                            <LineBreak/>
+                            <Run Text="50 kanti lijepka za stiropor"/>
+                            <LineBreak/>
+                            <Run Text="10 toplih sendvica :P"/>
+                            <LineBreak/>
+                            <Run Text="100 kvadrata stiropora"/>
+                        </TextBlock>
+                        <Grid Grid.Row="2">
+                            <StackPanel>
+                                <Separator Style="{StaticResource MaterialDesignDarkSeparator}"
+                                           Margin="8 -5 8 -5" />
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel>
+                                        <TextBlock FontSize="15" FontWeight="DemiBold" Margin="20 8 0 0">
+                                             Goran Marković
+                                        </TextBlock>
+                                        <TextBlock FontSize="15" FontWeight="Light" Margin="20 0 0 0">
+                                            11.5.2019. 15:45h
+                                        </TextBlock>
+                                    </StackPanel>
+                                    <Button Grid.Column="1" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="0 5 0 0" 
+                                        IsHitTestVisible="False">
+
+                                        <materialDesign:PackIcon Kind="Check" />
+                                    </Button>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </materialDesign:Card>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:Card Margin="30 20 20 30">
+                    <Grid Height="350" Width="250">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="9*"/>
+                            <RowDefinition Height="2*"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Zahtev od:            Ahmet Halilović" FontSize="15" Margin="10 10 10 5" FontWeight="DemiBold"/>
+                        <TextBlock Grid.Row="1" FontSize="14" Margin="10 10 10 5" TextWrapping="Wrap">
+                            <Run Text="Termoizolacija" FontWeight="SemiBold"/>
+                            <LineBreak/>
+                            <Run Text="10 kvadrata staklene vune"/>
+                            <LineBreak/>
+                            <Run Text="50 kanti lijepka za stiropor"/>
+                            <LineBreak/>
+                            <Run Text="10 toplih sendvica :P"/>
+                            <LineBreak/>
+                            <Run Text="100 kvadrata stiropora"/>
+                        </TextBlock>
+                        <Grid Grid.Row="2">
+                            <StackPanel>
+                                <Separator Style="{StaticResource MaterialDesignDarkSeparator}"
+                                           Margin="8 -5 8 -5" />
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel>
+                                        <TextBlock FontSize="15" FontWeight="DemiBold" Margin="20 8 0 0">
+                                             Goran Marković
+                                        </TextBlock>
+                                        <TextBlock FontSize="15" FontWeight="Light" Margin="20 0 0 0">
+                                            11.5.2019. 15:45h
+                                        </TextBlock>
+                                    </StackPanel>
+                                    <Button Grid.Column="1" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Margin="0 5 0 0" 
+                                        IsHitTestVisible="False">
+
+                                        <materialDesign:PackIcon Kind="Check" />
+                                    </Button>
+                                </Grid>
+                            </StackPanel>
                         </Grid>
                     </Grid>
                 </materialDesign:Card>
@@ -123,16 +322,19 @@
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <materialDesign:ColorZone Mode="Accent"
-                                                  Padding="7">
+                                                  Padding="7"
+                                                  Background="#2196f3">
                             <StackPanel Orientation="Horizontal">
                                 <Button Style="{StaticResource MaterialDesignToolForegroundButton}"
                                         Command="{x:Static materialDesign:Flipper.FlipCommand}"
-                                        HorizontalAlignment="Left">
+                                        HorizontalAlignment="Left"
+                                        Foreground="White">
                                     <materialDesign:PackIcon Kind="ArrowLeft"
                                                              HorizontalAlignment="Right" />
                                 </Button>
                                 <TextBlock Margin="8 0 0 0"
-                                           VerticalAlignment="Center">
+                                           VerticalAlignment="Center"
+                                           Foreground="White">
                                 Nazad
                                 </TextBlock>
                             </StackPanel>
