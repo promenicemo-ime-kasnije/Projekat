@@ -108,7 +108,7 @@
                         <StackPanel Orientation="Horizontal"
                                 VerticalAlignment="Center">
                             <materialDesign:PackIcon Kind="Delete" Foreground="White" Margin="-3, 0, 5, 0"/>
-                            <TextBlock Text="Izbrisi" VerticalAlignment="Center"/>
+                            <TextBlock Text="Izbriši" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
 

@@ -120,7 +120,8 @@
                 BorderThickness="1 0 1 1"
                 BorderBrush="Black"
                 VerticalAlignment="Stretch"
-                Height="280">
+                Height="280"
+                Margin="0 -50 0 0">
             <Grid>
                 <StackPanel Orientation="Horizontal">
                     <StackPanel>

@@ -54,6 +54,7 @@
                                      Background="#ededed"
                                      Grid.Row="1"
                                      Padding="10">
+                        
                         <TextBlock
                                             FontSize="20"
                                             MouseLeftButtonUp="PrikaziDokumenta_Click"><materialDesign:PackIcon Kind="FileDocumentOutline" Margin="0 0 10 0"/> Dokumenta</TextBlock>
