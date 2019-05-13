@@ -21,6 +21,12 @@ namespace Projekat
         {
             InitializeComponent();
             Content = new LoginPage();
+            Loaded += MainWindow_Loaded;
+        }
+
+        private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            new ExcelExport("Text.xls", await new EFCoreDataProvider().GetTroskoveProjektaAsync(30) as List<Trosak>, new double[] { 20, 30, 5, 45 }).Exportuj(); ;
         }
 
         protected override void OnContentChanged(object oldContent, object newContent)
