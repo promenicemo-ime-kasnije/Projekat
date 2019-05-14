@@ -113,9 +113,38 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Expander Header="{Binding Naziv}" FontWeight="Bold" Background="White" Margin="-22 -8 -8 -8">
-                                <TextBlock TextWrapping="Wrap" FontWeight="Normal" Margin="22 0 0 15">
-                                    Jebo te krec kaljavi Jebo te krec kaljavi Jebo te krec kaljavi Jebo te krec kaljavi Jebo te krec kaljavi
-                                </TextBlock>
+                                <WrapPanel>
+                                    <!--#region Neki podaci koji se unose za dokument-->
+                                    
+                                    <!--Maksimalni indeks izgradjenosti-->
+                                    <TextBox Name="tbMaksimalniIndeksIzgradjenosti" 
+                                             materialDesign:HintAssist.Hint="Maksimalni indeks izgradjenosti"
+                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                             Margin="20"
+                                             Width="250"/>          
+                                    <!--Maksimalni indeks zauzetosti-->
+                                    <TextBox Name="tbMaksimalniIndeksZauzetosti" 
+                                             materialDesign:HintAssist.Hint="Maksimalni indeks zauzetosti"
+                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                             Margin="20"
+                                             Width="250"/>          
+                                    <!--Minimalni procenat zelenila-->
+                                    <TextBox Name="tbMinimalniProcenatZelenila"
+                                             materialDesign:HintAssist.Hint="Minimalni procenat zelenila"
+                                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                             Margin="20"
+                                             Width="250"/>
+                                    <!--Kategorija neka idk-->
+                                    <ComboBox materialDesign:HintAssist.Hint="Kategorija"
+                                              Margin="20"
+                                              Width="250">
+                                    <ComboBoxItem>Android</ComboBoxItem>
+                                        <ComboBoxItem>iOS</ComboBoxItem>
+                                        <ComboBoxItem>Linus</ComboBoxItem>
+                                        <ComboBoxItem>Windows</ComboBoxItem>
+                                    </ComboBox>
+                                    <!--#endregion-->
+                                </WrapPanel>
                             </Expander>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

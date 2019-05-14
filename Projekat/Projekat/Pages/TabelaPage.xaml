@@ -18,11 +18,34 @@
       FontFamily="{DynamicResource MaterialDesignFont}">
 
     <!--DrawerHost je kontrola koja omogucava da se otvara sa strane onaj popout?-->
-    
+
     <materialDesign:DrawerHost>
-        <materialDesign:DrawerHost.RightDrawerContent>
-            <!--#region RightDrawerContent-->
+        <materialDesign:DrawerHost.BottomDrawerContent>
+            <!--#region BottomDrawerContent-->
             <StackPanel>
+                <TextBox Name="tbProcenti"
+                         materialDesign:HintAssist.Hint="Uplate (u formatu w, x, y, z gde je w + x + y + z = 100)"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
+                         Margin="20"
+                         Width="500"/>
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            Margin="10">
+                    <Button Content="Sacuvaj"
+                            Click="SacuvajUplate_Click"
+                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                            Margin="10"/>
+                    <Button Content="Odbaci"
+                            Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
+                            Margin="10"/>
+                </StackPanel>
+            </StackPanel>
+            <!--#endregion-->
+        </materialDesign:DrawerHost.BottomDrawerContent>
+    <materialDesign:DrawerHost.RightDrawerContent>
+            <!--#region RightDrawerContent-->
+            <StackPanel HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
                 <usercontrols:DetaljiTroska x:Name="DetaljiTroska"
                                             Margin="10"/>
 
@@ -112,8 +135,10 @@
                         </StackPanel>
                     </Button>
 
-                    <Button Click="DetaljiUplata_Click"
-                        Margin="10">
+                    <Button Margin="10"
+                            Click="DetaljiUplata_Click"
+                            Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                            CommandParameter="{x:Static Dock.Bottom}">
                         <StackPanel Orientation="Horizontal"
                                 VerticalAlignment="Center">
                             <materialDesign:PackIcon Kind="Details" Foreground="White" Margin="-3, 0, 5, 0"/>

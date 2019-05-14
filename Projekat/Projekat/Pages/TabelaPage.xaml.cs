@@ -39,10 +39,21 @@ namespace Projekat.Pages
             await UcitajTroskove();
         }
 
+        private async Task UcitajProcente() // Ucitava procente u tbProcenti
+        {
+            var dataProvider = new EFCoreDataProvider();
+            idProjekta = Helper.GetTrenutniProjekat(this).IDProjekta;
+
+            // Ucitava i podatke u uplatama iz tabele generalniTrosak i pamti u tbProcenti
+            string uplate = (await dataProvider.GetGeneralniTrosakAsync(idProjekta))[0].Procenti;
+            tbProcenti.Text = uplate;
+        }
+
         private async Task UcitajTroskove()
         {
+            var dataProvider = new EFCoreDataProvider();
             idProjekta = Helper.GetTrenutniProjekat(this).IDProjekta;
-            listaTroskova = await new EFCoreDataProvider().GetTroskoveProjektaAsync(idProjekta) as List<Trosak>;
+            listaTroskova = await dataProvider.GetTroskoveProjektaAsync(idProjekta) as List<Trosak>;
 
             // Za grupisanje u datagridu itemssource se veze za ListCollectionView
             ListCollectionView collection = new ListCollectionView(listaTroskova);
@@ -63,9 +74,7 @@ namespace Projekat.Pages
             if (MyDataGrid.SelectedItem == null)
                 MessageBox.Show("Niste selektovali nijedan trosak!", "Greska", MessageBoxButton.OK, MessageBoxImage.Error);
             else
-            {
                 DetaljiTroska.Trosak = MyDataGrid.SelectedItem as Trosak;
-            }
         }
 
         private async void IzbrisiTrosak_Click(object sender, RoutedEventArgs e)
@@ -115,9 +124,9 @@ namespace Projekat.Pages
             return temp;
         }
 
-        private void DetaljiUplata_Click(object sender, RoutedEventArgs e)
+        private async void DetaljiUplata_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Ovde se postavlja broj uplata i koji procenat se uplacuje u kojoj uplati");
+            await UcitajProcente();
         }
 
         private async void Sacuvaj_Click(object sender, RoutedEventArgs e)
@@ -141,6 +150,32 @@ namespace Projekat.Pages
             }
             // Azuriraj tabelu
             await UcitajTroskove();
+        }
+
+        private async void SacuvajUplate_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var procenti = tbProcenti.Text.Split(',');
+                double[] nizBrojeva = NizStringovaUNizBrojeva(procenti);
+                if (nizBrojeva.Sum() == 100)
+                {
+                    var dataProvider = new EFCoreDataProvider();
+                    int idProjekta = Helper.GetTrenutniProjekat(this).IDProjekta;
+                    var stariTrosak = (await dataProvider.GetGeneralniTrosakAsync(idProjekta))[0];
+
+                    stariTrosak.BrojUplata = nizBrojeva.Count();
+                    stariTrosak.Procenti = string.Join(", ", nizBrojeva);
+
+                    await dataProvider.UpdateGeneralniTrosakAsync(stariTrosak);
+                }
+                else
+                    MessageBox.Show("Neispravno uneti procenti, svi procenti moraju biti brojevi i zbir im mora biti 100%!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }

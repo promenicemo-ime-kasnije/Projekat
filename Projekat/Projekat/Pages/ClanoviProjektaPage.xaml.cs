@@ -67,9 +67,9 @@ namespace Projekat.Pages
             mainWindow.Content = new ProjectPage();
         }
 
-        private void PrebaciUDruguListu_Click(object sender, MouseButtonEventArgs e)
+        private void PrebaciUDruguListu_Click(object sender, RoutedEventArgs e)
         {
-            var lv = sender as ListView;
+            var lv = GetListView(sender as DependencyObject) as ListView;
             var temp = lv.SelectedItem as Korisnik;
             if (temp == null)
                 return;
@@ -84,6 +84,14 @@ namespace Projekat.Pages
                 SviKorisnici.Add(temp);
                 KorisniciKojiRadeNaProjektu.Remove(temp);
             }
+        }
+
+        // Rekurzivna funkcija koja nalazi ListView u kome se nalazi neka kontrola
+        private DependencyObject GetListView(DependencyObject dependencyObject)
+        {
+            if (dependencyObject is ListViewItem)
+                return dependencyObject;
+            return GetListView(VisualTreeHelper.GetParent(dependencyObject));
         }
 
         private async void ZapamtiIzmene_Click(object sender, RoutedEventArgs e)
@@ -120,6 +128,16 @@ namespace Projekat.Pages
                 lvKorisniciKojiRadeNaProjektu.ItemsSource = KorisniciKojiRadeNaProjektu;
             else
                 lvKorisniciKojiRadeNaProjektu.ItemsSource = KorisniciKojiRadeNaProjektu.Where(p => p.PunoIme.ToUpper().Contains(txt.ToUpper()));
+        }
+
+        private void PrikaziDetalje_Click(object sender, MouseButtonEventArgs e)
+        {
+            var korisnik = (sender as ListView).SelectedItem as Korisnik;
+            tbImePrezime.Text = korisnik.PunoIme;
+            tbAdresa.Text = "Dubrovacka 15. Novi Pazar";
+            tbFirma.Text = "Fikus doo";
+            tbKontaktTelefon.Text = "020800800";
+            tbBrojTelefona.Text = "063 825825";
         }
     }
 }

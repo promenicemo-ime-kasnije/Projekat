@@ -43,17 +43,23 @@
                              TextChanged="TbSearch1_TextChanged"/>
                     <ListView ItemsSource="{Binding SviKorisnici}"
                               Name="lvSviKorisnici"
-                              MouseLeftButtonUp="PrebaciUDruguListu_Click"
+                              MouseLeftButtonUp="PrikaziDetalje_Click"
+                              HorizontalContentAlignment="Stretch"
                               Tag="1"
                               VerticalAlignment="Stretch">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
                                     <!--Ikonica-->
                                     <materialDesign:PackIcon Kind="Person"
                                                          Margin="10"
                                                          VerticalAlignment="Center"/>
-                                    <StackPanel>
+                                    <StackPanel Grid.Column="1">
                                         <!--Puno ime korisnika-->
                                         <TextBlock Text="{Binding PunoIme}" 
                                                Margin="10"
@@ -61,10 +67,19 @@
                                         <!--Vrsta korisnika-->
                                         <TextBlock Text="{Binding VrstaKorisnika}" 
                                                Margin="10, 0" 
-                                               HorizontalAlignment="Center" 
                                                Foreground="Blue"/>
                                     </StackPanel>
-                                </StackPanel>
+                                    
+                                    <!--Dodaj u drugu listu-->
+                                    <Button Click="PrebaciUDruguListu_Click"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Margin="10, 0"
+                                            Grid.Column="2">
+                                        <materialDesign:PackIcon Kind="ArrowRightBold"/>
+                                    </Button>
+                                    
+                                </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
@@ -85,27 +100,41 @@
                              TextChanged="TbSearch2_TextChanged"/>
                     <ListView ItemsSource="{Binding KorisniciKojiRadeNaProjektu}" 
                               Name="lvKorisniciKojiRadeNaProjektu"
-                              MouseLeftButtonUp="PrebaciUDruguListu_Click"
+                              MouseLeftButtonUp="PrikaziDetalje_Click"
+                              HorizontalContentAlignment="Stretch"
                               Tag="2">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel Orientation="Horizontal">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
                                     <!--Ikonica-->
                                     <materialDesign:PackIcon Kind="Person"
-                                                             Margin="10"
-                                                             VerticalAlignment="Center"/>
-                                    <StackPanel>
+                                                         Margin="10"
+                                                         VerticalAlignment="Center"/>
+                                    <StackPanel Grid.Column="1">
                                         <!--Puno ime korisnika-->
                                         <TextBlock Text="{Binding PunoIme}" 
-                                                   Margin="10"
-                                                   FontSize="15"/>
+                                               Margin="10"
+                                               FontSize="15"/>
                                         <!--Vrsta korisnika-->
                                         <TextBlock Text="{Binding VrstaKorisnika}" 
-                                                   Margin="10, 0" 
-                                                   HorizontalAlignment="Center" 
-                                                   Foreground="Blue"/>
+                                               Margin="10, 0" 
+                                               Foreground="Blue"/>
                                     </StackPanel>
-                                </StackPanel>
+
+                                    <!--Dodaj u drugu listu-->
+                                    <Button Click="PrebaciUDruguListu_Click"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Margin="10, 0"
+                                            Grid.Column="2">
+                                        <materialDesign:PackIcon Kind="ArrowLeftBold"/>
+                                    </Button>
+                                </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
@@ -134,11 +163,11 @@
                                 Click="OtvoriProjectPage_Click"/>
                     </StackPanel>
                     <StackPanel>
-                        <TextBox materialDesign:HintAssist.Hint="Ime i prezime"  FontSize="18" Width="300" Margin="80 20 20 0"/>
-                        <TextBox materialDesign:HintAssist.Hint="Adresa"  FontSize="18" Width="300" Margin="80 20 20 0"/>
-                        <TextBox materialDesign:HintAssist.Hint="Firma"  FontSize="18" Width="300" Margin="80 20 20 0"/>
-                        <TextBox materialDesign:HintAssist.Hint="Kontakt tel"  FontSize="18" Width="300" Margin="80 20 20 0"/>
-                        <TextBox materialDesign:HintAssist.Hint="Broj telefona"  FontSize="18" Width="300" Margin="80 20 20 0"/>
+                        <TextBox Name="tbImePrezime" materialDesign:HintAssist.Hint="Ime i prezime"  FontSize="18" Width="300" Margin="80 20 20 0"/>
+                        <TextBox Name="tbAdresa" materialDesign:HintAssist.Hint="Adresa"  FontSize="18" Width="300" Margin="80 20 20 0"/>
+                        <TextBox Name="tbFirma" materialDesign:HintAssist.Hint="Firma"  FontSize="18" Width="300" Margin="80 20 20 0"/>
+                        <TextBox Name="tbKontaktTelefon" materialDesign:HintAssist.Hint="Kontakt tel"  FontSize="18" Width="300" Margin="80 20 20 0"/>
+                        <TextBox Name="tbBrojTelefona" materialDesign:HintAssist.Hint="Broj telefona"  FontSize="18" Width="300" Margin="80 20 20 0"/>
                     </StackPanel>
                 </StackPanel>
             
