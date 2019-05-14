@@ -69,27 +69,28 @@ namespace Projekat.Pages
 
         private void PrebaciUDruguListu_Click(object sender, RoutedEventArgs e)
         {
-            var lv = GetListView(sender as DependencyObject) as ListView;
-            var temp = lv.SelectedItem as Korisnik;
-            if (temp == null)
+            ListView listView = GetListView(sender as DependencyObject) as ListView;
+
+            var korisnik = (sender as Button).DataContext as Korisnik;
+            if (korisnik == null)
                 return;
 
-            if (lv.Tag.ToString() == "1")
+            if (listView.Tag.ToString() == "1")
             {
-                KorisniciKojiRadeNaProjektu.Add(temp);
-                SviKorisnici.Remove(temp);
+                KorisniciKojiRadeNaProjektu.Add(korisnik);
+                SviKorisnici.Remove(korisnik);
             }
             else
             {
-                SviKorisnici.Add(temp);
-                KorisniciKojiRadeNaProjektu.Remove(temp);
+                SviKorisnici.Add(korisnik);
+                KorisniciKojiRadeNaProjektu.Remove(korisnik);
             }
         }
 
         // Rekurzivna funkcija koja nalazi ListView u kome se nalazi neka kontrola
         private DependencyObject GetListView(DependencyObject dependencyObject)
         {
-            if (dependencyObject is ListViewItem)
+            if (dependencyObject is ListView)
                 return dependencyObject;
             return GetListView(VisualTreeHelper.GetParent(dependencyObject));
         }
