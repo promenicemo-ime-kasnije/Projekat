@@ -25,5 +25,10 @@ namespace ClassLibrary
         public int UkupnaCena { get => (int)Kolicina * (int)Cena; }
     
         public virtual GeneralniTrosak GeneralniTrosak { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Kategorija}/{Podkategorija}  Naziv artikla: {Artikal}  Kolicina: {Kolicina}  Cena: {Cena}";
+        }
     }
 }

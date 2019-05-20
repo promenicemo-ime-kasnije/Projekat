@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using Microsoft.Win32;
 using Projekat.Pomocne_klase;
 using System.Threading.Tasks;
+using System;
 
 namespace Projekat.Pages
 {
@@ -133,6 +134,7 @@ namespace Projekat.Pages
 
                     //Update dokumenta
                     doc.StatusDokumenta = true;
+                    doc.Datum = DateTime.Now.ToString();
                     await dataProvider.UpdateDokumentAsync(doc);
 
                     // ProgressWindow moze da se zatvori

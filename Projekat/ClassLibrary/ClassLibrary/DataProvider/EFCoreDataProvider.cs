@@ -405,6 +405,9 @@ namespace ClassLibrary.DataProvider
             {
                 _context.Zahtev.Add(zahtev);
                 await _context.SaveChangesAsync();
+
+                // Dodaj aktivnost o tome da je kreiran novi zahtev
+                await AddAktivnostAsync(new Aktivnost { IDProjekta = zahtev.IDProjekta, Poruka = $"{zahtev.KorisnickoImePosiljaoca} je poslao zahtev korisniku {zahtev.KorisnickoImePrimaoca} sa porukom: {zahtev.Poruka}" });
             }
         }
 
@@ -553,6 +556,9 @@ namespace ClassLibrary.DataProvider
             {
                 _context.Trosak.Add(trosak);
                 await _context.SaveChangesAsync();
+
+                // Dodaj aktivnost o tome da je kreiran novi projekat
+                await AddAktivnostAsync(new Aktivnost { IDProjekta = trosak.IDProjekta, Poruka = $"Kreiran je trosak {trosak.ToString()}" });
             }
         }
 
