@@ -65,7 +65,7 @@ namespace Projekat.UserControls
                 VrstaProjekta = (lvTipoviProjekta.SelectedItem as TipProjekta).Naziv
             };
 
-            Helper.GetMainWindow(this).Content = new DetaljiZaKreiranjeProjektaPage(zapocetiProjekat);
+            Helper.MainWindow.Content = new DetaljiZaKreiranjeProjektaPage(zapocetiProjekat);
         }
 
         private bool SvaPoljaPopunjena()

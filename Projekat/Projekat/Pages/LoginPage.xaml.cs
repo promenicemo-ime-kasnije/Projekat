@@ -1,5 +1,6 @@
 ﻿using ClassLibrary;
 using ClassLibrary.DataProvider;
+using Projekat.Pomocne_klase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,8 +54,8 @@ namespace Projekat
                 var korisnik = await new EFCoreDataProvider().LoginApp(tbKorisnickoIme.Text, tbLozinka.Password);
                 if (korisnik != null)
                 {
+                    Helper.TrenutniKorisnik = korisnik;
                     var parent = Parent as MainWindow;
-                    parent.TrenutniKorisnik = korisnik;
                     parent.Content = new StartPage();
                 }
                 else

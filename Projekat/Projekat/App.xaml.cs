@@ -13,5 +13,8 @@ namespace Projekat
     /// </summary>
     public partial class App : Application
     {
+        public ClassLibrary.Korisnik TrenutniKorisnik { get; set; }
+        public ClassLibrary.Projekat TrenutniProjekat { get; set; }
+
     }
 }

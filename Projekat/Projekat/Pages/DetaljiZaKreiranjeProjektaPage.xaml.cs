@@ -52,7 +52,7 @@ namespace Projekat.Pages
                 await dataProvider.AddPDFAsync(new PDF {
                     IDDokumenta = listaDokumenata[0].IDDokumenta,
                     PDFFajl = informacijaOLokaciji
-                }, Helper.GetTrenutniKorisnik(this));
+                }, Helper.TrenutniKorisnik);
             }
 
             // Zatvaranja ProgressWindow-a
@@ -60,7 +60,7 @@ namespace Projekat.Pages
 
             // Prelazak na ClanoviProjektaPage
             var parent = (Parent as MainWindow);
-            parent.TrenutniProjekat = ZapocetiProjekat;
+            Helper.TrenutniProjekat = ZapocetiProjekat;
             parent.Content = new ClanoviProjektaPage();
         }
 

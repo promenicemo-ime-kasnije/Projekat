@@ -42,7 +42,7 @@ namespace Projekat.Pages
         private async Task UcitajProcente() // Ucitava procente u tbProcenti
         {
             var dataProvider = new EFCoreDataProvider();
-            idProjekta = Helper.GetTrenutniProjekat(this).IDProjekta;
+            idProjekta = Helper.TrenutniProjekat.IDProjekta;
 
             // Ucitava i podatke u uplatama iz tabele generalniTrosak i pamti u tbProcenti
             string uplate = (await dataProvider.GetGeneralniTrosakAsync(idProjekta))[0].Procenti;
@@ -52,7 +52,7 @@ namespace Projekat.Pages
         private async Task UcitajTroskove()
         {
             var dataProvider = new EFCoreDataProvider();
-            idProjekta = Helper.GetTrenutniProjekat(this).IDProjekta;
+            idProjekta = Helper.TrenutniProjekat.IDProjekta;
             listaTroskova = await dataProvider.GetTroskoveProjektaAsync(idProjekta) as List<Trosak>;
 
             // Za grupisanje u datagridu itemssource se veze za ListCollectionView
@@ -135,7 +135,7 @@ namespace Projekat.Pages
             // To odlucuje na osnovu IDTroska, ako je 0 onda ga jos nema u bazi treba add, ako je razlicit od 0 onda se vrsi update
 
             var trosak = DetaljiTroska.Trosak;
-            trosak.IDProjekta = Helper.GetTrenutniProjekat(this).IDProjekta;
+            trosak.IDProjekta = Helper.TrenutniProjekat.IDProjekta;
 
             var dataProvider = new EFCoreDataProvider();
             if (trosak.IDTroska == 0)
@@ -161,7 +161,7 @@ namespace Projekat.Pages
                 if (nizBrojeva.Sum() == 100)
                 {
                     var dataProvider = new EFCoreDataProvider();
-                    int idProjekta = Helper.GetTrenutniProjekat(this).IDProjekta;
+                    int idProjekta = Helper.TrenutniProjekat.IDProjekta;
                     var stariTrosak = (await dataProvider.GetGeneralniTrosakAsync(idProjekta))[0];
 
                     stariTrosak.BrojUplata = nizBrojeva.Count();

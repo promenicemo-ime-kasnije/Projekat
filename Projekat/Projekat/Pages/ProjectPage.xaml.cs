@@ -32,7 +32,7 @@ namespace Projekat.Pages
 
         private void PrikaziDokumenta_Click(object sender, RoutedEventArgs e)
         {
-            var trenutniProjekat = Helper.GetTrenutniProjekat(this);
+            var trenutniProjekat = Helper.TrenutniProjekat;
             Frame.Content = new DokumentaPage(trenutniProjekat.IDProjekta);
             txtImeProjekta.Text = "Dokumenta | " + trenutniProjekat.NazivProjekta;
         }
@@ -40,19 +40,19 @@ namespace Projekat.Pages
         private void PrikaziTroskove_Click(object sender, RoutedEventArgs e)
         {
             Frame.Content = new ZahteviPage();
-            txtImeProjekta.Text = "Zahtevi | " + Helper.GetTrenutniProjekat(this).NazivProjekta;
+            txtImeProjekta.Text = "Zahtevi | " + Helper.TrenutniProjekat.NazivProjekta;
         }
 
         private void PrikaziTabelu_Click(object sender, RoutedEventArgs e)
         {
             Frame.Content = new TabelaPage();
-            txtImeProjekta.Text = "Tabela | " + Helper.GetTrenutniProjekat(this).NazivProjekta;
+            txtImeProjekta.Text = "Tabela | " + Helper.TrenutniProjekat.NazivProjekta;
         }
 
         private void PrikaziTimeline_Click(object sender, RoutedEventArgs e)
         {
             Frame.Content = new TimelinePage(false);
-            txtImeProjekta.Text = "Zapisnik aktivnosti | " + Helper.GetTrenutniProjekat(this).NazivProjekta;
+            txtImeProjekta.Text = "Zapisnik aktivnosti | " + Helper.TrenutniProjekat.NazivProjekta;
         }
 
         private void ComingSoon_Click(object sender, RoutedEventArgs e)
@@ -63,7 +63,7 @@ namespace Projekat.Pages
         private void ClanoviProjekta_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             Frame.Content = new ClanoviProjektaPage();
-            txtImeProjekta.Text = "Članovi projekta | " + Helper.GetTrenutniProjekat(this).NazivProjekta;
+            txtImeProjekta.Text = "Članovi projekta | " + Helper.TrenutniProjekat.NazivProjekta;
         }
     }
 }

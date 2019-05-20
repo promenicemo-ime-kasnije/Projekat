@@ -5,19 +5,18 @@ namespace Projekat.Pomocne_klase
 {
     public class Helper
     {
-        public static MainWindow GetMainWindow(DependencyObject dependencyObject)
+        public static MainWindow MainWindow => Application.Current.MainWindow as MainWindow;
+
+        public static Korisnik TrenutniKorisnik
         {
-            return Window.GetWindow(dependencyObject) as MainWindow;
+            get => (Application.Current as App).TrenutniKorisnik;
+            set { (Application.Current as App).TrenutniKorisnik = value; }
         }
 
-        public static Korisnik GetTrenutniKorisnik(DependencyObject dependencyObject)
+        public static ClassLibrary.Projekat TrenutniProjekat
         {
-            return GetMainWindow(dependencyObject).TrenutniKorisnik;
-        }
-
-        public static ClassLibrary.Projekat GetTrenutniProjekat(DependencyObject dependencyObject)
-        {
-            return GetMainWindow(dependencyObject).TrenutniProjekat;
+            get => (Application.Current as App).TrenutniProjekat;
+            set { (Application.Current as App).TrenutniProjekat = value; }
         }
     }
 }

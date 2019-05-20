@@ -50,7 +50,7 @@ namespace Projekat.Pages
 
         private async Task UcitajPodatke()
         {
-            projectID = Helper.GetTrenutniProjekat(this).IDProjekta;
+            projectID = Helper.TrenutniProjekat.IDProjekta;
             var sviKorisnici = await new EFCoreDataProvider().GetKorisniciAsync();
             var korisniciProjekta = await new EFCoreDataProvider().GetKorisnikeProjektaAsync(projectID);
 
@@ -63,7 +63,7 @@ namespace Projekat.Pages
 
         private void OtvoriProjectPage_Click(object sender, RoutedEventArgs e)
         {
-            var mainWindow = Helper.GetMainWindow(this);
+            var mainWindow = Helper.MainWindow;
             mainWindow.Content = new ProjectPage();
         }
 

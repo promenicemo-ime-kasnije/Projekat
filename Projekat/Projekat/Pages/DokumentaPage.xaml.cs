@@ -129,7 +129,7 @@ namespace Projekat.Pages
                     {
                         IDDokumenta = doc.IDDokumenta,
                         PDFFajl = a
-                    }, Helper.GetTrenutniKorisnik(this));
+                    }, Helper.TrenutniKorisnik);
 
                     //Update dokumenta
                     doc.StatusDokumenta = true;

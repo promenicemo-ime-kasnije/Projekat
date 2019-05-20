@@ -1,5 +1,6 @@
 ﻿using ClassLibrary.DataProvider;
 using Projekat.Pages;
+using Projekat.Pomocne_klase;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -32,7 +33,7 @@ namespace Projekat
         private async void StartPage_Loaded(object sender, RoutedEventArgs e)
         {
             await UcitajProjekte();
-            expanderKorisnik.Header = (Parent as MainWindow).TrenutniKorisnik.PunoIme;
+            expanderKorisnik.Header = Helper.TrenutniKorisnik.PunoIme;
         }
 
         private async Task UcitajProjekte()
@@ -70,7 +71,7 @@ namespace Projekat
             var p = (sender as ListView).SelectedItem as ClassLibrary.Projekat;
             if (p != null)
             {
-                (Parent as MainWindow).TrenutniProjekat = p;
+                Helper.TrenutniProjekat = p;
                 (Parent as Window).Content = new ProjectPage();
             }
         }

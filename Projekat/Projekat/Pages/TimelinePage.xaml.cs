@@ -43,13 +43,13 @@ namespace Projekat.Pages
 
         private async void TimelinePage_Loaded(object sender, RoutedEventArgs e)
         {
-            string vrstaKorisnika = Helper.GetTrenutniKorisnik(this).VrstaKorisnika;
+            string vrstaKorisnika = Helper.TrenutniKorisnik.VrstaKorisnika;
             IList<Aktivnost> temp; // treba mi da privremeno pamti aktivnosti
             if (zaSveProjekte)
                 temp = await new EFCoreDataProvider().GetAktivnostiAsync(vrstaKorisnika);
             else
             {
-                int idProjekta = Helper.GetTrenutniProjekat(this).IDProjekta;
+                int idProjekta = Helper.TrenutniProjekat.IDProjekta;
                 temp = await new EFCoreDataProvider().GetAktivnostiProjektaAsync(idProjekta, vrstaKorisnika);
             }
 
