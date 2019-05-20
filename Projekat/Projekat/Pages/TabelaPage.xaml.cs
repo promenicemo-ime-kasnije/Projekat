@@ -141,7 +141,7 @@ namespace Projekat.Pages
             if (trosak.IDTroska == 0)
             {
                 // ADD
-                await dataProvider.AddTrosakAsync(trosak);
+                await dataProvider.AddTrosakAsync(trosak, Helper.TrenutniKorisnik);
             }
             else
             {

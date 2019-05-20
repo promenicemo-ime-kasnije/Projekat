@@ -72,7 +72,7 @@ namespace ClassLibrary.DataProvider
         Task<int> GetBrojUplataAsync(long IDProjekta);
         Task<string> GetProcenteAsync(long IDProjekta);
 
-        Task AddTrosakAsync(Trosak trosak);
+        Task AddTrosakAsync(Trosak trosak, Korisnik korisnik);
         Task AddTroskoveAsync(params Trosak[] trosak);
         Task<int> DeleteTrosak(params Trosak[] trosak);
         Task<int> UpdateTrosakAsync(Trosak trosak);

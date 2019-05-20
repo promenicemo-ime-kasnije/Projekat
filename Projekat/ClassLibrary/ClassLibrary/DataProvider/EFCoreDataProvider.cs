@@ -550,15 +550,15 @@ namespace ClassLibrary.DataProvider
 
         #region Trosak
 
-        public async Task AddTrosakAsync(Trosak trosak)
+        public async Task AddTrosakAsync(Trosak trosak, Korisnik korisnik)
         {
             using (ExtentBazaEntities _context = new ExtentBazaEntities())
             {
                 _context.Trosak.Add(trosak);
                 await _context.SaveChangesAsync();
 
-                // Dodaj aktivnost o tome da je kreiran novi projekat
-                await AddAktivnostAsync(new Aktivnost { IDProjekta = trosak.IDProjekta, Poruka = $"Kreiran je trosak {trosak.ToString()}" });
+                // Dodaj aktivnost o tome da je kreiran dodat novi trosak
+                await AddAktivnostAsync(new Aktivnost { IDProjekta = trosak.IDProjekta, Poruka = $"{korisnik.PunoIme} je dodao novi trosak {trosak}" });
             }
         }
 
