@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MobileApp.OdabirProjektaPage"
+             Title="Odaberite projekat">
+    <ContentPage.Content>
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Label Text="Ovde ide lista projekata kojima trenutni korisnik ima pristup"
+                   FontSize="Large"
+                   VerticalTextAlignment="Center"
+                   Margin="30"/>
+            
+            <ListView x:Name="lvProjekti"
+                      Grid.Row="1"
+                      VerticalOptions="CenterAndExpand"
+                      ItemTapped="LvProjekti_ItemTapped"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
