@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MobileApp.GenericPage">
     <ContentPage.Content>
+        <!--Ovo je samo page koji prikazuje tekst koji mu se prosledi u konsturktoru, sluzi samo kao mala pomoc-->
         <StackLayout>
             <Label x:Name="Naslov"
                    FontSize="40"
