@@ -11,7 +11,8 @@ namespace ClassLibrary
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Text.RegularExpressions;
+
     public partial class Zahtev
     {
         public int IDZahteva { get; set; }
@@ -25,5 +26,10 @@ namespace ClassLibrary
         public virtual Korisnik Korisnik { get; set; }
         public virtual Korisnik Korisnik1 { get; set; }
         public virtual Projekat Projekat { get; set; }
+
+        public override string ToString()
+        {
+            return Regex.Replace($"{Naslov} / {Poruka}", @"\s+", " ");
+        }
     }
 }

@@ -407,6 +407,7 @@ namespace ClassLibrary.DataProvider
                 await _context.SaveChangesAsync();
 
                 // Dodaj aktivnost o tome da je kreiran novi zahtev
+
                 await AddAktivnostAsync(new Aktivnost { IDProjekta = zahtev.IDProjekta, Poruka = $"{zahtev.KorisnickoImePosiljaoca} je poslao zahtev korisniku {zahtev.KorisnickoImePrimaoca} sa porukom: {zahtev.Poruka}" });
             }
         }
@@ -438,6 +439,7 @@ namespace ClassLibrary.DataProvider
                 var obj = await _context.Zahtev.FirstOrDefaultAsync(a => a.IDZahteva == zahtev.IDZahteva);
                 obj.Naslov = zahtev.Naslov;
                 obj.Poruka = zahtev.Poruka;
+                obj.Odgovor = zahtev.Odgovor;
                 return await _context.SaveChangesAsync();
             }
         }

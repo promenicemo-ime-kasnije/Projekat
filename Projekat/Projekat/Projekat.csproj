@@ -152,6 +152,9 @@
     </Compile>
     <Compile Include="ValueConverters\ObjectToColor.cs" />
     <Compile Include="ValueConverters\BoolToPackIconKind.cs" />
+    <Compile Include="ValueConverters\OdgovorToColor.cs" />
+    <Compile Include="ValueConverters\OdgovorToText.cs" />
+    <Compile Include="ValueConverters\OdgovorUPackIconKind.cs" />
     <Page Include="Pages\ZahteviPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

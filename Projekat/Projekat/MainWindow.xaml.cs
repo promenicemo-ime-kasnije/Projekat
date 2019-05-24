@@ -18,6 +18,16 @@ namespace Projekat
         {
             InitializeComponent();
             Content = new LoginPage();
+
+            // za testiranje nekog page-a
+            //Loaded += MainWindow_Loaded;
+        }
+
+        private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
+        {
+            Helper.TrenutniKorisnik = await new EFCoreDataProvider().GetKorisnikAsync("admin");
+            Helper.TrenutniProjekat = await new EFCoreDataProvider().GetProjekatAsync(30);
+            Content = new ZahteviPage();
         }
 
         protected override void OnContentChanged(object oldContent, object newContent)
