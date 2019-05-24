@@ -18,7 +18,7 @@
 
     <Grid Margin="20">
         <Grid.RowDefinitions>
-            <RowDefinition Height="7*"/>     <!--Liste-->
+            <RowDefinition Height="9*"/>     <!--Liste-->
             <RowDefinition Height="4*"/>  <!--Buttoni-->
         </Grid.RowDefinitions>
         
@@ -36,6 +36,7 @@
                     Grid.Row="1"
                     VerticalAlignment="Stretch">
                 <StackPanel>
+                    <TextBlock Text="Neaktivni" Background="#2196f3" TextAlignment="Center" Foreground="White"/>
                     <TextBox Name="tbSearch1"
                              FontSize="15"
                              Margin="10"
@@ -93,6 +94,7 @@
                     Grid.Row="1"
                     Grid.Column="1">
                 <StackPanel>
+                    <TextBlock Text="Aktivni" Background="#2196f3" TextAlignment="Center" Foreground="White"/>
                     <TextBox Name="tbSearch2"
                              FontSize="15"
                              Margin="10"
@@ -150,27 +152,56 @@
                 BorderBrush="Black"
                 VerticalAlignment="Stretch"
                 Height="280"
-                Margin="0 -50 0 0">
+                Margin="0 -15 0 0">
+
             <Grid>
-                <StackPanel Orientation="Horizontal">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="7*"/>
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Slika i ime i prezime -->
+                <Rectangle Grid.Column="0" Fill="LightGray" Margin="0 9 0 0"/>
+                <Border Grid.Column="1" BorderThickness="0 0 1 0" BorderBrush="Black" Margin="0 9 0 0">
+                <Rectangle Fill="LightGray" Margin="-1 0 0 0"/>
+                </Border>
+                <StackPanel>
+                    <materialDesign:PackIcon Kind="Account" Width="150" Height="150" Margin="132 40 132 0"/>
+                    <TextBox Name="tbImePrezime" materialDesign:HintAssist.Hint="Ime i prezime"  FontSize="18" Width="300" Margin="0 15 0 0" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+                </StackPanel>
+                <!-- Vise podataka -->
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
                     <StackPanel>
-                        <materialDesign:PackIcon Kind="Account" Width="150" Height="150" Margin="132 20 132 0"/>
-                        <Button Content="Zapamti izmene"
-                                Margin="10 0 10 0"
+                        <TextBlock Text="Adresa: " Margin="20 55 0 0"/>
+                        <TextBlock Text="Firma: " Margin="20 25 0 0"/>
+                        <TextBlock Text="Kont. tel. firme: " Margin="20 25 0 0"/>
+                        <TextBlock Text="Kont. tel. člana: " Margin="20 25 0 0"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1">
+                        <TextBox Name="tbAdresa" FontSize="18" Width="480" Margin="20 50 20 0" IsReadOnly="True"/>
+                        <TextBox Name="tbFirma" FontSize="18" Width="480" Margin="20 20 20 0" IsReadOnly="True"/>
+                        <TextBox Name="tbKontaktTelefon" FontSize="18" Width="480" Margin="20 20 20 0" IsReadOnly="True"/>
+                        <TextBox Name="tbBrojTelefona" FontSize="18" Width="480" Margin="20 20 20 0" IsReadOnly="True"/>
+                    </StackPanel>
+                </Grid>
+                <StackPanel Grid.Column="2">
+                    <Button Content="Zapamti izmene"
+                                Height="50"
+                                FontSize="32"
+                                Margin="20 150 20 0"
                                 Click="ZapamtiIzmene_Click"/>
-                        <Button Content="Idi na projekat"
+                    <Button Content="Idi na projekat"
+                                Height="50"
+                                FontSize="22"
                                 Margin="20 10 20 10"
                                 Click="OtvoriProjectPage_Click"/>
-                    </StackPanel>
-                    <StackPanel>
-                        <TextBox Name="tbImePrezime" materialDesign:HintAssist.Hint="Ime i prezime"  FontSize="18" Width="300" Margin="80 20 20 0"/>
-                        <TextBox Name="tbAdresa" materialDesign:HintAssist.Hint="Adresa"  FontSize="18" Width="300" Margin="80 20 20 0"/>
-                        <TextBox Name="tbFirma" materialDesign:HintAssist.Hint="Firma"  FontSize="18" Width="300" Margin="80 20 20 0"/>
-                        <TextBox Name="tbKontaktTelefon" materialDesign:HintAssist.Hint="Kontakt tel"  FontSize="18" Width="300" Margin="80 20 20 0"/>
-                        <TextBox Name="tbBrojTelefona" materialDesign:HintAssist.Hint="Broj telefona"  FontSize="18" Width="300" Margin="80 20 20 0"/>
-                    </StackPanel>
                 </StackPanel>
-            
             </Grid>
         </Border>
     </Grid>
