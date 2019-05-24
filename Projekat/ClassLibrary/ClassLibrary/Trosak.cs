@@ -21,10 +21,12 @@ namespace ClassLibrary
         public Nullable<int> Kolicina { get; set; }
         public Nullable<int> Cena { get; set; }
         public int IDTroska { get; set; }
-
-        public int UkupnaCena { get => (int)Kolicina * (int)Cena; }
+        public string Datum { get; set; }
+        public Nullable<bool> Stanje { get; set; }
     
         public virtual GeneralniTrosak GeneralniTrosak { get; set; }
+
+        public int UkupnaCena { get => (int)Kolicina * (int)Cena; }
 
         public override string ToString()
         {

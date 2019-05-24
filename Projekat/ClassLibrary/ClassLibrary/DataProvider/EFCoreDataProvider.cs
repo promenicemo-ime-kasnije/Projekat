@@ -597,6 +597,8 @@ namespace ClassLibrary.DataProvider
                 obj.Artikal = trosak.Artikal;
                 obj.Kolicina = trosak.Kolicina;
                 obj.Cena = trosak.Cena;
+                obj.Datum = trosak.Datum;
+                obj.Stanje = trosak.Stanje;
                 return await _context.SaveChangesAsync();
             }
         }

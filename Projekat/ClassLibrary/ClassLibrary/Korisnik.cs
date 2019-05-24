@@ -30,6 +30,7 @@ namespace ClassLibrary
         public string Ime { get; set; }
         public string Prezime { get; set; }
 
+
         public string PunoIme { get => Regex.Replace($"{Ime} {Prezime}", @"\s+", " "); } // vraca ime + prezime u jednom stringu i uklanja visak razmaka koji se javljaju jer ime i prezime u bazi imaju fiksnu duzinu i visak se vracao kao whitespace
 
         public override bool Equals(object obj)
