@@ -86,6 +86,8 @@
           <Property Name="Kolicina" Type="int" />
           <Property Name="Cena" Type="int" />
           <Property Name="IDTroska" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Datum" Type="nchar" MaxLength="20" />
+          <Property Name="Stanje" Type="bit" />
         </EntityType>
         <EntityType Name="Zahtev">
           <Key>
@@ -511,6 +513,8 @@
           <Property Name="Cena" Type="Int32" />
           <Property Name="IDTroska" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="GeneralniTrosak" Relationship="DataContext.FK_Trosak_GeneralniTrosak" FromRole="Trosak" ToRole="GeneralniTrosak" />
+          <Property Name="Datum" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Stanje" Type="Boolean" />
         </EntityType>
         <Association Name="FK_Trosak_GeneralniTrosak">
           <End Type="DataContext.GeneralniTrosak" Role="GeneralniTrosak" Multiplicity="1" />
@@ -622,6 +626,8 @@
           <EntitySetMapping Name="Trosak">
             <EntityTypeMapping TypeName="DataContext.Trosak">
               <MappingFragment StoreEntitySet="Trosak">
+                <ScalarProperty Name="Stanje" ColumnName="Stanje" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
                 <ScalarProperty Name="IDTroska" ColumnName="IDTroska" />
                 <ScalarProperty Name="Cena" ColumnName="Cena" />
                 <ScalarProperty Name="Kolicina" ColumnName="Kolicina" />
