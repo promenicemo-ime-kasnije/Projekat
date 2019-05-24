@@ -111,18 +111,20 @@ namespace Projekat.Pages
 
         private void PrimeniFiltere_Click(object sender, RoutedEventArgs e)
         {
+            var rez = Aktivnosti as IEnumerable<Aktivnost>;
 
             // Filtiranje korisnika
-            var rez = Aktivnosti.Where(ak => IzabraniKorisnici.Any(k => ak.Poruka.Contains(k)));
+            if (IzabraniKorisnici.Count > 0)
+            rez = rez.Where(ak => IzabraniKorisnici.Any(k => ak.Poruka.Contains(k)));
 
             // Filtiranje po tipu aktivnosti
             string trazenaRec = string.Empty;
             switch (cbVrstaAktivnosti.Text)
             {
-                case "Dodavanje dokumenta":
+                case "Dokumentacija":
                     trazenaRec = "dokument";
                     break;
-                case "Prilaganje zahteva":
+                case "Zahtevi":
                     trazenaRec = "zahtev";
                     break;
                 case "Troskovi":
@@ -132,7 +134,6 @@ namespace Projekat.Pages
                     trazenaRec = "jen "; // ne znam koliko ce ovo dobro da radi, imaju dva slucaja "je dodeljen projektu" i "je uklonjen sa projekta" i oba sadrze "jen "
                     break;
             }
-
 
             rez = rez.Where(ak => ak.Poruka.Contains(trazenaRec));
 
