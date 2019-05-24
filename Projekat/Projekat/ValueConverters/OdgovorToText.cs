@@ -13,8 +13,8 @@ namespace Projekat.ValueConverters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null)
-                return "na čekanju";
-            return (bool)value ? "prihvaćen" : "odbijen";
+                return "Na čekanju";
+            return (bool)value ? "Odobren" : "Odbijen";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
