@@ -29,7 +29,10 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        
+        <Style TargetType="{x:Type Control}">
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        </Style>
+
     </Page.Resources>
 
 
@@ -89,12 +92,14 @@
                   materialDesign:DataGridAssist.CellPadding="13 8 8 8"
                   materialDesign:DataGridAssist.ColumnHeaderPadding="8">
 
+
             <DataGrid.Columns>
 
                 <DataGridCheckBoxColumn Binding="{Binding StatusDokumenta}"
                                         ElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnStyle}"
                                         EditingElementStyle="{StaticResource MaterialDesignDataGridCheckBoxColumnEditingStyle}"
                                         Header="Status">
+                    
                   
                 </DataGridCheckBoxColumn>
                 <!--<materialDesign:MaterialDataGridTextColumn Binding="{Binding Naziv}"
