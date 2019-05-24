@@ -55,7 +55,7 @@ namespace Projekat.Pages
             // naslovni red
             string naslov = $"{"Budzet projekta",-20} {"Broj rata",-13} ";
             for (int i = 1; i <= generalniTrosak.BrojUplata; i++)
-                naslov += $"{$"{i}. Rata", -12} ";
+                naslov += $"{i + ". Rata", -12} ";
             txtRateNaslov.Text = naslov;
 
             // trebaju mi i rate
