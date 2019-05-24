@@ -78,29 +78,20 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Budzet projekta" Margin="30 20 100 0"/>
-                        <TextBlock Text="Broj rata" Margin="0 20 20 0"/>
-                        <TextBlock Text="1. Rata" Margin="0 20 60 0"/>
-                        <TextBlock Text="2. Rata" Margin="0 20 60 0"/>
-                        <TextBlock Text="3. Rata" Margin="0 20 60 0"/>
-                        <TextBlock Text="4. Rata" Margin="0 20 60 0"/>
-                        <TextBlock Text="5. Rata" Margin="0 20 60 0"/>
-                    </StackPanel>
-                    <Separator Style="{StaticResource MaterialDesignDarkSeparator}" Margin="20 -6 20 0"/>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="15'500'000 DIN" Margin="30 0 100 0" Foreground="Gray"/>
-                        <TextBlock Text="5" Margin="25 0 20 0" Foreground="Gray"/>
-                        <TextBlock Text="3'100'000" Margin="19 0 45 0" Foreground="Gray"/>
-                        <TextBlock Text="3'100'000" Margin="0 0 45 0" Foreground="Gray"/>
-                        <TextBlock Text="3'100'000" Margin="0 0 45 0" Foreground="Gray"/>
-                        <TextBlock Text="3'100'000" Margin="0 0 45 0" Foreground="Gray"/>
-                        <TextBlock Text="3'100'000" Margin="0 0 45 0" Foreground="Gray"/>
-                    </StackPanel>
+
+                <StackPanel Orientation="Vertical"
+                            Margin="30, 10, 5, 10">
+                    <TextBlock Name="txtRateNaslov"
+                               FontFamily="Consolas"/> <!--Ako hoces da menjas font stavi neki koji je monospace, gde svaki karakter ima istu sirinu-->
+                    <Separator Style="{StaticResource MaterialDesignDarkSeparator}" 
+                               Margin="0, -6, 0, 0"/>
+                    <TextBlock Name="txtRate" 
+                               Foreground="Gray"
+                               FontFamily="Consolas"/> <!--Isto vazi kao ovo gore-->
                 </StackPanel>
+                
                 <StackPanel Grid.Column="1"
-                        Margin="20, 0"
+                        Margin="5, 0, 20, 0"
                         HorizontalAlignment="Right"
                         Orientation="Horizontal">
 

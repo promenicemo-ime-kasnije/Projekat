@@ -5,6 +5,7 @@ using Projekat.Pomocne_klase;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,6 +38,35 @@ namespace Projekat.Pages
         private async void TabelaPage_Loaded(object sender, RoutedEventArgs e)
         {
             await UcitajTroskove();
+            await PopuniGeneralneInformacijeOTroskovima();
+        }
+
+        /// <summary>
+        /// Generalne informacije o troskovima se prikazuju kao dva textblocka jedan iznad drugog
+        /// Prvi je naslov tu pise npr "Budzet projekta    Broj rata   1. Rata   2.Rata ...
+        /// drugi ispisuje vrednosti   "10000              5           2500      5000   ...
+        /// Koristim formatiranje stringova da bih to uspeo, ali font mroa da je monospace, tj. da je sirina svih karaktera ista da bi se ovo postiglo
+        /// </summary>
+        /// <returns></returns>
+        private async Task PopuniGeneralneInformacijeOTroskovima()
+        {
+            GeneralniTrosak generalniTrosak = (await new EFCoreDataProvider().GetGeneralniTrosakAsync(idProjekta))[0];
+
+            // naslovni red
+            string naslov = $"{"Budzet projekta",-20} {"Broj rata",-13} ";
+            for (int i = 1; i <= generalniTrosak.BrojUplata; i++)
+                naslov += $"{$"{i}. Rata", -12} ";
+            txtRateNaslov.Text = naslov;
+
+            // trebaju mi i rate
+            var temp = generalniTrosak.Procenti.Split(',');
+            double[] procenti = NizStringovaUNizBrojeva(temp);
+
+            // vrednosti budzeta i rata
+            string rate = $"{generalniTrosak.UkupnoNovca, -20} {generalniTrosak.BrojUplata, -13} ";
+            for (int i = 1; i <= generalniTrosak.BrojUplata; i++)
+                rate += $"{generalniTrosak.UkupnoNovca * procenti[i - 1] / 100, -12:F0} ";
+            txtRate.Text = rate;
         }
 
         private async Task UcitajProcente() // Ucitava procente u tbProcenti
