@@ -45,6 +45,12 @@ namespace Projekat
                 this.ResizeMode = ResizeMode.CanResize;
                 this.WindowState = WindowState.Maximized;
             }
+            else if (newContent is TimelinePage)
+            {
+                this.Height = 800;
+                this.Width = 1333;
+                this.ResizeMode = ResizeMode.CanResize;
+            }
         }
     }
 }
