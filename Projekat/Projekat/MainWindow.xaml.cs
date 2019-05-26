@@ -57,7 +57,7 @@ namespace Projekat
             }
             else if (newContent is TimelinePage)
             {
-                this.Height = 800;
+                this.Height = 860;
                 this.Width = 1333;
                 this.ResizeMode = ResizeMode.CanResize;
             }

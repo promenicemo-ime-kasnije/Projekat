@@ -25,6 +25,7 @@ namespace Projekat.Pages
     /// </summary>
     public partial class TimelinePage : Page
     {
+        public Visibility BackButtonJeVidljiv { get; set; } = Visibility.Collapsed;
         public ObservableCollection<Aktivnost> Aktivnosti { get; set; } // kolekcija svih aktivnosti koje se ucitaju
         public ObservableCollection<Korisnik> Korisnici { get; set; } // kolekcija svih korisnika koji rade na projektu koji se prikazuju u listi za izbor korisnika
         private List<string> IzabraniKorisnici = new List<string>(); // izabrani korsnici, kad se chekira combobox onda se ovde dodaju, kad se uncheck onda se uklone
@@ -182,5 +183,10 @@ namespace Projekat.Pages
 
 
         #endregion
+
+        private void IdiNaStartPage_Click(object sender, RoutedEventArgs e)
+        {
+            Helper.MainWindow.Content = new StartPage();
+        }
     }
 }

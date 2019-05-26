@@ -85,6 +85,15 @@
         </ListView>
         </materialDesign:Card>
         <StackPanel Grid.Column="0">
+            <Button Visibility="{Binding BackButtonJeVidljiv}"
+                    Margin="40 30 0 0"
+                    HorizontalAlignment="Left"
+                        Click="IdiNaStartPage_Click">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="ArrowBack" />
+                    <TextBlock Text=" Nazad na pocetnu stranu"/>
+                </StackPanel>
+            </Button>
             <TextBlock Text="Filteri pretrage"
                        FontSize="18"
                        Margin="40 30 10 0"

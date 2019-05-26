@@ -37,7 +37,7 @@ namespace Projekat.UserControls
 
         private void OtvoriTimeline_Click(object sender, RoutedEventArgs e)
         {
-            Helper.MainWindow.Content = new TimelinePage();
+            Helper.MainWindow.Content = new TimelinePage() { BackButtonJeVidljiv = Visibility.Visible };
         }
     }
 }
