@@ -61,6 +61,13 @@ namespace Projekat
                 this.Width = 1333;
                 this.ResizeMode = ResizeMode.CanResize;
             }
+            else if (newContent is ClanoviProjektaPage)
+            {
+                this.Height = 800;
+                this.Width = 1333;
+                this.ResizeMode = ResizeMode.CanResize;
+                this.WindowState = WindowState.Maximized;
+            }
         }
     }
 }
