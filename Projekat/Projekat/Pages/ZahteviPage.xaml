@@ -54,11 +54,13 @@
                          materialDesign:HintAssist.Hint="Pretraga zahteva"/>
 
             <ListView Grid.Row="1"
+                      Margin="0, 10, 0, 0"
+                      HorizontalAlignment="Center"
                       ItemsSource="{Binding Zahtevi}"
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <materialDesign:Card Margin="30">
+                        <materialDesign:Card Margin="10">
                             <Grid Height="350" Width="250">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
