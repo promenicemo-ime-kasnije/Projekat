@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Projekat.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="900" d:DesignWidth="1600"
+      d:DesignHeight="600" d:DesignWidth="980"
       Title="ClanoviProjektaPage"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       TextElement.Foreground="{DynamicResource MaterialDesignBody}"
@@ -18,16 +18,16 @@
 
     <Grid Margin="20">
         <Grid.RowDefinitions>
-            <RowDefinition Height="9*"/>     <!--Liste-->
-            <RowDefinition Height="4*"/>  <!--Buttoni-->
+            <RowDefinition Height="*"/>     <!--Liste-->
+            <RowDefinition Height="Auto"/>  <!--Buttoni-->
         </Grid.RowDefinitions>
         
         <!--Liste-->
         <Grid Grid.Row="0">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4*"/>
-                <ColumnDefinition Width="11*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
             <!--Lista svih korisnika koji nisu aktivni na projektu-->
@@ -35,18 +35,26 @@
                     BorderThickness="1"
                     Grid.Row="1"
                     VerticalAlignment="Stretch">
-                <StackPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
                     <TextBlock Text="Neaktivni" Background="#2196f3" TextAlignment="Center" Foreground="White"/>
                     <TextBox Name="tbSearch1"
+                             Grid.Row="1"
                              FontSize="15"
                              Margin="10"
                              materialDesign:HintAssist.Hint="Pretraga članova van projekta"
                              TextChanged="TbSearch1_TextChanged"/>
-                    <ListView ItemsSource="{Binding SviKorisnici}"
+                    <ListView Grid.Row="2"
+                              ItemsSource="{Binding SviKorisnici}"
                               Name="lvSviKorisnici"
                               MouseLeftButtonUp="PrikaziDetalje_Click"
                               HorizontalContentAlignment="Stretch"
                               Tag="1"
+                              ScrollViewer.CanContentScroll="False"
                               VerticalAlignment="Stretch">
                         <ListView.ItemTemplate>
                             <DataTemplate>
@@ -84,7 +92,7 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                </StackPanel>
+                </Grid>
             </Border>
             
             
@@ -93,18 +101,26 @@
                     BorderThickness="0 1 1 1"
                     Grid.Row="1"
                     Grid.Column="1">
-                <StackPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
                     <TextBlock Text="Aktivni" Background="#2196f3" TextAlignment="Center" Foreground="White"/>
-                    <TextBox Name="tbSearch2"
+                    <TextBox Grid.Row="1"
+                             Name="tbSearch2"
                              FontSize="15"
                              Margin="10"
                              materialDesign:HintAssist.Hint="Pretraga članova koji učestvuju u projektu"
                              TextChanged="TbSearch2_TextChanged"/>
-                    <ListView ItemsSource="{Binding KorisniciKojiRadeNaProjektu}" 
+                    <ListView Grid.Row ="2" 
+                              ItemsSource="{Binding KorisniciKojiRadeNaProjektu}" 
                               Name="lvKorisniciKojiRadeNaProjektu"
                               MouseLeftButtonUp="PrikaziDetalje_Click"
                               HorizontalContentAlignment="Stretch"
-                              Tag="2">
+                              Tag="2"
+                              ScrollViewer.CanContentScroll="False">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -140,7 +156,7 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                </StackPanel>
+                </Grid>
             </Border>
             
         </Grid>
@@ -156,9 +172,9 @@
             <Grid>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="3*" MinWidth="150"/>
                     <ColumnDefinition Width="7*"/>
-                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="4*" MinWidth="255"/>
                 </Grid.ColumnDefinitions>
 
                 <!-- Slika i ime i prezime -->
@@ -166,41 +182,43 @@
                 <Border Grid.Column="1" BorderThickness="0 0 1 0" BorderBrush="Black" Margin="0 0 0 0">
                 <Rectangle Fill="LightGray" Margin="-1 0 0 0"/>
                 </Border>
-                <StackPanel>
-                    <materialDesign:PackIcon Kind="Account" Width="150" Height="150" Margin="132 40 132 0"/>
-                    <TextBox Name="tbImePrezime" materialDesign:HintAssist.Hint="Ime i prezime"  FontSize="18" Width="300" Margin="0 15 0 0" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <materialDesign:PackIcon Kind="Account" Width="150" Height="150"/>
+                    <TextBox Name="tbImePrezime" materialDesign:HintAssist.Hint="Ime i prezime"  FontSize="18" Margin="5 15 5 10" HorizontalContentAlignment="Center" FontWeight="Bold"/>
                 </StackPanel>
                 <!-- Vise podataka -->
+                <!-- Bolje mozda da je ovo uradjeno kao grid a ne kao dva stackpanela, ali neka ga za sad-->
                 <Grid Grid.Column="1">
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel>
-                        <TextBlock Text="Adresa: " Margin="20 55 0 0"/>
+                        <TextBlock Text="Adresa: " Margin="20 25 0 0"/>
                         <TextBlock Text="Firma: " Margin="20 25 0 0"/>
                         <TextBlock Text="Kont. tel. firme: " Margin="20 25 0 0"/>
                         <TextBlock Text="Kont. tel. člana: " Margin="20 25 0 0"/>
                     </StackPanel>
                     <StackPanel Grid.Column="1">
-                        <TextBox Name="tbAdresa" FontSize="18" Width="480" Margin="20 50 20 0" IsReadOnly="True"/>
-                        <TextBox Name="tbFirma" FontSize="18" Width="480" Margin="20 20 20 0" IsReadOnly="True"/>
-                        <TextBox Name="tbKontaktTelefon" FontSize="18" Width="480" Margin="20 20 20 0" IsReadOnly="True"/>
-                        <TextBox Name="tbBrojTelefona" FontSize="18" Width="480" Margin="20 20 20 0" IsReadOnly="True"/>
+                        <TextBox Name="tbAdresa"         FontSize="17" Margin="20 20 20 0" IsReadOnly="True"/>
+                        <TextBox Name="tbFirma"          FontSize="17" Margin="20 20 20 0" IsReadOnly="True"/>
+                        <TextBox Name="tbKontaktTelefon" FontSize="17" Margin="20 20 20 0" IsReadOnly="True"/>
+                        <TextBox Name="tbBrojTelefona"   FontSize="17" Margin="20 20 20 20" IsReadOnly="True"/>
                     </StackPanel>
                 </Grid>
                 <!-- Buttoni zapamti i idi na projekat -->
-                <StackPanel Grid.Column="2">
+                <StackPanel Grid.Column="2"
+                            VerticalAlignment="Center">
                     <Button Content="Zapamti izmene"
-                                Height="50"
-                                FontSize="32"
-                                Margin="20 130 20 0"
-                                Click="ZapamtiIzmene_Click"/>
+                            Height="50"
+                            FontSize="28"
+                            Margin="10"
+                            Click="ZapamtiIzmene_Click"/>
                     <Button Content="Idi na projekat"
-                                Height="50"
-                                FontSize="22"
-                                Margin="20 10 20 10"
-                                Click="OtvoriProjectPage_Click"/>
+                            Height="50"
+                            FontSize="22"
+                            Margin="10"
+                            Click="OtvoriProjectPage_Click"/>
                 </StackPanel>
             </Grid>
         </Border>
