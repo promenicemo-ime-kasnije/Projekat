@@ -67,91 +67,93 @@
         
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="0"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!--#region Buttoni-->
-            <Grid Grid.Row="1">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-
-                <StackPanel Orientation="Vertical"
-                            Margin="30, 10, 5, 10">
-                    <TextBlock Name="txtRateNaslov"
-                               FontFamily="Consolas"/> <!--Ako hoces da menjas font stavi neki koji je monospace, gde svaki karakter ima istu sirinu-->
-                    <Separator Style="{StaticResource MaterialDesignDarkSeparator}" 
-                               Margin="0, -6, 0, 0"/>
-                    <TextBlock Name="txtRate" 
-                               Foreground="Gray"
-                               FontFamily="Consolas"/> <!--Isto vazi kao ovo gore-->
-                </StackPanel>
+            <WrapPanel FlowDirection="RightToLeft">
                 
-                <StackPanel Grid.Column="1"
-                        Margin="5, 0, 20, 0"
-                        HorizontalAlignment="Right"
-                        Orientation="Horizontal">
+                <!--#region Buttoni-->
+                <StackPanel Margin="20, 0, 20, 0"
+                            HorizontalAlignment="Right"
+                            Orientation="Horizontal">
 
                     <Button Click="DodajTrosak_Click"
-                        Margin="10"
-                        Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
-                        CommandParameter="{x:Static Dock.Right}">
+                            Margin="10"
+                            Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                            CommandParameter="{x:Static Dock.Right}">
                         <StackPanel Orientation="Horizontal"
-                                VerticalAlignment="Center">
+                                    VerticalAlignment="Center">
                             <materialDesign:PackIcon Kind="Add" Foreground="White" Margin="-3, 0, 5, 0"/>
                             <TextBlock Text="Dodaj" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
 
                     <Button Click="IzmeniTrosak_Click"
-                        Margin="10"
-                        Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
-                        CommandParameter="{x:Static Dock.Right}">
+                            Margin="10"
+                            Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                            CommandParameter="{x:Static Dock.Right}">
                         <StackPanel Orientation="Horizontal"
-                                VerticalAlignment="Center">
+                                    VerticalAlignment="Center">
                             <materialDesign:PackIcon Kind="Edit" Foreground="White" Margin="-3, 0, 5, 0"/>
                             <TextBlock Text="Izmeni" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
 
                     <Button Click="IzbrisiTrosak_Click"
-                        Margin="10">
+                            Margin="10">
                         <StackPanel Orientation="Horizontal"
-                                VerticalAlignment="Center">
+                                    VerticalAlignment="Center">
                             <materialDesign:PackIcon Kind="Delete" Foreground="White" Margin="-3, 0, 5, 0"/>
                             <TextBlock Text="Izbriši" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
 
                     <Button Margin="10"
-                            Click="DetaljiUplata_Click"
-                            Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
-                            CommandParameter="{x:Static Dock.Bottom}">
+                                Click="DetaljiUplata_Click"
+                                Command="{x:Static materialDesign:DrawerHost.OpenDrawerCommand}"
+                                CommandParameter="{x:Static Dock.Bottom}">
                         <StackPanel Orientation="Horizontal"
-                                VerticalAlignment="Center">
+                                    VerticalAlignment="Center">
                             <materialDesign:PackIcon Kind="Details" Foreground="White" Margin="-3, 0, 5, 0"/>
                             <TextBlock Text="Detalji uplata" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
 
                     <Button Click="ExportUExcel_Click"
-                        Margin="10">
+                            Margin="10">
                         <StackPanel Orientation="Horizontal"
-                                VerticalAlignment="Center">
+                                    VerticalAlignment="Center">
                             <materialDesign:PackIcon Kind="Export" Foreground="White" Margin="-3, 0, 5, 0"/>
                             <TextBlock Text="Export u Excel" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
                 </StackPanel>
-            </Grid>
+
+                <!--#endregion-->
+
+                <!--#region Rate-->
+                <StackPanel Orientation="Vertical"
+                            Margin="20, 10, 20, 10">
+                    <!--Ako hoces da menjas font stavi neki koji je monospace, gde svaki karakter ima istu sirinu-->
+                    <TextBlock Name="txtRateNaslov"
+                               FontFamily="Consolas"
+                               FlowDirection="LeftToRight"/> <!--Ovo je zbog FlowDirection WrapPanela u kome se nalazi textBlock, pravi male probleme, tekst ide naopako, ovako je to reseno-->
+                    <Separator Style="{StaticResource MaterialDesignDarkSeparator}" 
+                                   Margin="0, -6, 0, 0"/>
+                    <!--Isto vazi kao ovo gore-->
+                    <TextBlock Name="txtRate" 
+                               Foreground="Gray"
+                               FontFamily="Consolas"
+                               FlowDirection="LeftToRight"/> <!--Ovo je zbog FlowDirection WrapPanela u kome se nalazi textBlock, pravi male probleme, tekst ide naopako, ovako je to reseno-->
+                </StackPanel>
             
-            <!--#endregion-->
+                <!--#endregion-->
+                
+            </WrapPanel>
 
             <!--#region DataGrid u ScrollVieweru-->
-                <ScrollViewer Grid.Row="2"
+                <ScrollViewer Grid.Row="1"
                               Margin="10 20 10 10">
                     <DataGrid AutoGenerateColumns="False"
                               Margin="10"
@@ -162,7 +164,7 @@
                     
                     <!--#region Kolone DataGrida-->
                     <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Artikal}"
+                            <DataGridTextColumn Binding="{Binding Artikal}"
                                             Header="Naziv troška"
                                             EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
                             <DataGridTextColumn Binding="{Binding Kolicina}"

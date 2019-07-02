@@ -45,7 +45,7 @@ namespace Projekat.Pages
         /// Generalne informacije o troskovima se prikazuju kao dva textblocka jedan iznad drugog
         /// Prvi je naslov tu pise npr "Budzet projekta    Broj rata   1. Rata   2.Rata ...
         /// drugi ispisuje vrednosti   "10000              5           2500      5000   ...
-        /// Koristim formatiranje stringova da bih to uspeo, ali font mroa da je monospace, tj. da je sirina svih karaktera ista da bi se ovo postiglo
+        /// Koristim formatiranje stringova da bih to uspeo, ali font mora da je monospace, tj. da je sirina svih karaktera ista da bi se ovo postiglo
         /// </summary>
         /// <returns></returns>
         private async Task PopuniGeneralneInformacijeOTroskovima()

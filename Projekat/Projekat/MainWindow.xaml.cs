@@ -19,7 +19,11 @@ namespace Projekat
             InitializeComponent();
             Content = new LoginPage();
 
-            // za testiranje nekog page-a
+            // Za testiranje nekog page-a "Content = new LoginPage();" stavi pod komentar
+            // Ovu naredbu ispod ukljuci
+            // i u funkciji MainWindow_Loaded Content postavi na zeljeni page
+            // tako se pri pokretanju programa automatski postave korisnik i projekat i ucita zeljeni page
+
             //Loaded += MainWindow_Loaded;
         }
 
@@ -27,7 +31,7 @@ namespace Projekat
         {
             Helper.TrenutniKorisnik = await new EFCoreDataProvider().GetKorisnikAsync("admin");
             Helper.TrenutniProjekat = await new EFCoreDataProvider().GetProjekatAsync(30);
-            Content = new ZahteviPage();
+            Content = new TabelaPage();
         }
 
         protected override void OnContentChanged(object oldContent, object newContent)
