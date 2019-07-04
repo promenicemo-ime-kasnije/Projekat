@@ -123,7 +123,7 @@
         <StackPanel Grid.Column="1"> <!--DESNA STRANA-->
             <TextBlock Text="Filteri prikaza"
                        FontSize="18"
-                       Margin="120 0 0 0"
+                       HorizontalAlignment="Center"
                        FontWeight="DemiBold"/>
             <TextBlock Text="Datum"
                        FontSize="15"
@@ -152,7 +152,7 @@
                 Samed Bejtović
             </CheckBox>
             <!--FLIPPERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR-->
-            <materialDesign:Flipper Margin="20 30 10 0"
+            <materialDesign:Flipper Margin="20 30 10 20"
                                     Style="{StaticResource MaterialDesignCardFlipper}"
                                     HorizontalAlignment="Stretch">
                 <materialDesign:Flipper.FrontContent>
@@ -212,7 +212,7 @@
                                      AcceptsReturn="True"
                                      Margin="25 7 25 0"/>
 
-                            <Button Margin="25 40 25 30"
+                            <Button Margin="25 20 25 10"
                                     Click="DodajZahtev_Click"
                                     Command="{x:Static materialDesign:Flipper.FlipCommand}">
                                 Dodaj zahtev
