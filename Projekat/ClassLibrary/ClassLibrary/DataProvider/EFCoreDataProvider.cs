@@ -169,7 +169,7 @@ namespace ClassLibrary.DataProvider
             using (ExtentBazaEntities _context = new ExtentBazaEntities())
             {
                 //_context.Korisnik.AsNoTracking().FirstOrDefault(a => a.KorisnickoIme == korisnik.KorisnickoIme).Projekat.Add(projekat);
-                await _context.Database.ExecuteSqlCommandAsync("Insert into Interakcija Values({0},{1})", IDprojekta, korisnickoIme);
+                await _context.Database.ExecuteSqlCommandAsync($"Insert into Interakcija values('{korisnickoIme}', {IDprojekta})");
                 await _context.SaveChangesAsync();
 
                 // Dodaj aktivnost o tome da je korisnik dodeljen projektu
@@ -182,7 +182,7 @@ namespace ClassLibrary.DataProvider
             using (ExtentBazaEntities _context = new ExtentBazaEntities())
             {
                 //_context.Korisnik.FirstOrDefault(a => a.KorisnickoIme == korisnik.KorisnickoIme).Projekat.Remove(projekat);
-                await _context.Database.ExecuteSqlCommandAsync("Delete from Interakcija where IDProjekta = {0} and KorisnickoIme = {1}", IDprojekta, korisnickoIme);
+                await _context.Database.ExecuteSqlCommandAsync($"Delete from Interakcija where Projekat_IDProjekta = {IDprojekta} and Korisnik_KorisnickoIme = '{korisnickoIme}';");
 
                 // Dodaj aktivnost o tome da je korisnik uklonjen sa projekta
                 await AddAktivnostAsync(new Aktivnost { IDProjekta = (int)IDprojekta, Poruka = $"{(await GetKorisnikAsync(korisnickoIme)).PunoIme} je uklonjen sa projekta." });

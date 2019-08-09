@@ -134,7 +134,7 @@ namespace Projekat.Pages
         private void PrikaziDetalje_Click(object sender, MouseButtonEventArgs e)
         {
             var korisnik = (sender as ListView).SelectedItem as Korisnik;
-            tbImePrezime.Text = korisnik.PunoIme;
+            tbImePrezime.Text = korisnik?.PunoIme;
             tbAdresa.Text = "Dubrovacka 15. Novi Pazar";
             tbFirma.Text = "Fikus doo";
             tbKontaktTelefon.Text = "020800800";
