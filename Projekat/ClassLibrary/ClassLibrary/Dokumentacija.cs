@@ -24,7 +24,7 @@ namespace ClassLibrary
 
         public bool IsEnable { get; set; } = false;
 
-        public virtual PDF PDF { get; set; }
         public virtual Projekat Projekat { get; set; }
+        public virtual PDF PDF { get; set; }
     }
 }

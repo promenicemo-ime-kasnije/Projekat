@@ -25,13 +25,14 @@ namespace ClassLibrary
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Dokumentacija> Dokumentacija { get; set; }
-        public virtual DbSet<PDF> PDF { get; set; }
         public virtual DbSet<Aktivnost> Aktivnost { get; set; }
-        public virtual DbSet<Korisnik> Korisnik { get; set; }
-        public virtual DbSet<Zahtev> Zahtev { get; set; }
+        public virtual DbSet<Dokumentacija> Dokumentacija { get; set; }
         public virtual DbSet<GeneralniTrosak> GeneralniTrosak { get; set; }
+        public virtual DbSet<Korisnik> Korisnik { get; set; }
+        public virtual DbSet<PDF> PDF { get; set; }
         public virtual DbSet<Projekat> Projekat { get; set; }
         public virtual DbSet<Trosak> Trosak { get; set; }
+        public virtual DbSet<Zahtev> Zahtev { get; set; }
+        public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
     }
 }
