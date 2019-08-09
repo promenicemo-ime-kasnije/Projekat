@@ -22,14 +22,14 @@ namespace ClassLibrary
         public string Naslov { get; set; }
         public string Poruka { get; set; }
         public Nullable<bool> Odgovor { get; set; }
-    
-        public virtual Korisnik Korisnik { get; set; }
-        public virtual Korisnik Korisnik1 { get; set; }
-        public virtual Projekat Projekat { get; set; }
 
         public override string ToString()
         {
             return Regex.Replace($"{Naslov} / {Poruka}", @"\s+", " ");
         }
+
+        public virtual Korisnik Korisnik { get; set; }
+        public virtual Korisnik Korisnik1 { get; set; }
+        public virtual Projekat Projekat { get; set; }
     }
 }

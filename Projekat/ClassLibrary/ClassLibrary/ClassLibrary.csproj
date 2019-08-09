@@ -32,10 +32,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServerCompact, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.SqlServerCompact.6.2.0\lib\net45\EntityFramework.SqlServerCompact.dll</HintPath>
@@ -133,77 +133,74 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aktivnost.cs">
-      <DependentUpon>ExtentModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="database_firewall_rules.cs">
-      <DependentUpon>ExtentModel.tt</DependentUpon>
+      <DependentUpon>EFCoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataProvider\EFCoreDataProvider.cs" />
     <Compile Include="DataProvider\IDataProvider.cs" />
     <Compile Include="Dokumentacija.cs">
-      <DependentUpon>ExtentModel.tt</DependentUpon>
+      <DependentUpon>EFCoreModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ExtentModel.Context.cs">
+    <Compile Include="EFCoreModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ExtentModel.Context.tt</DependentUpon>
+      <DependentUpon>EFCoreModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="ExtentModel.cs">
+    <Compile Include="EFCoreModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ExtentModel.tt</DependentUpon>
+      <DependentUpon>EFCoreModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ExtentModel.Designer.cs">
+    <Compile Include="EFCoreModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ExtentModel.edmx</DependentUpon>
+      <DependentUpon>EFCoreModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="GeneralniTrosak.cs">
-      <DependentUpon>ExtentModel.tt</DependentUpon>
+      <DependentUpon>EFCoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Korisnik.cs">
-      <DependentUpon>ExtentModel.tt</DependentUpon>
+      <DependentUpon>EFCoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PDF.cs">
-      <DependentUpon>ExtentModel.tt</DependentUpon>
+      <DependentUpon>EFCoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Projekat.cs">
-      <DependentUpon>ExtentModel.tt</DependentUpon>
+      <DependentUpon>EFCoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Trosak.cs">
-      <DependentUpon>ExtentModel.tt</DependentUpon>
+      <DependentUpon>EFCoreModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Zahtev.cs">
-      <DependentUpon>ExtentModel.tt</DependentUpon>
+      <DependentUpon>EFCoreModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="ExtentModel.edmx">
+    <EntityDeploy Include="EFCoreModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ExtentModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>EFCoreModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="ExtentModel.edmx.diagram">
-      <DependentUpon>ExtentModel.edmx</DependentUpon>
+    <None Include="EFCoreModel.edmx.diagram">
+      <DependentUpon>EFCoreModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ExtentModel.Context.tt">
+    <Content Include="EFCoreModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>ExtentModel.Context.cs</LastGenOutput>
-      <DependentUpon>ExtentModel.edmx</DependentUpon>
+      <LastGenOutput>EFCoreModel.Context.cs</LastGenOutput>
+      <DependentUpon>EFCoreModel.edmx</DependentUpon>
     </Content>
-    <Content Include="ExtentModel.tt">
+    <Content Include="EFCoreModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ExtentModel.edmx</DependentUpon>
-      <LastGenOutput>ExtentModel.cs</LastGenOutput>
+      <DependentUpon>EFCoreModel.edmx</DependentUpon>
+      <LastGenOutput>EFCoreModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

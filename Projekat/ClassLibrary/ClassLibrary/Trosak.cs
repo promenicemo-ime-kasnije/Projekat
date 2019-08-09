@@ -23,8 +23,6 @@ namespace ClassLibrary
         public int IDTroska { get; set; }
         public string Datum { get; set; }
         public Nullable<bool> Stanje { get; set; }
-    
-        public virtual GeneralniTrosak GeneralniTrosak { get; set; }
 
         public int UkupnaCena { get => (int)Kolicina * (int)Cena; }
 
@@ -32,5 +30,7 @@ namespace ClassLibrary
         {
             return $"{Kategorija}/{Podkategorija}  Naziv artikla: {Artikal}  Kolicina: {Kolicina}  Cena: {Cena}";
         }
+
+        public virtual GeneralniTrosak GeneralniTrosak { get; set; }
     }
 }

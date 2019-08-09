@@ -9,7 +9,6 @@
 
 namespace ClassLibrary
 {
-    using ClassLibrary.DataProvider;
     using System;
     using System.Collections.Generic;
     

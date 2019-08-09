@@ -33,6 +33,5 @@ namespace ClassLibrary
         public virtual DbSet<Projekat> Projekat { get; set; }
         public virtual DbSet<Trosak> Trosak { get; set; }
         public virtual DbSet<Zahtev> Zahtev { get; set; }
-        public virtual DbSet<database_firewall_rules> database_firewall_rules { get; set; }
     }
 }
